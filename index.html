@@ -5,27 +5,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
     <style>
-        /* Add some styles for the EU news section */
-        #eu-news-header {
-            background-color: #333; /* Dark background for contrast */
-            color: white; /* White text color */
-            text-align: center;
-            padding: 20px; /* Add some padding */
-            margin-bottom: 20px; /* Space below the header */
-            font-size: 24px; /* Larger font size */
+        /* Example styles for the news section */
+        .news-container {
+            margin: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        #news-list {
-            display: flex; /* Use flexbox for layout */
-            flex-wrap: wrap; /* Allow wrapping to next row */
-            justify-content: space-between; /* Space items evenly */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px;
         }
+
         .news-item {
-            width: calc(33.33% - 10px); /* 3 columns with spacing */
-            margin-bottom: 20px; /* Space between rows */
-            background-color: #f4f4f4; /* Light background for news items */
-            padding: 10px; /* Padding inside news items */
-            border-radius: 5px; /* Rounded corners */
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -70,29 +80,13 @@
 
             <!-- EU News Section -->
             <section>
-                <div id="eu-news-header">EU News</div>
                 <header class="major">
                     <h2>EU Parliament:</h2>
                 </header>
-                <div id="news-list">
-                    <!-- Example of how news items will be populated -->
-                    <div class="news-item">News Item 1</div>
-                    <div class="news-item">News Item 2</div>
-                    <div class="news-item">News Item 3</div>
-                    <div class="news-item">News Item 4</div>
-                    <div class="news-item">News Item 5</div>
-                    <div class="news-item">News Item 6</div>
-                    <div class="news-item">News Item 7</div>
-                    <div class="news-item">News Item 8</div>
-                    <div class="news-item">News Item 9</div>
-                    <div class="news-item">News Item 10</div>
-                    <div class="news-item">News Item 11</div>
-                    <div class="news-item">News Item 12</div>
-                    <div class="news-item">News Item 13</div>
-                    <div class="news-item">News Item 14</div>
-                    <div class="news-item">News Item 15</div>
-                    <!-- Empty box if needed -->
-                    <div class="news-item"></div>
+                <div class="news-container">
+                    <div id="news-list" class="news-grid">
+                        <!-- News items will be inserted here -->
+                    </div>
                 </div>
             </section>
 
@@ -149,7 +143,6 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="script.js" defer></script> <!-- Make sure to link your script here -->
 
 </body>
 </html>
