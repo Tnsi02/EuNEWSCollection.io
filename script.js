@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('EPnews.txt') // Update this to the correct path for EPnews.txt
+    // Fetch EP news
+    fetch('EPnews.txt')  // Ensure this path is correct
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -7,15 +8,36 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         })
         .then(data => {
-            const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
-            const newsList = document.getElementById('news-list');
+            const epNewsItems = data.split('\n').map(line => line.trim()).filter(line => line);
+            const epNewsList = document.getElementById('ep-news-list');
 
-            newsItems.forEach(item => {
-                const [title, link] = item.split(' - '); // Split the title and link
+            epNewsItems.forEach(item => {
+                const [title, link] = item.split(' - ');  // Split title and link
                 const article = document.createElement('article');
-                article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`; // Create clickable link
-                newsList.appendChild(article);
+                article.innerHTML = `<p><a href="${link}" target="_blank">${title}</a></p>`;
+                epNewsList.appendChild(article);
             });
         })
-        .catch(error => console.error('Error fetching news:', error));
+        .catch(error => console.error('Error fetching EP news:', error));
+
+    // Fetch Commission news
+    fetch('ECnews.txt')  // Ensure this path is correct for Commission news
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const commissionNewsItems = data.split('\n').map(line => line.trim()).filter(line => line);
+            const commissionNewsList = document.getElementById('commission-news-list');
+
+            commissionNewsItems.forEach(item => {
+                const [title, link] = item.split(' - ');  // Split title and link
+                const article = document.createElement('article');
+                article.innerHTML = `<p><a href="${link}" target="_blank">${title}</a></p>`;
+                commissionNewsList.appendChild(article);
+            });
+        })
+        .catch(error => console.error('Error fetching Commission news:', error));
 });
