@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('news.txt') // Make sure this path is correct
+    fetch('EPnews.txt') // Update this to the correct path for EPnews.txt
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
