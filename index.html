@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Ensure this is UTF-8 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU News</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
+    <style>
+        /* Example styles for the news section */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0 0 20px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        .news-item {
+            margin: 10px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        a {
+            color: #4183c4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <header>
+    <div class="container">
         <h1>EU NEWS</h1>
         <h2>EU PARLIAMENT</h2>
-    </header>
-
-    <div class="news-container">
         <div id="news-list">
             <!-- News items will be inserted here -->
         </div>
@@ -21,22 +65,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('news.txt')  // Ensure this path is correct
+            fetch('EPnews.txt') // Updated to use EPnews.txt
                 .then(response => response.text())
                 .then(data => {
                     const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
                     const newsList = document.getElementById('news-list');
 
                     newsItems.forEach(item => {
-                        const [title, link] = item.split(' - ');  // Split title and link
-                        const article = document.createElement('article');
-                        article.innerHTML = `<p><a href="${link}" target="_blank">${title}</a></p>`;
+                        const article = document.createElement('div');
+                        article.className = 'news-item'; // Add a class for styling
+                        article.innerHTML = `<p>${item}</p>`;
                         newsList.appendChild(article);
                     });
                 })
                 .catch(error => console.error('Error fetching news:', error));
         });
     </script>
-
 </body>
 </html>
