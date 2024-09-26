@@ -4,14 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU News</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional: link to your CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
+    <style>
+        /* Example styles for the news section */
+        .news-container {
+            margin: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px;
+        }
+
+        .news-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Latest EU News</h1>
-    <ul id="news-list">
-        <!-- News items will be inserted here -->
-    </ul>
 
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <header>
+        <h1>Latest EU News</h1>
+    </header>
+
+    <div class="news-container">
+        <div id="news-list" class="news-grid">
+            <!-- News items will be inserted here -->
+        </div>
+    </div>
+
 </body>
 </html>
