@@ -11,17 +11,22 @@ header {
 }
 
 .news-container {
-    max-width: 600px;
-    margin: auto;
+    display: flex; /* Use flexbox to arrange items side by side */
+    justify-content: space-between; /* Space out sections */
+    max-width: 1200px; /* Limit the width */
+    margin: auto; /* Center the container */
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.news-container h3 {
-    margin-top: 30px;  /* Add spacing between sections */
-    margin-bottom: 10px; /* Optional: add spacing below section headers */
+.news-section {
+    width: 48%; /* Each section takes up about half the width */
+}
+
+.news-section h2 {
+    margin-top: 0; /* Remove margin at the top for the section headers */
 }
 
 article {
