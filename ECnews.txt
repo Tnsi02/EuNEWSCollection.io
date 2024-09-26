@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+Joint Statement by the European Union, Australia, Canada, France, Germany, Italy, Japan, Qatar, Saudi Arabia, United Arab Emirates, the United Kingdom, the United States - https://ec.europa.eu/commission/presscorner/detail/en/statement_24_4881
+
+
+=======
 Joint Statement by the European Union, Australia, Canada, France, Germany, Italy, Japan, Qatar, Saudi Arabia, United Arab Emirates, the United Kingdom, the United States - https://ec.europa.eu/commission/presscorner/detail/en/statement_24_4881
 Commission welcomes international declaration on the fight against antimicrobial resistance - https://ec.europa.eu/commission/presscorner/detail/en/ip_24_4847
 Remarks by Commissioner Kyriakides at UNGA High-Level meeting on Antimicrobial Resistance - https://ec.europa.eu/commission/presscorner/detail/en/speech_24_4846
@@ -18,3 +23,4 @@ Calendrier du lundi 23 septembre 2024 au dimanche 29 septembre 2024 - https://ec
 Questions and Answers on the Commission's proposal of an up to €35 billion MFA loan for Ukraine as the EU's contribution to the EU-G7 support of up to €45 billion - https://ec.europa.eu/commission/presscorner/detail/en/qanda_24_4703
 Commission proposes up to €35 billion MFA loan for Ukraine as the EU's contribution to the EU-G7 support of up to €45 billion - https://ec.europa.eu/commission/presscorner/detail/en/ip_24_4702
 EU at UN General Assembly to boost international cooperation on key global challenges - https://ec.europa.eu/commission/presscorner/detail/en/ip_24_4728
+>>>>>>> b3f94ffa3b7d0fe2f98c359414e9cb5f6244a17f
