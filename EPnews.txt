@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-Hungarian Presidency debriefs EP committees on priorities - https://www.europarl.europa.eu/news/en/press-room/20240923IPR24232/hungarian-presidency-debriefs-ep-committees-on-priorities
-Sakharov Prize 2024: presentation of candidates - https://www.europarl.europa.eu/news/en/press-room/20240923IPR24233/sakharov-prize-2024-presentation-of-candidates
-=======
 Hungarian Presidency debriefs EP committees on priorities - https://www.europarl.europa.eu/news/en/press-room/20240923IPR24232/hungarian-presidency-debriefs-ep-committees-on-priorities
 Sakharov Prize 2024: presentation of candidates - https://www.europarl.europa.eu/news/en/press-room/20240923IPR24233/sakharov-prize-2024-presentation-of-candidates
 Venezuela: MEPs recognise Edmundo González as President - https://www.europarl.europa.eu/news/en/press-room/20240913IPR23907/venezuela-meps-recognise-edmundo-gonzalez-as-president
@@ -17,4 +13,3 @@ Draghi to MEPs: “Europe faces a choice between exit, paralysis, or integration
 Future Commission discussed by EP leaders - https://www.europarl.europa.eu/news/en/press-room/20240917IPR24034/future-commission-discussed-by-ep-leaders
 EP TODAY - https://www.europarl.europa.eu/news/en/press-room/20240916IPR24002/ep-today
 Opening: 16-19 September plenary session - https://www.europarl.europa.eu/news/en/press-room/20240913IPR23902/opening-16-19-september-plenary-session
->>>>>>> b3f94ffa3b7d0fe2f98c359414e9cb5f6244a17f
