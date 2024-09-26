@@ -7,12 +7,15 @@ fetch('news.txt')
         articles.forEach(article => {
             if (article.trim()) { // Check for empty lines
                 const [title, link] = article.split(' - '); // Split title and link
-                const listItem = document.createElement('li');
+                const newsItem = document.createElement('div'); // Create a div for the article
+                newsItem.classList.add('news-item'); // Add a class for styling
+
                 const anchor = document.createElement('a');
                 anchor.href = link; // Set the link
                 anchor.textContent = title; // Set the title text
-                listItem.appendChild(anchor); // Append anchor to list item
-                newsList.appendChild(listItem); // Append list item to the news list
+
+                newsItem.appendChild(anchor); // Append anchor to news item
+                newsList.appendChild(newsItem); // Append news item to the news list
             }
         });
     })
