@@ -1,22 +1,15 @@
-fetch('news.txt')
-    .then(response => response.text())
-    .then(data => {
-        const newsList = document.getElementById('news-list');
-        const articles = data.split('\n'); // Split by new line
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('path/to/news.txt') // Update this to the correct path for news.txt
+        .then(response => response.text())
+        .then(data => {
+            const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
+            const newsList = document.getElementById('news-list');
 
-        articles.forEach(article => {
-            if (article.trim()) { // Check for empty lines
-                const [title, link] = article.split(' - '); // Split title and link
-                const newsItem = document.createElement('div'); // Create a div for the article
-                newsItem.classList.add('news-item'); // Add a class for styling
-
-                const anchor = document.createElement('a');
-                anchor.href = link; // Set the link
-                anchor.textContent = title; // Set the title text
-
-                newsItem.appendChild(anchor); // Append anchor to news item
-                newsList.appendChild(newsItem); // Append news item to the news list
-            }
-        });
-    })
-    .catch(error => console.error('Error loading news:', error));
+            newsItems.forEach(item => {
+                const article = document.createElement('article');
+                article.innerHTML = `<p>${item}</p>`;
+                newsList.appendChild(article);
+            });
+        })
+        .catch(error => console.error('Error fetching news:', error));
+});
