@@ -50,6 +50,28 @@ body {
     border-radius: 4px;
 }
 
+/* News sections */
+.news-section {
+    margin-bottom: 20px;
+}
+
+.news-title {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.news-title .toggle {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+/* News list hidden by default */
+.news-list {
+    display: none;
+    padding-left: 20px;
+}
+
 /* Adjusting for 16:9 screens */
 @media screen and (max-width: 1920px) {
     .comment-sidebar {
