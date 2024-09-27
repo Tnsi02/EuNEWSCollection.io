@@ -93,4 +93,8 @@ article a:hover {
         width: 100%; /* Full width for Disqus on smaller screens */
         border-left: none; /* Remove the border on smaller screens */
     }
+    .news-read-checkbox {
+    margin-right: 8px; /* Space between checkbox and link */
+}
+
 }
