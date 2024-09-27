@@ -16,7 +16,7 @@ header {
     max-width: 900px; /* Limit the width */
     margin: auto; /* Center the container */
     background: #fff;
-    padding: 40px;
+    padding: 90px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
