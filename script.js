@@ -1,3 +1,7 @@
+// Import Firebase modules
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js';
+import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Firebase
     const firebaseConfig = {
@@ -9,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
@@ -33,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch comments from Firestore
     function fetchComments() {
         const commentsContainer = document.getElementById('comments-container');
-        db.collection('comments').orderBy('timestamp', 'desc').get()
+        const commentsQuery = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
+        
+        getDocs(commentsQuery)
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const comment = document.createElement('div');
@@ -66,10 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentText = commentInput.value.trim();
 
         if (commentText) {
-            const comment = { text: commentText, timestamp: firebase.firestore.FieldValue.serverTimestamp() };
+            const comment = { text: commentText, timestamp: serverTimestamp() };
 
             // Save comment to Firestore
-            db.collection('comments').add(comment)
+            addDoc(collection(db, 'comments'), comment)
                 .then(() => {
                     const commentDiv = document.createElement('div');
                     commentDiv.textContent = commentText;
