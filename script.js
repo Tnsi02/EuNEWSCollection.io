@@ -12,13 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
+                    const coloredTitle = title
+                        .replace(/\[(Council of the EU)\]/g, '<span style="color: lightblue;">[$1]</span>')
+                        .replace(/\[(European Council)\]/g, '<span style="color: darkblue;">[$1]</span>');
+
                     const encodeLink = encodeURIComponent(link); // Encode the link
                     const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeLink}`; // Create summarize URL
                     const article = document.createElement('article');
                     article.innerHTML = `
                         <label>
                             <input type="checkbox" class="news-read-checkbox" />
-                            <a href="${link}" target="_blank">${title}</a>
+                            <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
                         </label>
                     `;
@@ -56,11 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch Featured News, EP News, Commission News, External Action News, and Consilium News
-    fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
-    fetchNews('EPnews.txt', 'ep-news-list'); // EP News
-    fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
-    fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
-    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
+    fetchNews('EUFnews.txt', 'featured-news-list'); // New line for Featured News
+    fetchNews('EPnews.txt', 'ep-news-list');
+    fetchNews('ECnews.txt', 'commission-news-list');
+    fetchNews('EEASnews.txt', 'external-action-news-list');
+    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // New line for Consilium News
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
