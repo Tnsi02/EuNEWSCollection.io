@@ -13,7 +13,7 @@ header {
 
 .last-updated {
     position: absolute; /* Position it absolutely */
-    right: 6; /* Align it to the right side */
+    right: 130; /* Align it to the right side */
     top: 10px; /* Adjust vertical position */
     font-size: 14px; /* Adjust font size */
     color: #555; /* Different color for distinction */
