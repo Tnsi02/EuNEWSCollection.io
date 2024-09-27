@@ -1,12 +1,4 @@
-// Import Firebase modules
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js';
-
-
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
+document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
         fetch(filePath)
@@ -18,28 +10,11 @@ import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimest
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
                     const article = document.createElement('article');
-                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`; // Create a clickable link
+                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
                     newsList.appendChild(article);
                 });
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
-    }
-
-    // Function to fetch comments from Firestore
-    function fetchComments() {
-        const commentsContainer = document.getElementById('comments-container');
-        const commentsQuery = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-
-        getDocs(commentsQuery)
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    const comment = document.createElement('div');
-                    comment.textContent = doc.data().text; // Use the text from Firestore
-                    comment.className = 'comment';
-                    commentsContainer.appendChild(comment);
-                });
-            })
-            .catch(error => console.error('Error fetching comments:', error));
     }
 
     // Fetch EP News and Commission News
@@ -63,24 +38,15 @@ import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimest
         const commentText = commentInput.value.trim();
 
         if (commentText) {
-            const comment = { text: commentText, timestamp: serverTimestamp() };
+            const comment = document.createElement('div');
+            comment.textContent = commentText; // Add the comment text
+            comment.className = 'comment'; // Optional: Add a class for styling
 
-            // Save comment to Firestore
-            addDoc(collection(db, 'comments'), comment)
-                .then(() => {
-                    const commentDiv = document.createElement('div');
-                    commentDiv.textContent = commentText;
-                    commentDiv.className = 'comment';
-                    const commentsContainer = document.getElementById('comments-container');
-                    commentsContainer.appendChild(commentDiv); // Add comment to the container
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.appendChild(comment); // Add the comment to the container
 
-                    commentInput.value = ''; // Clear input field
-                    commentsContainer.scrollTop = commentsContainer.scrollHeight; // Scroll to the bottom
-                })
-                .catch(error => console.error('Error adding comment:', error));
+            commentInput.value = ''; // Clear the input field
+            commentsContainer.scrollTop = commentsContainer.scrollHeight; // Scroll to the bottom
         }
     });
-
-    // Fetch comments when the page loads
-    fetchComments();
 });
