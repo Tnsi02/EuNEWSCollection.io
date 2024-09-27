@@ -60,8 +60,7 @@ article a:hover {
     width: 400px; /* Width for the Disqus section */
     padding: 20px; /* Add padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    height: 100vh; /* Full height of the viewport */
-    overflow-y: auto; /* Scrollable if content exceeds height */
+    height: auto; /* Adjust height for content */
 }
 
 /* Responsive Design */
