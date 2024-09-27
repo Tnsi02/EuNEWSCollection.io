@@ -22,7 +22,7 @@ header {
 }
 
 .news-section {
-    width: 50%; /* Each section takes up about half the width */
+    width: 25%; /* Each section takes up about half the width */
 }
 
 .news-section h2 {
