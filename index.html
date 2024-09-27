@@ -30,11 +30,13 @@
 
     <div class="comments-section">
         <h3>Comments</h3>
-        <div id="comments-container">
+        <form id="comment-form"> <!-- Change to form for better handling -->
+            <textarea id="comment-input" placeholder="Write a comment..." required></textarea>
+            <button type="submit">Submit</button> <!-- This button now submits the form -->
+        </form>
+        <ul id="comment-list">
             <!-- Comments will be dynamically added here -->
-        </div>
-        <textarea id="comment-input" placeholder="Write a comment..." required></textarea>
-        <button id="submit-comment">Submit</button>
+        </ul>
     </div>
 
     <script src="script.js"></script>
