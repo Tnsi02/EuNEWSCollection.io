@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU NEWS Collection</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add the following styles to your CSS */
+        .eu-council {
+            color: darkblue; /* Deep Blue */
+        }
+
+        .council-of-eu {
+            color: lightblue; /* Light Blue */
+        }
+    </style>
 </head>
 <body>
 
@@ -56,6 +66,17 @@
                 <!-- External Action News items will be inserted here -->
             </div>
         </div>
+
+        <!-- New Consilium Section -->
+        <div class="news-section">
+            <h2>
+                Consilium
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="consilium-news-list" class="news-list" style="display: none;">
+                <!-- Consilium News items will be inserted here -->
+            </div>
+        </div>
     </div>
 
     <div class="disqus-container">
@@ -68,15 +89,4 @@
             (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
                 s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
-    </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+                s.setAttribute('data-
