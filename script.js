@@ -13,11 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="submit-comment">Submit</button>
             </div>
         `;
-        
+
+        // Initialize comments for this news item
+        const commentsList = article.querySelector('.comment-list');
+        const commentsKey = `comments_${link}`; // Unique key for each article based on link
+
+        // Load comments from local storage
+        loadComments(commentsKey, commentsList);
+
         // Toggle comment section visibility
         const toggleButton = article.querySelector('.toggle-comments');
         const commentsSection = article.querySelector('.comments-section');
-        
+
         toggleButton.addEventListener('click', () => {
             commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
         });
@@ -27,13 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.addEventListener('click', () => {
             const commentText = commentsSection.querySelector('textarea').value.trim();
             if (commentText) {
-                const currentTime = new Date().toLocaleString("en-US", {timeZone: "Europe/Berlin", hour12: false});
+                const currentTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour12: false });
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment-item');
                 commentDiv.innerHTML = `<strong>${currentTime}</strong>: ${commentText}`;
-                commentsSection.querySelector('.comment-list').appendChild(commentDiv);
+                commentsList.appendChild(commentDiv);
                 commentsSection.querySelector('textarea').value = ''; // Clear the textarea
-                scrollToBottom(commentsSection.querySelector('.comment-list')); // Scroll to the bottom
+                scrollToBottom(commentsList); // Scroll to the bottom
+
+                // Save the comment to local storage
+                saveComment(commentsKey, { time: currentTime, text: commentText });
             }
         });
 
@@ -43,6 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll to the bottom of the comments section
     const scrollToBottom = (commentList) => {
         commentList.scrollTop = commentList.scrollHeight;
+    };
+
+    // Load comments from local storage
+    const loadComments = (key, commentList) => {
+        const savedComments = JSON.parse(localStorage.getItem(key)) || [];
+        savedComments.forEach(({ time, text }) => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment-item');
+            commentDiv.innerHTML = `<strong>${time}</strong>: ${text}`;
+            commentList.appendChild(commentDiv);
+        });
+    };
+
+    // Save comment to local storage
+    const saveComment = (key, comment) => {
+        const savedComments = JSON.parse(localStorage.getItem(key)) || [];
+        savedComments.push(comment);
+        localStorage.setItem(key, JSON.stringify(savedComments));
     };
 
     // Fetch EP News
