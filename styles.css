@@ -13,10 +13,10 @@ header {
 .news-container {
     display: flex; /* Use flexbox to arrange items side by side */
     justify-content: space-between; /* Space out sections */
-    max-width: 1200px; /* Limit the width */
+    max-width: 900px; /* Limit the width */
     margin: auto; /* Center the container */
     background: #fff;
-    padding: 20px;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
