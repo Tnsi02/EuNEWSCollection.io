@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); // Update visibility state
         });
     });
+
     // Function to handle comment submission
     document.getElementById('submit-comment').addEventListener('click', () => {
         const commentInput = document.getElementById('comment-input');
