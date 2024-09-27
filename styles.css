@@ -8,10 +8,28 @@ body {
 header {
     text-align: left; /* Align title to the left */
     margin-bottom: 20px; /* Reduce margin for better positioning */
+    position: relative; /* Set position to relative for children */
+}
+
+.header-content {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+}
+
+h1 {
+    margin: 0; /* Remove default margin */
+}
+
+#last-updated-date {
+    margin-left: 20px; /* Space between title and last updated text */
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Change color for distinction */
 }
 
 .main-content {
     display: flex; /* Use flexbox to arrange items */
+    flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
 }
 
 .news-container {
@@ -73,10 +91,13 @@ article a:hover {
 }
 
 .disqus-container {
-    width: 400px; /* Width for the Disqus section */
+    width: 100%; /* Use full width on mobile */
+    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
     padding: 20px; /* Add padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
     height: auto; /* Adjust height for content */
+    margin-top: 20px; /* Add space above */
+    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
 }
 
 /* Style for summarize button */
@@ -92,4 +113,26 @@ article a:hover {
 
 .summarize-button:hover {
     background-color: #357abd; /* Darker shade on hover */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+
+    .disqus-container {
+        width: 100%; /* Make Disqus section full width on small screens */
+        margin-top: 30px; /* Add spacing at the top */
+    }
+
+    header {
+        text-align: center; /* Center the header on small screens */
+    }
+
+    #last-updated-date {
+        margin-left: 0; /* Remove left margin for small screens */
+        text-align: center; /* Center the last updated text */
+        top: 0; /* Reset top position */
+    }
 }
