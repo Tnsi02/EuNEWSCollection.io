@@ -12,7 +12,7 @@ header {
 }
 
 .last-updated {
-    position: fixed; /* Position it absolutely */
+    position: relative; /* Position it absolutely */
     right: 3%; /* Adjust this value as needed for positioning */
     top: 10px; /* Adjust vertical position */
     font-size: 14px; /* Adjust font size if needed */
