@@ -18,12 +18,17 @@ header {
     background: #fff;
     padding: 20px; /* Adjust padding for a more balanced look */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly softer shadow */
 }
 
 .news-section {
-    width: 50%; /* Each section takes up about half the width */
-    margin: 0 10px; /* Add some margin between sections */
+    width: 48%; /* Each section takes up about half the width */
+    margin: 0 1%; /* Add some margin between sections */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.news-section:hover {
+    background-color: #f0f8ff; /* Light blue background on hover */
 }
 
 .news-section h2 {
@@ -43,6 +48,11 @@ article {
 article a {
     color: #4183c4;
     text-decoration: none;
+    transition: text-decoration 0.3s; /* Smooth transition for text decoration */
+}
+
+article a:hover {
+    text-decoration: underline; /* Underline on hover */
 }
 
 .toggle-sign {
@@ -55,11 +65,6 @@ article a {
     display: none; /* Initially hide the news list */
 }
 
-article a:hover {
-    text-decoration: underline;
-}
-
-/* Comments Section Styling */
 .comments-section {
     position: fixed; /* Fixes the position of the comments section */
     right: 20px; /* Distance from the right edge */
@@ -69,7 +74,7 @@ article a:hover {
     border: 1px solid #ccc; /* Border for better visibility */
     border-radius: 8px; /* Rounded corners */
     padding: 10px; /* Inner padding */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
     z-index: 1000; /* Ensure it appears above other elements */
 }
 
@@ -83,6 +88,9 @@ article a:hover {
     width: 100%; /* Full width for the input field */
     height: 60px; /* Height of the input area */
     margin-bottom: 10px; /* Space below the input field */
+    padding: 10px; /* Padding for input */
+    border: 1px solid #ccc; /* Border for input */
+    border-radius: 4px; /* Rounded corners for the input */
 }
 
 #submit-comment {
@@ -93,6 +101,7 @@ article a:hover {
     border: none; /* Remove border */
     border-radius: 4px; /* Rounded corners for the button */
     cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
 #submit-comment:hover {
