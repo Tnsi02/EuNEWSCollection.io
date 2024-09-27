@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU News</title>
+    <title>News with Comments</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <h1>EU NEWS</h1>
-    </header>
-
-    <div class="news-container">
-        <div class="news-section">
-            <h2>EP NEWS</h2>
-            <div id="ep-news-list">
-                <!-- EP News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>Commission News</h2>
-            <div id="commission-news-list">
-                <!-- Commission News items will be inserted here -->
-            </div>
+<div class="news-container">
+    <div class="news-item">
+        <h2>Headline 1</h2>
+        <button class="toggle-comment">+</button>
+        <div class="comment-section" style="display: none;">
+            <textarea placeholder="Write your comment..."></textarea>
+            <button class="submit-comment">Post</button>
+            <div class="comments-list"></div>
         </div>
     </div>
+    <div class="news-item">
+        <h2>Headline 2</h2>
+        <button class="toggle-comment">+</button>
+        <div class="comment-section" style="display: none;">
+            <textarea placeholder="Write your comment..."></textarea>
+            <button class="submit-comment">Post</button>
+            <div class="comments-list"></div>
+        </div>
+    </div>
+    <!-- Repeat for more headlines -->
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
