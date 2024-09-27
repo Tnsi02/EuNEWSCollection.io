@@ -11,7 +11,7 @@ header {
 }
 
 .news-container {
-    display: flex; /* Use flexbox to arrange items side by side */
+    display: flex; /* Use flexbox to arrange news sections side by side */
     justify-content: space-between; /* Space out sections */
     max-width: 900px; /* Limit the width */
     margin: auto; /* Center the container */
@@ -59,20 +59,11 @@ article a:hover {
     text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .news-container {
-        flex-direction: column; /* Stack sections vertically on smaller screens */
-    }
-
-    .news-section {
-        width: 100%; /* Full width for each section */
-        margin: 10px 0; /* Margin for separation */
-    }
+/* Comments Section Styling */
 .comments-section {
     position: fixed; /* Fixes the position of the comments section */
     right: 20px; /* Distance from the right edge */
-    top: 20px; /* Distance from the top edge */
+    top: 100px; /* Adjusted top distance to fit below header */
     width: 300px; /* Set a width for the comments section */
     background: white; /* Background color */
     border: 1px solid #ccc; /* Border for better visibility */
@@ -108,5 +99,21 @@ article a:hover {
     background-color: #357ab8; /* Darken button on hover */
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .news-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
 
+    .news-section {
+        width: 100%; /* Full width for each section */
+        margin: 10px 0; /* Margin for separation */
+    }
+
+    .comments-section {
+        width: 100%; /* Full width for comments section on small screens */
+        right: auto; /* Reset right position on small screens */
+        top: auto; /* Reset top position on small screens */
+        position: relative; /* Change to relative positioning */
+    }
 }
