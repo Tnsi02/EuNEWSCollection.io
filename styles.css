@@ -3,22 +3,24 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 /* Comment Sidebar */
 .comment-sidebar {
     position: fixed;
-    right: -300px;
+    right: -300px; /* Initially hidden */
     top: 0;
     width: 300px;
     height: 100vh;
     background-color: #f1f1f1;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 9999; /* Ensure it stays on top of other elements */
 }
 
 .comment-toggle {
@@ -30,11 +32,13 @@ body {
     padding: 10px;
     cursor: pointer;
     transform: translateY(-50%);
+    z-index: 10000; /* Keep it on top of everything */
 }
 
 #comment-list {
     flex-grow: 1;
     overflow-y: auto;
+    max-height: 80vh;
 }
 
 #comment-input {
@@ -63,4 +67,20 @@ body {
 /* Open Sidebar */
 .comment-sidebar.open {
     right: 0;
+}
+
+/* Media Query for 16:9 screens */
+@media screen and (max-width: 1920px) {
+    .comment-sidebar {
+        width: 280px; /* Adjust the width for 16:9 screens */
+    }
+
+    .comment-toggle {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #comment-input {
+        height: 60px; /* Smaller input box on smaller screens */
+    }
 }
