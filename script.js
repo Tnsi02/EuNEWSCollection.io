@@ -10,7 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
                     const article = document.createElement('article');
-                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+                    article.innerHTML = `
+                        <label>
+                            <input type="checkbox" class="news-read-checkbox" />
+                            <a href="${link}" target="_blank">${title}</a>
+                        </label>
+                    `;
+                    
+                    const checkbox = article.querySelector('.news-read-checkbox');
+
+                    // Check localStorage for the read state
+                    const isRead = JSON.parse(localStorage.getItem(link));
+                    if (isRead) {
+                        checkbox.checked = true; // Mark checkbox if read
+                    }
+
+                    // Save checkbox state to localStorage when toggled
+                    checkbox.addEventListener('change', () => {
+                        localStorage.setItem(link, JSON.stringify(checkbox.checked));
+                    });
+
                     newsList.appendChild(article);
                 });
             })
@@ -18,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch EP News, Commission News, and External Action News
-    fetchNews('EPnews.txt', 'ep-news-list'); // Update this to the correct path for EPnews.txt
-    fetchNews('ECnews.txt', 'commission-news-list'); // Update this to the correct path for ECnews.txt
-    fetchNews('EEASnews.txt', 'external-action-news-list'); // Fetch External Action News
+    fetchNews('EPnews.txt', 'ep-news-list');
+    fetchNews('ECnews.txt', 'commission-news-list');
+    fetchNews('EEASnews.txt', 'external-action-news-list');
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
