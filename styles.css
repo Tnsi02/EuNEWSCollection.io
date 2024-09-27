@@ -72,6 +72,11 @@ body {
     padding-left: 20px;
 }
 
+/* Rule for hiding elements */
+.hidden {
+    display: none; /* This will hide elements with the 'hidden' class */
+}
+
 /* Adjusting for 16:9 screens */
 @media screen and (max-width: 1920px) {
     .comment-sidebar {
