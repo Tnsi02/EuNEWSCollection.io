@@ -37,6 +37,16 @@ article a {
     color: #4183c4;
     text-decoration: none;
 }
+.toggle-sign {
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    margin-left: 10px; /* Space between the header and the sign */
+    font-weight: bold; /* Make the sign stand out */
+}
+.news-list {
+    display: none; /* Initially hide the news list */
+}
+
+
 
 article a:hover {
     text-decoration: underline;
