@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
                 const newsList = document.getElementById(newsListId);
 
+                // Clear existing news items before appending new ones
+                newsList.innerHTML = '';
+
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
                     const encodeLink = encodeURIComponent(link); // Encode the link
@@ -35,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     newsList.appendChild(article);
                 });
+
+                // Update the last updated date
+                const lastUpdated = new Date(); // Get current date
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${lastUpdated.toLocaleString()}`; // Format the date and display it
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
