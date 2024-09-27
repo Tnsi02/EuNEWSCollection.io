@@ -39,6 +39,24 @@ h1 {
 
 .news-section {
     margin-bottom: 20px; /* Add spacing between sections */
+    border-radius: 5px; /* Rounded corners for sections */
+    padding: 10px; /* Inner padding for each section */
+}
+
+.featured-news {
+    background-color: #e3f2fd; /* Light blue background for Featured News */
+}
+
+.ep-news {
+    background-color: #bbdefb; /* Lighter blue for EP News */
+}
+
+.commission-news {
+    background-color: #90caf9; /* Slightly darker blue for Commission News */
+}
+
+.external-action-news {
+    background-color: #64b5f6; /* Even darker blue for External Action News */
 }
 
 .news-section h2 {
@@ -54,8 +72,6 @@ h1 {
 .news-list {
     display: none; /* Initially hide the news list */
     margin-top: 10px; /* Space between the section header and news list */
-    padding: 10px; /* Padding for the news list */
-    border-radius: 5px; /* Rounded corners */
 }
 
 /* Style for each article */
