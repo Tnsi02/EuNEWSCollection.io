@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
                     const coloredTitle = title
-                        .replace(/\[(Council of the EU)\]/g, '<span style="color: lightblue;">[$1]</span>')
-                        .replace(/\[(European Council)\]/g, '<span style="color: darkblue;">[$1]</span>');
+                        .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
+                        .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     const encodeLink = encodeURIComponent(link); // Encode the link
                     const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeLink}`; // Create summarize URL
