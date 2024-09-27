@@ -30,4 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
         .catch(error => console.error('Error fetching Commission news:', error));
+    
+     // Add click event listeners for toggling visibility
+    document.querySelectorAll('.toggle-sign').forEach(sign => {
+        sign.addEventListener('click', function() {
+            const newsList = this.parentElement.nextElementSibling; // Get the next sibling (the news list)
+            const isVisible = this.getAttribute('data-visible') === 'true';
+            newsList.style.display = isVisible ? 'none' : 'block'; // Toggle display
+            this.textContent = isVisible ? '+' : '-'; // Change sign
+            this.setAttribute('data-visible', !isVisible); // Update visibility state
+        });
+    });
 });
+    
