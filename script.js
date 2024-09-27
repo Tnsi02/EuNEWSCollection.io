@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const textFiles = [
+        'https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/ECnews.txt',
+        'https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/EPnews.txt',
+        'https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/EEASnews.txt'
+    ];
+
+    async function fetchTextFile(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ${url}: ${response.status}`);
+        }
+        return response.text();
+    }
+
+    async function getLastUpdated() {
+        const fileFetchPromises = textFiles.map(async (url) => {
+            const response = await fetch(url);
+            return response.headers.get('Last-Modified');
+        });
+
+        const lastModifiedDates = await Promise.all(fileFetchPromises);
+        return lastModifiedDates;
+    }
+
+    async function displayLastUpdated() {
+        const lastUpdatedDates = await getLastUpdated();
+        const latestDate = new Date(Math.max(...lastUpdatedDates.map(date => new Date(date))));
+        
+        const lastUpdatedElement = document.getElementById('last-updated-date');
+        const currentDateText = lastUpdatedElement.textContent;
+
+        if (currentDateText !== `Last updated: ${latestDate.toUTCString()}`) {
+            lastUpdatedElement.textContent = `Last updated: ${latestDate.toUTCString()}`;
+        }
+    }
+
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
         fetch(filePath)
@@ -38,18 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     newsList.appendChild(article);
                 });
-
-                // Update the last updated date
-                const lastUpdated = new Date(); // Get current date
-                document.getElementById('last-updated-date').textContent = `Last Updated: ${lastUpdated.toLocaleString()}`; // Format the date and display it
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Fetch EP News, Commission News, and External Action News
-    fetchNews('EPnews.txt', 'ep-news-list');
-    fetchNews('ECnews.txt', 'commission-news-list');
-    fetchNews('EEASnews.txt', 'external-action-news-list');
+    // Fetch news data
+    fetchNews('https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/EPnews.txt', 'ep-news-list');
+    fetchNews('https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/ECnews.txt', 'commission-news-list');
+    fetchNews('https://raw.githubusercontent.com/Tnsi02/EuNEWSCollection.io/main/EEASnews.txt', 'external-action-news-list');
+
+    // Display the last updated date
+    displayLastUpdated();
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
