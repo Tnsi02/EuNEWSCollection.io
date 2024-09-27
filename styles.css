@@ -8,10 +8,24 @@ body {
 header {
     text-align: left; /* Align title to the left */
     margin-bottom: 20px; /* Reduce margin for better positioning */
-    position: relative; /* Set position to relative to position children absolutely */
+    position: relative; /* Set position to relative for children */
 }
 
+.header-content {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+}
 
+h1 {
+    margin: 0; /* Remove default margin */
+}
+
+#last-updated-date {
+    margin-left: 20px; /* Space between title and last updated text */
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Change color for distinction */
+}
 
 .main-content {
     display: flex; /* Use flexbox to arrange items */
@@ -116,10 +130,9 @@ article a:hover {
         text-align: center; /* Center the header on small screens */
     }
 
-    .last-updated {
-        position: relative; /* Make it relative so it adjusts well in smaller screens */
-        margin-left: 0;
-        text-align: center;
-        top: 0;
+    #last-updated-date {
+        margin-left: 0; /* Remove left margin for small screens */
+        text-align: center; /* Center the last updated text */
+        top: 0; /* Reset top position */
     }
 }
