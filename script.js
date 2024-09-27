@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Comments functionality
     const commentInput = document.getElementById('comment-input');
-    const commentList = document.getElementById('comments-container');
-    const submitButton = document.getElementById('submit-comment');
+    const commentList = document.getElementById('comment-list');
+    const commentForm = document.getElementById('comment-form'); // Get the form element
 
     // Function to fetch and display comments
     async function fetchComments() {
@@ -68,24 +68,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display a single comment
     function displayComment(comment) {
-        const div = document.createElement('div');
-        div.textContent = comment.text; // Assuming your comment has a "text" field
-        commentList.appendChild(div);
+        const li = document.createElement('li');
+        li.textContent = comment.text; // Assuming your comment has a "text" field
+        commentList.appendChild(li);
     }
 
     // Handle comment submission
-    submitButton.addEventListener('click', async (e) => {
+    commentForm.addEventListener('submit', async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
 
         const commentText = commentInput.value.trim(); // Get the trimmed comment text
 
         if (commentText) {
+            // Add comment to Firestore
             await addDoc(collection(db, 'comments'), {
                 text: commentText,
                 timestamp: new Date()
             });
-            commentInput.value = ''; // Clear input
-            displayComment({ text: commentText }); // Display immediately
+
+            // Clear input field
+            commentInput.value = ''; 
         }
     });
 
