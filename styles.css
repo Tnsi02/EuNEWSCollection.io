@@ -79,22 +79,11 @@ article a:hover {
     height: auto; /* Adjust height for content */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Stack sections vertically on smaller screens */
-    }
-
-    .news-container {
-        margin-right: 0; /* Remove right margin for smaller screens */
-    }
-
-    .disqus-container {
-        width: 100%; /* Full width for Disqus on smaller screens */
-        border-left: none; /* Remove the border on smaller screens */
-    }
-    .news-read-checkbox {
-    margin-right: 8px; /* Space between checkbox and link */
-    }
-
-}
+/* Style for summarize button */
+.summarize-button {
+    margin-left: 10px; /* Space between link and summarize button */
+    padding: 5px 10px; /* Padding for the button */
+    background-color: #4183c4; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius
