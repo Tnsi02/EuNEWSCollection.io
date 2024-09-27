@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label>
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${title}</a>
+                            <button class="summarize-button" data-url="${link}">Summarize</button>
                         </label>
                     `;
                     
@@ -35,6 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
+
+    // Function to open Phind with the summary prompt
+    function openPhindSummarization(url) {
+        const phindUrl = `https://phind.com/?query=Summarize%20this:%20${encodeURIComponent(url)}`;
+        window.open(phindUrl, '_blank'); // Open Phind in a new tab
+    }
+
+    // Event listener for summarize buttons
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('summarize-button')) {
+            const url = event.target.getAttribute('data-url'); // Get the URL from the button
+            openPhindSummarization(url); // Call the function to open Phind
+        }
+    });
 
     // Fetch EP News, Commission News, and External Action News
     fetchNews('EPnews.txt', 'ep-news-list');
