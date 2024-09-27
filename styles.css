@@ -44,15 +44,30 @@ article a:hover {
 
 .comments-section {
     margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 200px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+.comment-list {
+    margin-bottom: 10px; /* Space between comments and textarea */
 }
 
 textarea {
     width: 100%;
     margin-bottom: 5px;
     padding: 5px;
+    resize: none; /* Disable resizing */
+    height: 50px; /* Fixed height */
 }
 
 .submit-comment {
     display: block;
+    margin: 5px 0;
+}
+
+.comment-item {
     margin: 5px 0;
 }
