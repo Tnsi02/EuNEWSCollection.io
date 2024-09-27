@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function displayLastUpdated() {
         const lastUpdatedDates = await getLastUpdated();
-        const latestDate = new Date(Math.max(...lastUpdatedDates.map(date => new Date(date))));
-        
-        const lastUpdatedElement = document.getElementById('last-updated-date');
-        const currentDateText = lastUpdatedElement.textContent;
-
-        if (currentDateText !== `Last updated: ${latestDate.toUTCString()}`) {
+        const validDates = lastUpdatedDates.filter(date => date !== null); // Filter out any null values
+        if (validDates.length > 0) {
+            const latestDate = new Date(Math.max(...validDates.map(date => new Date(date))));
+            const lastUpdatedElement = document.getElementById('last-updated-date');
             lastUpdatedElement.textContent = `Last updated: ${latestDate.toUTCString()}`;
+        } else {
+            console.warn('No valid last modified dates found.');
         }
     }
 
