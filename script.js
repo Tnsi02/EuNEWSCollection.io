@@ -2,14 +2,14 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore';
 
-// Your Firebase configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
+  authDomain: "githubcommentsave.firebaseapp.com",
+  projectId: "githubcommentsave",
+  storageBucket: "githubcommentsave.appspot.com",
+  messagingSenderId: "862888877466",
+  appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
 };
 
 // Initialize Firebase
