@@ -40,10 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                const lastUpdated = new Date(); // Get current date
-                document.getElementById('last-updated-date').textContent = `Last Updated: ${lastUpdated.toLocaleString()}`; // Format the date and display it
+                updateLastUpdatedDate(); // Call to update last updated date
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
+    }
+
+    // Function to fetch the last updated date from last_updated.txt
+    function updateLastUpdatedDate() {
+        fetch('last_updated.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`; // Display fetched date
+            })
+            .catch(error => console.error('Error fetching last updated date:', error));
     }
 
     // Fetch EP News, Commission News, and External Action News
