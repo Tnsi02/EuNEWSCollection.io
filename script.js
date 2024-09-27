@@ -31,4 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); // Update visibility state
         });
     });
+
+    // Handle comment submission
+    document.getElementById('submit-comment').addEventListener('click', () => {
+        const commentInput = document.getElementById('comment-input');
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+            const commentsList = document.getElementById('comments-list');
+            const commentDiv = document.createElement('div');
+            commentDiv.textContent = commentText; // Display the comment
+            commentsList.appendChild(commentDiv); // Add the comment to the list
+            commentInput.value = ''; // Clear the input
+        }
+    });
 });
