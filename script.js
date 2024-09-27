@@ -2,16 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js';
 import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
-        authDomain: "githubcommentsave.firebaseapp.com",
-        projectId: "githubcommentsave",
-        storageBucket: "githubcommentsave.appspot.com",
-        messagingSenderId: "862888877466",
-        appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
-    };
+
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
