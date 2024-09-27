@@ -35,22 +35,11 @@ header {
 
 article {
     margin-bottom: 20px;
-    padding-bottom: 10px; /* Space between news items */
 }
 
-.news-title {
-    font-weight: normal; /* Normal weight for the title */
-    display: block; /* Make the title block level */
-}
-
-.news-link {
-    font-weight: bold; /* Bold for the second line */
-    color: #4183c4; /* Keep the color for the link */
-    display: inline; /* Make sure the link stays on the same line as the title */
-}
-
-.news-link a {
-    text-decoration: none; /* Remove underline from the link */
+article a {
+    color: #4183c4;
+    text-decoration: none;
 }
 
 .toggle-sign {
@@ -63,8 +52,8 @@ article {
     display: none; /* Initially hide the news list */
 }
 
-.news-link a:hover {
-    text-decoration: underline; /* Underline on hover */
+article a:hover {
+    text-decoration: underline;
 }
 
 .disqus-container {
