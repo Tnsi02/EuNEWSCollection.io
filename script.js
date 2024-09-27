@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
                     const article = document.createElement('article');
-                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`; // Create a clickable link
                     newsList.appendChild(article);
                 });
             })
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchComments() {
         const commentsContainer = document.getElementById('comments-container');
         const commentsQuery = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-        
+
         getDocs(commentsQuery)
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
