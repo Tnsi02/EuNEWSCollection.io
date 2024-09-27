@@ -15,8 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function getLastUpdated() {
         const fileFetchPromises = textFiles.map(async (url) => {
-            const response = await fetch(url);
-            return response.headers.get('Last-Modified');
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    console.error(`Failed to fetch ${url}: ${response.status}`);
+                    return null; // Return null for failed requests
+                }
+                const lastModified = response.headers.get('Last-Modified');
+                console.log(`Last modified for ${url}: ${lastModified}`); // Log the last modified date
+                return lastModified;
+            } catch (error) {
+                console.error(`Error fetching ${url}:`, error);
+                return null; // Return null for errors
+            }
         });
 
         const lastModifiedDates = await Promise.all(fileFetchPromises);
@@ -26,11 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     async function displayLastUpdated() {
         const lastUpdatedDates = await getLastUpdated();
         const validDates = lastUpdatedDates.filter(date => date !== null); // Filter out any null values
+        const lastUpdatedElement = document.getElementById('last-updated-date');
+
         if (validDates.length > 0) {
             const latestDate = new Date(Math.max(...validDates.map(date => new Date(date))));
-            const lastUpdatedElement = document.getElementById('last-updated-date');
             lastUpdatedElement.textContent = `Last updated: ${latestDate.toUTCString()}`;
         } else {
+            lastUpdatedElement.textContent = `Last updated: Unable to fetch date`;
             console.warn('No valid last modified dates found.');
         }
     }
