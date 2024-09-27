@@ -6,33 +6,20 @@ body {
     overflow-x: hidden;
 }
 
-/* Comment Sidebar */
+/* Fixed Comment Sidebar */
 .comment-sidebar {
     position: fixed;
-    right: -300px; /* Initially hidden */
+    right: 0;
     top: 0;
     width: 300px;
     height: 100vh;
     background-color: #f1f1f1;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 9999; /* Ensure it stays on top of other elements */
-}
-
-.comment-toggle {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    transform: translateY(-50%);
-    z-index: 10000; /* Keep it on top of everything */
+    z-index: 9999;
 }
 
 #comment-list {
@@ -64,23 +51,13 @@ body {
     border-radius: 4px;
 }
 
-/* Open Sidebar */
-.comment-sidebar.open {
-    right: 0;
-}
-
-/* Media Query for 16:9 screens */
+/* Adjusting for 16:9 screens */
 @media screen and (max-width: 1920px) {
     .comment-sidebar {
         width: 280px; /* Adjust the width for 16:9 screens */
     }
 
-    .comment-toggle {
-        padding: 8px;
-        font-size: 14px;
-    }
-
     #comment-input {
-        height: 60px; /* Smaller input box on smaller screens */
+        height: 60px;
     }
 }
