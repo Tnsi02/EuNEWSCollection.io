@@ -9,17 +9,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
+                    const encodeLink = encodeURIComponent(link); // Encode the link
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeLink}`; // Create summarize URL
                     const article = document.createElement('article');
-                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+                    article.innerHTML = `
+                        <label>
+                            <input type="checkbox" class="news-read-checkbox" />
+                            <a href="${link}" target="_blank">${title}</a>
+                            <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
+                        </label>
+                    `;
+                    
+                    const checkbox = article.querySelector('.news-read-checkbox');
+
+                    // Check localStorage for the read state
+                    const isRead = JSON.parse(localStorage.getItem(link));
+                    if (isRead) {
+                        checkbox.checked = true; // Mark checkbox if read
+                    }
+
+                    // Save checkbox state to localStorage when toggled
+                    checkbox.addEventListener('change', () => {
+                        localStorage.setItem(link, JSON.stringify(checkbox.checked));
+                    });
+
                     newsList.appendChild(article);
                 });
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Fetch EP News and Commission News
-    fetchNews('EPnews.txt', 'ep-news-list'); // Update this to the correct path for EPnews.txt
-    fetchNews('ECnews.txt', 'commission-news-list'); // Update this to the correct path for ECnews.txt
+    // Fetch EP News, Commission News, and External Action News
+    fetchNews('EPnews.txt', 'ep-news-list');
+    fetchNews('ECnews.txt', 'commission-news-list');
+    fetchNews('EEASnews.txt', 'external-action-news-list');
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
