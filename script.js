@@ -17,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Fetch EP News and Commission News
+    // Fetch EP News, Commission News, and External Action News
     fetchNews('EPnews.txt', 'ep-news-list'); // Update this to the correct path for EPnews.txt
     fetchNews('ECnews.txt', 'commission-news-list'); // Update this to the correct path for ECnews.txt
+    fetchNews('EEASnews.txt', 'external-action-news-list'); // Fetch External Action News
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
