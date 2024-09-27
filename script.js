@@ -31,22 +31,4 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); // Update visibility state
         });
     });
-
-    // Function to handle comment submission
-    document.getElementById('submit-comment').addEventListener('click', () => {
-        const commentInput = document.getElementById('comment-input');
-        const commentText = commentInput.value.trim();
-
-        if (commentText) {
-            const comment = document.createElement('div');
-            comment.textContent = commentText; // Add the comment text
-            comment.className = 'comment'; // Optional: Add a class for styling
-
-            const commentsContainer = document.getElementById('comments-container');
-            commentsContainer.appendChild(comment); // Add the comment to the container
-
-            commentInput.value = ''; // Clear the input field
-            commentsContainer.scrollTop = commentsContainer.scrollHeight; // Scroll to the bottom
-        }
-    });
 });
