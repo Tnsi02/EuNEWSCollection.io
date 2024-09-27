@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
                         </label>
                     `;
-                    
+
                     const checkbox = article.querySelector('.news-read-checkbox');
 
                     // Check localStorage for the read state
@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching last updated date:', error));
     }
 
-    // Fetch EP News, Commission News, and External Action News
+    // Fetch Featured News, EP News, Commission News, and External Action News
+    fetchNews('EUFnews.txt', 'featured-news-list'); // New line for Featured News
     fetchNews('EPnews.txt', 'ep-news-list');
     fetchNews('ECnews.txt', 'commission-news-list');
     fetchNews('EEASnews.txt', 'external-action-news-list');
