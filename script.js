@@ -19,11 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
             const epNewsList = document.getElementById('ep-news-list');
+            epNewsList.innerHTML = ''; // Clear previous content
             newsItems.forEach(item => {
-                const [title, link] = item.split(' - ');
-                const article = document.createElement('article');
-                article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
-                epNewsList.appendChild(article);
+                const [title, link] = item.split(' - ').map(part => part.trim());
+                if (title && link) { // Ensure title and link are present
+                    const article = document.createElement('article');
+                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+                    epNewsList.appendChild(article);
+                }
             });
         })
         .catch(error => console.error('Error fetching EP news:', error));
@@ -34,11 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
             const commissionNewsList = document.getElementById('commission-news-list');
+            commissionNewsList.innerHTML = ''; // Clear previous content
             newsItems.forEach(item => {
-                const [title, link] = item.split(' - ');
-                const article = document.createElement('article');
-                article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
-                commissionNewsList.appendChild(article);
+                const [title, link] = item.split(' - ').map(part => part.trim());
+                if (title && link) { // Ensure title and link are present
+                    const article = document.createElement('article');
+                    article.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+                    commissionNewsList.appendChild(article);
+                }
             });
         })
         .catch(error => console.error('Error fetching Commission news:', error));
@@ -48,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const epNewsList = document.getElementById('ep-news-list');
 
     epNewsTitle.addEventListener('click', () => {
-        epNewsList.classList.toggle('news-list');
+        epNewsList.classList.toggle('hidden'); // Toggle visibility
         const toggleSign = epNewsTitle.querySelector('.toggle');
         toggleSign.textContent = toggleSign.textContent === '+' ? '-' : '+';
     });
@@ -58,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const commissionNewsList = document.getElementById('commission-news-list');
 
     commissionNewsTitle.addEventListener('click', () => {
-        commissionNewsList.classList.toggle('news-list');
+        commissionNewsList.classList.toggle('hidden'); // Toggle visibility
         const toggleSign = commissionNewsTitle.querySelector('.toggle');
         toggleSign.textContent = toggleSign.textContent === '+' ? '-' : '+';
     });
