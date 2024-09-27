@@ -1,15 +1,15 @@
-// Import the functions you need from the SDKs you need
+// Import the necessary functions from Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
-  authDomain: "githubcommentsave.firebaseapp.com",
-  projectId: "githubcommentsave",
-  storageBucket: "githubcommentsave.appspot.com",
-  messagingSenderId: "862888877466",
-  appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
+    apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
+    authDomain: "githubcommentsave.firebaseapp.com",
+    projectId: "githubcommentsave",
+    storageBucket: "githubcommentsave.appspot.com",
+    messagingSenderId: "862888877466",
+    appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
 };
 
 // Initialize Firebase
@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Function to create news item with comment section
+    // Function to create news item with a comment section
     const createNewsItem = (title, link) => {
         const article = document.createElement('article');
         article.innerHTML = `
@@ -36,12 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const commentsList = article.querySelector('.comment-list');
 
         // Load comments from Firestore
-        await loadComments(link, commentsList);
+        loadComments(link, commentsList);
 
         // Toggle comment section visibility
         const toggleButton = article.querySelector('.toggle-comments');
         const commentsSection = article.querySelector('.comments-section');
-
         toggleButton.addEventListener('click', () => {
             commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
         });
