@@ -27,7 +27,7 @@ header {
 }
 
 .disqus-container {
-    width: 300px; /* Set a fixed width for the Disqus section */
+    width: 400px; /* Increased width for the Disqus section */
     padding: 20px; /* Add some padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
     position: sticky; /* Make it sticky */
