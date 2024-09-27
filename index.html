@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU News</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js"></script>
 </head>
 <body>
 
@@ -26,6 +29,17 @@
                 <!-- Commission News items will be inserted here -->
             </div>
         </div>
+    </div>
+
+    <!-- Toggle Comment Button and Sidebar -->
+    <div class="comment-toggle" id="comment-toggle">Comments</div>
+    <div class="comment-sidebar" id="comment-sidebar">
+        <h3>Live Comments</h3>
+        <div id="comment-list">
+            <!-- Comments will be displayed here -->
+        </div>
+        <textarea id="comment-input" placeholder="Write your comment..."></textarea>
+        <button id="submit-comment">Submit</button>
     </div>
 
     <script src="script.js"></script>
