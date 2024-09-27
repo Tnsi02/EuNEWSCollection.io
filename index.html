@@ -5,73 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU NEWS Collection</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            display: flex; /* Use flexbox for layout */
-            flex-direction: row; /* Align children in a row */
-            margin: 0; /* Remove default margin */
-        }
-
-        .news-container {
-            flex: 1; /* Allow the news section to take available space */
-            padding: 20px; /* Add some padding */
-        }
-
-        .disqus-container {
-            width: 300px; /* Set a fixed width for the Disqus section */
-            padding: 20px; /* Add some padding */
-            border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-            position: sticky; /* Make it sticky */
-            top: 0; /* Stick to the top */
-            height: 100vh; /* Full height of the viewport */
-            overflow-y: auto; /* Scrollable if content exceeds height */
-        }
-
-        .news-section {
-            margin-bottom: 20px; /* Space between news sections */
-        }
-    </style>
 </head>
 <body>
 
-    <div class="news-container">
-        <header>
-            <h1>EU NEWS Collection</h1>
-        </header>
+    <header>
+        <h1>EU NEWS Collection</h1>
+    </header>
 
-        <div class="news-section">
-            <h2>EP NEWS <span class="toggle-sign" data-visible="false">+</span></h2>
-            <div id="ep-news-list" class="news-list">
-                <!-- EP News items will be inserted here -->
+    <div class="main-content">
+        <div class="news-container">
+            <div class="news-section">
+                <h2>EP NEWS <span class="toggle-sign" data-visible="false">+</span></h2>
+                <div id="ep-news-list" class="news-list">
+                    <!-- EP News items will be inserted here -->
+                </div>
+            </div>
+
+            <div class="news-section">
+                <h2>Commission News <span class="toggle-sign" data-visible="false">+</span></h2>
+                <div id="commission-news-list" class="news-list">
+                    <!-- Commission News items will be inserted here -->
+                </div>
             </div>
         </div>
 
-        <div class="news-section">
-            <h2>Commission News <span class="toggle-sign" data-visible="false">+</span></h2>
-            <div id="commission-news-list" class="news-list">
-                <!-- Commission News items will be inserted here -->
-            </div>
+        <div class="disqus-container">
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
+                    this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
+                };
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
         </div>
-    </div>
-
-    <div class="disqus-container">
-        <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-                this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
-                this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
-            };
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 
     <script src="script.js"></script>
-    <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
 </body>
 </html>
