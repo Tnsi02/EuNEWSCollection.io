@@ -4,12 +4,12 @@ import { getFirestore, collection, addDoc, getDocs, onSnapshot } from 'firebase/
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
-  authDomain: "githubcommentsave.firebaseapp.com",
-  projectId: "githubcommentsave",
-  storageBucket: "githubcommentsave.appspot.com",
-  messagingSenderId: "862888877466",
-  appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
+    apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
+    authDomain: "githubcommentsave.firebaseapp.com",
+    projectId: "githubcommentsave",
+    storageBucket: "githubcommentsave.appspot.com",
+    messagingSenderId: "862888877466",
+    appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
 };
 
 // Initialize Firebase
@@ -52,8 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Comments functionality
-    const commentForm = document.querySelector('.comments-section'); // Use the entire section as the form
-    const commentList = document.getElementById('comments-container'); // Change to your comments container ID
+    const commentInput = document.getElementById('comment-input');
+    const commentList = document.getElementById('comments-container');
+    const submitButton = document.getElementById('submit-comment');
 
     // Function to fetch and display comments
     async function fetchComments() {
@@ -73,15 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle comment submission
-    commentForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const commentInput = document.getElementById('comment-input');
-        const commentText = commentInput.value;
+    submitButton.addEventListener('click', async (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        const commentText = commentInput.value.trim(); // Get the trimmed comment text
 
         if (commentText) {
             await addDoc(collection(db, 'comments'), {
                 text: commentText,
-                timestamp: new Date() // Use the current date for the timestamp
+                timestamp: new Date()
             });
             commentInput.value = ''; // Clear input
             displayComment({ text: commentText }); // Display immediately
