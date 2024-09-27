@@ -69,4 +69,44 @@ article a:hover {
         width: 100%; /* Full width for each section */
         margin: 10px 0; /* Margin for separation */
     }
+.comments-section {
+    position: fixed; /* Fixes the position of the comments section */
+    right: 20px; /* Distance from the right edge */
+    top: 20px; /* Distance from the top edge */
+    width: 300px; /* Set a width for the comments section */
+    background: white; /* Background color */
+    border: 1px solid #ccc; /* Border for better visibility */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Inner padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#comments-container {
+    max-height: 400px; /* Limit the height of the comment area */
+    overflow-y: auto; /* Add a scrollbar if content overflows */
+    margin-bottom: 10px; /* Space between comments and input */
+}
+
+#comment-input {
+    width: 100%; /* Full width for the input field */
+    height: 60px; /* Height of the input area */
+    margin-bottom: 10px; /* Space below the input field */
+}
+
+#submit-comment {
+    width: 100%; /* Full width for the button */
+    padding: 10px; /* Padding for the button */
+    background-color: #4183c4; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+#submit-comment:hover {
+    background-color: #357ab8; /* Darken button on hover */
+}
+
+
 }
