@@ -1,3 +1,17 @@
+// Firebase configuration (replace with your config)
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
@@ -32,21 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Function to handle comment submission
-    document.getElementById('submit-comment').addEventListener('click', () => {
-        const commentInput = document.getElementById('comment-input');
-        const commentText = commentInput.value.trim();
+    // Add functionality for comments
+    const commentForm = document.getElementById('comment-form');
+    const commentInput = document.getElementById('comment-input');
+    const commentList = document.getElementById('comment-list');
 
+    // Load comments from Firestore
+    function loadComments() {
+        db.collection('comments').orderBy('timestamp', 'desc').get().then((snapshot) => {
+            commentList.innerHTML = ''; // Clear existing comments
+            snapshot.forEach(doc => {
+                const comment = doc.data();
+                const li = document.createElement('li');
+                li.textContent = comment.text;
+                commentList.appendChild(li);
+            });
+        });
+    }
+
+    // Submit a comment
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+
+        const commentText = commentInput.value;
         if (commentText) {
-            const comment = document.createElement('div');
-            comment.textContent = commentText; // Add the comment text
-            comment.className = 'comment'; // Optional: Add a class for styling
-
-            const commentsContainer = document.getElementById('comments-container');
-            commentsContainer.appendChild(comment); // Add the comment to the container
-
-            commentInput.value = ''; // Clear the input field
-            commentsContainer.scrollTop = commentsContainer.scrollHeight; // Scroll to the bottom
+            // Save the comment to Firestore
+            db.collection('comments').add({
+                text: commentText,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                commentInput.value = ''; // Clear the input field
+                loadComments(); // Reload comments
+            }).catch((error) => {
+                console.error('Error adding comment: ', error);
+            });
         }
     });
+
+    loadComments(); // Initial load of comments
 });
