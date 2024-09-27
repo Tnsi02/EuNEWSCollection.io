@@ -13,15 +13,16 @@ header {
 
 .last-updated {
     position: absolute; /* Position it absolutely */
-    left: 5%; /* Move it left by specifying a value */
+    right: 0; /* Align it to the right side */
     top: 10px; /* Adjust vertical position */
-    font-size: 14px; /* Adjust font size if needed */
-    color: #555; /* Optional: change color to distinguish */
+    font-size: 14px; /* Adjust font size */
+    color: #555; /* Different color for distinction */
+    margin-right: 20px; /* Adjust space between text and edge */
 }
-
 
 .main-content {
     display: flex; /* Use flexbox to arrange items */
+    flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
 }
 
 .news-container {
@@ -83,10 +84,13 @@ article a:hover {
 }
 
 .disqus-container {
-    width: 400px; /* Width for the Disqus section */
+    width: 100%; /* Use full width on mobile */
+    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
     padding: 20px; /* Add padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
     height: auto; /* Adjust height for content */
+    margin-top: 20px; /* Add space above */
+    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
 }
 
 /* Style for summarize button */
@@ -102,4 +106,27 @@ article a:hover {
 
 .summarize-button:hover {
     background-color: #357abd; /* Darker shade on hover */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+
+    .disqus-container {
+        width: 100%; /* Make Disqus section full width on small screens */
+        margin-top: 30px; /* Add spacing at the top */
+    }
+
+    header {
+        text-align: center; /* Center the header on small screens */
+    }
+
+    .last-updated {
+        position: relative; /* Make it relative so it adjusts well in smaller screens */
+        margin-left: 0;
+        text-align: center;
+        top: 0;
+    }
 }
