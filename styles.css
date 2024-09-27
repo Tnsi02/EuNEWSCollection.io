@@ -1,35 +1,72 @@
-.comment-section {
-    width: 30%; /* Set width for the comment section */
-    margin-left: 20px; /* Add space between news sections and the comment section */
-    padding: 10px;
-    background: #fff; /* Background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
 }
 
-#comments-list {
-    max-height: 300px; /* Limit the height */
-    overflow-y: auto; /* Scroll for overflow */
-    margin-bottom: 10px; /* Space below comments */
+header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-#comment-input {
-    width: 100%; /* Full width */
-    padding: 8px; /* Padding inside the textarea */
-    margin-bottom: 10px; /* Space below textarea */
-    border: 1px solid #ccc; /* Border styling */
-    border-radius: 4px; /* Rounded corners */
+.news-container {
+    display: flex; /* Use flexbox to arrange items side by side */
+    justify-content: space-between; /* Space out sections */
+    max-width: 900px; /* Limit the width */
+    margin: auto; /* Center the container */
+    background: #fff;
+    padding: 20px; /* Adjust padding for a more balanced look */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
 }
 
-#submit-comment {
-    padding: 8px 16px; /* Padding for button */
-    background-color: #4183c4; /* Button color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
+.news-section {
+    width: 50%; /* Each section takes up about half the width */
+    margin: 0 10px; /* Add some margin between sections */
 }
 
-#submit-comment:hover {
-    background-color: #357ab8; /* Darker color on hover */
+.news-section h2 {
+    margin-top: 0; /* Remove margin at the top for the section headers */
+    cursor: pointer; /* Indicate that the header is clickable */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.news-section h2:hover {
+    color: #4183c4; /* Change color on hover */
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+article a {
+    color: #4183c4;
+    text-decoration: none;
+}
+
+.toggle-sign {
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    margin-left: 10px; /* Space between the header and the sign */
+    font-weight: bold; /* Make the sign stand out */
+}
+
+.news-list {
+    display: none; /* Initially hide the news list */
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .news-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .news-section {
+        width: 100%; /* Full width for each section */
+        margin: 10px 0; /* Margin for separation */
+    }
 }
