@@ -11,14 +11,7 @@ header {
     position: relative; /* Set position to relative to position children absolutely */
 }
 
-.last-updated {
-    position: absolute; /* Position it absolutely */
-    right: 130; /* Align it to the right side */
-    top: 10px; /* Adjust vertical position */
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Different color for distinction */
-    margin-right: 20px; /* Adjust space between text and edge */
-}
+
 
 .main-content {
     display: flex; /* Use flexbox to arrange items */
