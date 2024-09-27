@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Comments functionality
-    const commentForm = document.getElementById('comment-form');
-    const commentList = document.getElementById('comment-list');
+    const commentForm = document.querySelector('.comments-section'); // Use the entire section as the form
+    const commentList = document.getElementById('comments-container'); // Change to your comments container ID
 
     // Function to fetch and display comments
     async function fetchComments() {
@@ -67,22 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display a single comment
     function displayComment(comment) {
-        const li = document.createElement('li');
-        li.textContent = comment.text; // Assuming your comment has a "text" field
-        commentList.appendChild(li);
+        const div = document.createElement('div');
+        div.textContent = comment.text; // Assuming your comment has a "text" field
+        commentList.appendChild(div);
     }
 
     // Handle comment submission
     commentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const commentText = document.getElementById('comment-input').value;
+        const commentInput = document.getElementById('comment-input');
+        const commentText = commentInput.value;
 
         if (commentText) {
             await addDoc(collection(db, 'comments'), {
                 text: commentText,
-                timestamp: new Date()
+                timestamp: new Date() // Use the current date for the timestamp
             });
-            document.getElementById('comment-input').value = ''; // Clear input
+            commentInput.value = ''; // Clear input
             displayComment({ text: commentText }); // Display immediately
         }
     });
