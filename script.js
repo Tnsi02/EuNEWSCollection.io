@@ -39,7 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to open Phind with the summary prompt
     function openPhindSummarization(url) {
-        const phindUrl = `https://phind.com/?query=Summarize%20this:%20${encodeURIComponent(url)}`;
+        // Create the summary query string
+        const summaryQuery = `Summarize this: ${url}`;
+        // Open Phind with the query string
+        const phindUrl = `https://phind.com/?query=${encodeURIComponent(summaryQuery)}`;
         window.open(phindUrl, '_blank'); // Open Phind in a new tab
     }
 
