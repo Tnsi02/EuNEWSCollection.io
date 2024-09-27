@@ -89,4 +89,47 @@
             (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
                 s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                s.setAttribute('data-
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    // Function to load Consilium news
+    async function loadConsiliumNews() {
+        const response = await fetch('ConsiliumNews.txt'); // Fetch the Consilium news text file
+        const text = await response.text();
+        const lines = text.split('\n');
+        const consiliumNewsList = document.getElementById('consilium-news-list');
+
+        lines.forEach(line => {
+            const trimmedLine = line.trim();
+            if (trimmedLine) {
+                let colorClass = '';
+
+                // Determine the color class based on the line content
+                if (trimmedLine.includes('EU Council')) {
+                    colorClass = 'eu-council';
+                } else if (trimmedLine.includes('Council of the EU')) {
+                    colorClass = 'council-of-eu';
+                }
+
+                // Create a new div element for each headline
+                const newsItem = document.createElement('div');
+                newsItem.className = colorClass; // Apply the color class
+                newsItem.textContent = trimmedLine; // Set the headline text
+                consiliumNewsList.appendChild(newsItem); // Append to the news list
+            }
+        });
+    }
+
+    // Call the function to load the news when the page loads
+    document.addEventListener('DOMContentLoaded', loadConsiliumNews);
+</script>
+</body>
+</html>
