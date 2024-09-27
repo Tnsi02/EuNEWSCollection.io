@@ -16,17 +16,24 @@ header {
     max-width: 900px; /* Limit the width */
     margin: auto; /* Center the container */
     background: #fff;
-    padding: 90px;
+    padding: 20px; /* Adjust padding for a more balanced look */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
 }
 
 .news-section {
     width: 50%; /* Each section takes up about half the width */
+    margin: 0 10px; /* Add some margin between sections */
 }
 
 .news-section h2 {
     margin-top: 0; /* Remove margin at the top for the section headers */
+    cursor: pointer; /* Indicate that the header is clickable */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.news-section h2:hover {
+    color: #4183c4; /* Change color on hover */
 }
 
 article {
@@ -37,17 +44,29 @@ article a {
     color: #4183c4;
     text-decoration: none;
 }
+
 .toggle-sign {
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
     margin-left: 10px; /* Space between the header and the sign */
     font-weight: bold; /* Make the sign stand out */
 }
+
 .news-list {
     display: none; /* Initially hide the news list */
 }
 
-
-
 article a:hover {
     text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .news-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .news-section {
+        width: 100%; /* Full width for each section */
+        margin: 10px 0; /* Margin for separation */
+    }
 }
