@@ -13,14 +13,6 @@ const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Toggle Comment Sidebar
-    const commentToggle = document.getElementById('comment-toggle');
-    const commentSidebar = document.getElementById('comment-sidebar');
-
-    commentToggle.addEventListener('click', () => {
-        commentSidebar.classList.toggle('open');
-    });
-
     // Fetch EP News
     fetch('EPnews.txt')
         .then(response => response.text())
@@ -50,6 +42,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
         .catch(error => console.error('Error fetching Commission news:', error));
+
+    // Toggle functionality for EP News
+    const epNewsTitle = document.getElementById('ep-news-title');
+    const epNewsList = document.getElementById('ep-news-list');
+
+    epNewsTitle.addEventListener('click', () => {
+        epNewsList.classList.toggle('news-list');
+        const toggleSign = epNewsTitle.querySelector('.toggle');
+        toggleSign.textContent = toggleSign.textContent === '+' ? '-' : '+';
+    });
+
+    // Toggle functionality for Commission News
+    const commissionNewsTitle = document.getElementById('commission-news-title');
+    const commissionNewsList = document.getElementById('commission-news-list');
+
+    commissionNewsTitle.addEventListener('click', () => {
+        commissionNewsList.classList.toggle('news-list');
+        const toggleSign = commissionNewsTitle.querySelector('.toggle');
+        toggleSign.textContent = toggleSign.textContent === '+' ? '-' : '+';
+    });
 
     // Comment System
     const commentList = document.getElementById('comment-list');
