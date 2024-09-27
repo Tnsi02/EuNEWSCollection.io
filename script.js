@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
                 const newsList = document.getElementById(newsListId);
+                newsList.innerHTML = ''; // Clear existing items
 
                 newsItems.forEach(item => {
                     const [title, link] = item.split(' - '); // Split the title and link
@@ -37,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch EP News and Commission News
-    fetchNews('EPnews.txt', 'ep-news-list'); // Update this to the correct path for EPnews.txt
-    fetchNews('ECnews.txt', 'commission-news-list'); // Update this to the correct path for ECnews.txt
+    fetchNews('EPnews.txt', 'ep-news-list'); // Ensure this file path is correct
+    fetchNews('ECnews.txt', 'commission-news-list'); // Ensure this file path is correct
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
@@ -52,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Comments functionality
-    const commentInput = document.getElementById('comment-input');
+    const commentForm = document.getElementById('comment-form');
     const commentList = document.getElementById('comment-list');
-    const commentForm = document.getElementById('comment-form'); // Get the form element
 
     // Function to fetch and display comments
     async function fetchComments() {
         const commentsCollection = collection(db, 'comments');
         const snapshot = await getDocs(commentsCollection);
+        commentList.innerHTML = ''; // Clear existing comments
         snapshot.forEach(doc => {
             const comment = doc.data();
             displayComment(comment);
@@ -75,19 +76,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle comment submission
     commentForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-
-        const commentText = commentInput.value.trim(); // Get the trimmed comment text
+        e.preventDefault(); // Prevent the form from submitting and refreshing the page
+        const commentText = document.getElementById('comment-input').value;
 
         if (commentText) {
-            // Add comment to Firestore
             await addDoc(collection(db, 'comments'), {
                 text: commentText,
                 timestamp: new Date()
             });
-
-            // Clear input field
-            commentInput.value = ''; 
+            document.getElementById('comment-input').value = ''; // Clear input
+            displayComment({ text: commentText }); // Display immediately
         }
     });
 
