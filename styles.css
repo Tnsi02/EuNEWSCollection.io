@@ -6,31 +6,35 @@ body {
 }
 
 header {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left; /* Align title to the left */
+    margin-bottom: 20px; /* Reduce margin for better positioning */
+}
+
+.main-content {
+    display: flex; /* Use flexbox to arrange items */
 }
 
 .news-container {
-    display: flex; /* Use flexbox to arrange items side by side */
-    justify-content: space-between; /* Space out sections */
-    max-width: 1200px; /* Limit the width */
-    margin: auto; /* Center the container */
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Allow this section to grow */
+    margin-right: 20px; /* Space between news sections and Disqus */
 }
 
 .news-section {
-    width: 48%; /* Each section takes up about half the width */
+    margin-bottom: 20px; /* Add spacing between sections */
 }
 
 .news-section h2 {
     margin-top: 0; /* Remove margin at the top for the section headers */
+    cursor: pointer; /* Indicate that the header is clickable */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.news-section h2:hover {
+    color: #4183c4; /* Change color on hover */
 }
 
 article {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 article a {
@@ -38,6 +42,39 @@ article a {
     text-decoration: none;
 }
 
+.toggle-sign {
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    margin-left: 10px; /* Space between the header and the sign */
+    font-weight: bold; /* Make the sign stand out */
+}
+
+.news-list {
+    display: none; /* Initially hide the news list */
+}
+
 article a:hover {
     text-decoration: underline;
+}
+
+.disqus-container {
+    width: 400px; /* Width for the Disqus section */
+    padding: 20px; /* Add padding */
+    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
+    height: auto; /* Adjust height for content */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .news-container {
+        margin-right: 0; /* Remove right margin for smaller screens */
+    }
+
+    .disqus-container {
+        width: 100%; /* Full width for Disqus on smaller screens */
+        border-left: none; /* Remove the border on smaller screens */
+    }
 }
