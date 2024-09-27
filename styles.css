@@ -12,12 +12,13 @@ header {
 }
 
 .last-updated {
-    position: relative; /* Position it absolutely */
-    right: 3%; /* Adjust this value as needed for positioning */
+    position: absolute; /* Position it absolutely */
+    left: 5%; /* Move it left by specifying a value */
     top: 10px; /* Adjust vertical position */
     font-size: 14px; /* Adjust font size if needed */
     color: #555; /* Optional: change color to distinguish */
 }
+
 
 .main-content {
     display: flex; /* Use flexbox to arrange items */
