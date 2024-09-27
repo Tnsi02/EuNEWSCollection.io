@@ -3,68 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>EU NEWS Collection</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
         <h1>EU NEWS Collection</h1>
-        <span id="last-updated-date" style="float: right; margin-top: 10px;"></span> <!-- Last Updated -->
+        <div class="last-updated">Last Updated: <span id="last-updated-time"></span></div>
     </header>
-
     <div class="main-content">
         <div class="news-container">
-            <div class="news-section">
-                <h2>
-                    EP NEWS 
-                    <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-                </h2>
-                <div id="ep-news-list" class="news-list" style="display: none;">
-                    <!-- EP News items will be inserted here -->
-                </div>
+            <div class="news-section" id="ep-news-section">
+                <h2>EU Parliament News</h2>
+                <div class="news-list" id="ep-news-list"></div>
             </div>
-
-            <div class="news-section">
-                <h2>
-                    Commission News 
-                    <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-                </h2>
-                <div id="commission-news-list" class="news-list" style="display: none;">
-                    <!-- Commission News items will be inserted here -->
-                </div>
-            </div>
-
-            <div class="news-section">
-                <h2>
-                    External Action News 
-                    <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-                </h2>
-                <div id="external-action-news-list" class="news-list" style="display: none;">
-                    <!-- External Action News items will be inserted here -->
-                </div>
+            <div class="news-section" id="ec-news-section">
+                <h2>EU Commission News</h2>
+                <div class="news-list" id="ec-news-list"></div>
             </div>
         </div>
-
         <div class="disqus-container">
             <div id="disqus_thread"></div>
-            <script>
-                var disqus_config = function () {
-                    this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
-                    this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
-                };
-                (function() { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-            <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/firebase/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/firebase/firestore.js"></script>
     <script src="script.js"></script>
+    <script>
+        var disqus_config = function () {
+            this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = document.title; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://your-disqus-shortname.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
 </body>
 </html>
