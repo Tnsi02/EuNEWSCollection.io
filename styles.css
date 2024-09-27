@@ -33,13 +33,32 @@ header {
     color: #4183c4; /* Change color on hover */
 }
 
-article {
-    margin-bottom: 20px;
+.news-list {
+    display: none; /* Initially hide the news list */
+    margin-top: 10px; /* Space between the section header and news list */
+    padding: 10px; /* Padding for the news list */
+    border-radius: 5px; /* Rounded corners */
 }
 
+/* Style for each article */
+article {
+    margin-bottom: 15px; /* Space between articles */
+    padding: 10px; /* Inner padding for each article */
+    background-color: #fff; /* White background for articles */
+    border: 1px solid #ddd; /* Light border around articles */
+    border-radius: 4px; /* Rounded corners for articles */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Change link color and remove underline */
 article a {
-    color: #4183c4;
-    text-decoration: none;
+    color: #333; /* Dark gray color for text */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for articles */
+article:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
 }
 
 .toggle-sign {
@@ -48,12 +67,9 @@ article a {
     font-weight: bold; /* Make the sign stand out */
 }
 
-.news-list {
-    display: none; /* Initially hide the news list */
-}
-
 article a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline on hover */
+    color: #4183c4; /* Change color on link hover */
 }
 
 .disqus-container {
