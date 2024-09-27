@@ -1,17 +1,22 @@
-// Firebase configuration (replace with your config)
+// Import Firebase modules
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore';
+
+// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
     projectId: "YOUR_PROJECT_ID",
     storageBucket: "YOUR_PROJECT_ID.appspot.com",
     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
+    appId: "YOUR_APP_ID"
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
+// Fetch news function
 document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
@@ -46,42 +51,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add functionality for comments
+    // Comments functionality
     const commentForm = document.getElementById('comment-form');
-    const commentInput = document.getElementById('comment-input');
     const commentList = document.getElementById('comment-list');
 
-    // Load comments from Firestore
-    function loadComments() {
-        db.collection('comments').orderBy('timestamp', 'desc').get().then((snapshot) => {
-            commentList.innerHTML = ''; // Clear existing comments
-            snapshot.forEach(doc => {
-                const comment = doc.data();
-                const li = document.createElement('li');
-                li.textContent = comment.text;
-                commentList.appendChild(li);
-            });
+    // Function to fetch and display comments
+    async function fetchComments() {
+        const commentsCollection = collection(db, 'comments');
+        const snapshot = await getDocs(commentsCollection);
+        snapshot.forEach(doc => {
+            const comment = doc.data();
+            displayComment(comment);
         });
     }
 
-    // Submit a comment
-    commentForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Prevent form submission
+    // Function to display a single comment
+    function displayComment(comment) {
+        const li = document.createElement('li');
+        li.textContent = comment.text; // Assuming your comment has a "text" field
+        commentList.appendChild(li);
+    }
 
-        const commentText = commentInput.value;
+    // Handle comment submission
+    commentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const commentText = document.getElementById('comment-input').value;
+
         if (commentText) {
-            // Save the comment to Firestore
-            db.collection('comments').add({
+            await addDoc(collection(db, 'comments'), {
                 text: commentText,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                commentInput.value = ''; // Clear the input field
-                loadComments(); // Reload comments
-            }).catch((error) => {
-                console.error('Error adding comment: ', error);
+                timestamp: new Date()
             });
+            document.getElementById('comment-input').value = ''; // Clear input
+            displayComment({ text: commentText }); // Display immediately
         }
     });
 
-    loadComments(); // Initial load of comments
+    // Real-time listener for comments
+    onSnapshot(collection(db, 'comments'), (snapshot) => {
+        commentList.innerHTML = ''; // Clear current comments
+        snapshot.forEach(doc => {
+            const comment = doc.data();
+            displayComment(comment);
+        });
+    });
+
+    // Initial fetch of comments
+    fetchComments();
 });
