@@ -17,8 +17,6 @@
         <div id="ep-news-list" class="news-list">
             <!-- EP News items will be inserted here -->
         </div>
-
-        <div id="disqus_thread_ep"></div> <!-- Disqus thread for EP News -->
     </div>
 
     <div class="news-section">
@@ -26,30 +24,22 @@
         <div id="commission-news-list" class="news-list">
             <!-- Commission News items will be inserted here -->
         </div>
-
-        <div id="disqus_thread_commission"></div> <!-- Disqus thread for Commission News -->
     </div>
 
+    <div id="disqus_thread"></div>
     <script>
-        // Function to initialize Disqus for the specified section
-        function loadDisqus(sectionIdentifier) {
-            var disqus_config = function () {
-                this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/' + sectionIdentifier; // Page URL with section identifier
-                this.page.identifier = sectionIdentifier; // Unique identifier for the section
-            };
-
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        }
-
-        // Load Disqus for each section
-        loadDisqus('ep-news-collection'); // For EP News
-        loadDisqus('commission-news-collection'); // For Commission News
+        var disqus_config = function () {
+            this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
+            this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
     <script src="script.js"></script>
     <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
