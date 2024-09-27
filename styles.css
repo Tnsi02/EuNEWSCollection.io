@@ -41,3 +41,18 @@ article a {
 article a:hover {
     text-decoration: underline;
 }
+
+.comments-section {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.submit-comment {
+    display: block;
+    margin: 5px 0;
+}
