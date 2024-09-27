@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="toggle-comments">+</button>
             </div>
             <div class="comments-section" style="display: none;">
+                <div class="comment-list"></div>
                 <textarea placeholder="Write a comment..."></textarea>
                 <button class="submit-comment">Submit</button>
-                <div class="comment-list"></div>
             </div>
         `;
         
@@ -27,14 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.addEventListener('click', () => {
             const commentText = commentsSection.querySelector('textarea').value.trim();
             if (commentText) {
+                const currentTime = new Date().toLocaleString("en-US", {timeZone: "Europe/Berlin", hour12: false});
                 const commentDiv = document.createElement('div');
-                commentDiv.textContent = commentText;
+                commentDiv.classList.add('comment-item');
+                commentDiv.innerHTML = `<strong>${currentTime}</strong>: ${commentText}`;
                 commentsSection.querySelector('.comment-list').appendChild(commentDiv);
                 commentsSection.querySelector('textarea').value = ''; // Clear the textarea
+                scrollToBottom(commentsSection.querySelector('.comment-list')); // Scroll to the bottom
             }
         });
 
         return article;
+    };
+
+    // Scroll to the bottom of the comments section
+    const scrollToBottom = (commentList) => {
+        commentList.scrollTop = commentList.scrollHeight;
     };
 
     // Fetch EP News
