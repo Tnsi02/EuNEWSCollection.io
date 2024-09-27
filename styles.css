@@ -8,6 +8,15 @@ body {
 header {
     text-align: left; /* Align title to the left */
     margin-bottom: 20px; /* Reduce margin for better positioning */
+    position: relative; /* Set position to relative to position children absolutely */
+}
+
+.last-updated {
+    position: absolute; /* Position it absolutely */
+    right: 15%; /* Adjust this value as needed for positioning */
+    top: 10px; /* Adjust vertical position */
+    font-size: 14px; /* Adjust font size if needed */
+    color: #555; /* Optional: change color to distinguish */
 }
 
 .main-content {
@@ -93,8 +102,3 @@ article a:hover {
 .summarize-button:hover {
     background-color: #357abd; /* Darker shade on hover */
 }
-#last-updated-date {
-    font-size: 0.9em; /* Slightly smaller font size */
-    color: #666; /* Lighter color for the date */
-}
-
