@@ -86,4 +86,10 @@ article a:hover {
     background-color: #4183c4; /* Button background color */
     color: white; /* Button text color */
     border: none; /* No border */
-    border-radius
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.summarize-button:hover {
+    background-color: #357abd; /* Darker shade on hover */
+}
