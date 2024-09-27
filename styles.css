@@ -93,3 +93,8 @@ article a:hover {
 .summarize-button:hover {
     background-color: #357abd; /* Darker shade on hover */
 }
+#last-updated-date {
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #666; /* Lighter color for the date */
+}
+
