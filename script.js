@@ -1,3 +1,21 @@
+// Import Firebase functions
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, query, where, orderBy, getDocs } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBqLFu6RNnLEEAcfsZjBOc9XRq0yeV7AZE",
+    authDomain: "githubcommentsave.firebaseapp.com",
+    projectId: "githubcommentsave",
+    storageBucket: "githubcommentsave.appspot.com",
+    messagingSenderId: "862888877466",
+    appId: "1:862888877466:web:1e3dac99b1b7354409ae23"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 document.addEventListener('DOMContentLoaded', () => {
     // Function to create news item with comment section
     const createNewsItem = (title, link) => {
@@ -18,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentsList = article.querySelector('.comment-list');
         const commentsKey = `comments_${link}`; // Unique key for each article based on link
 
-        // Load comments from local storage
-        loadComments(commentsKey, commentsList);
+        // Load comments from Firestore
+        fetchComments(title, commentsList);
 
         // Toggle comment section visibility
         const toggleButton = article.querySelector('.toggle-comments');
@@ -31,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle comment submission
         const submitButton = article.querySelector('.submit-comment');
-        submitButton.addEventListener('click', () => {
+        submitButton.addEventListener('click', async () => {
             const commentText = commentsSection.querySelector('textarea').value.trim();
             if (commentText) {
                 const currentTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin", hour12: false });
@@ -42,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentsSection.querySelector('textarea').value = ''; // Clear the textarea
                 scrollToBottom(commentsList); // Scroll to the bottom
 
-                // Save the comment to local storage
-                saveComment(commentsKey, { time: currentTime, text: commentText });
+                // Save the comment to Firestore
+                await addComment(title, commentText, currentTime);
             }
         });
 
@@ -55,22 +73,37 @@ document.addEventListener('DOMContentLoaded', () => {
         commentList.scrollTop = commentList.scrollHeight;
     };
 
-    // Load comments from local storage
-    const loadComments = (key, commentList) => {
-        const savedComments = JSON.parse(localStorage.getItem(key)) || [];
-        savedComments.forEach(({ time, text }) => {
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment-item');
-            commentDiv.innerHTML = `<strong>${time}</strong>: ${text}`;
-            commentList.appendChild(commentDiv);
-        });
+    // Function to fetch comments from Firestore
+    const fetchComments = async (headline, commentList) => {
+        try {
+            const commentsRef = collection(db, 'comments');
+            const q = query(commentsRef, where('headline', '==', headline), orderBy('timestamp', 'desc'));
+            const querySnapshot = await getDocs(q);
+            
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment-item');
+                commentDiv.innerHTML = `<strong>${data.timestamp}</strong>: ${data.text}`; // Display comment with timestamp
+                commentList.appendChild(commentDiv);
+            });
+        } catch (error) {
+            console.error('Error fetching comments: ', error);
+        }
     };
 
-    // Save comment to local storage
-    const saveComment = (key, comment) => {
-        const savedComments = JSON.parse(localStorage.getItem(key)) || [];
-        savedComments.push(comment);
-        localStorage.setItem(key, JSON.stringify(savedComments));
+    // Function to add a comment to Firestore
+    const addComment = async (headline, text, timestamp) => {
+        try {
+            await addDoc(collection(db, 'comments'), {
+                headline: headline,
+                text: text,
+                timestamp: timestamp // Use ISO format for timestamps
+            });
+            console.log('Comment added!');
+        } catch (error) {
+            console.error('Error adding comment: ', error);
+        }
     };
 
     // Fetch EP News
