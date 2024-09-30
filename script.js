@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
 
-
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
         sign.addEventListener('click', function() {
