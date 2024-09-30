@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching last updated date:', error));
     }
 
-    // Fetch Featured News, EP News, Commission News, External Action News, and Consilium News
-    fetchNews('EUFnews.txt', 'featured-news-list'); // New line for Featured News
-    fetchNews('EPnews.txt', 'ep-news-list');
-    fetchNews('ECnews.txt', 'commission-news-list');
-    fetchNews('EEASnews.txt', 'external-action-news-list');
-    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // New line for Consilium News
-    fetchNews('EBnews.txt', 'eurobarometer-news-list'); //Eurobarometer line
+    // Fetch news from the respective files
+    fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
+    fetchNews('EPnews.txt', 'ep-news-list'); // EP News
+    fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
+    fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
+    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
+    fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
