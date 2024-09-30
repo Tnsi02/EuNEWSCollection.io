@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
     fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
+    fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
+
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
