@@ -72,7 +72,7 @@ function fetchNews(filePath, newsListId, isConsilium = false) { // Added isConsi
     fetchNews('EPnews.txt', 'ep-news-list'); // EP News
     fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
     fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
-    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
+    fetchNews('ConsiliumNews.txt', 'consilium-news-list', true); // Consilium News
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
 
