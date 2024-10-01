@@ -13,9 +13,9 @@ function fetchNews(filePath, newsListId, isConsilium = false) { // Added isConsi
             newsItems.forEach(item => {
                 let title, link;
                 
-                // If Consilium, use // as separator. Otherwise, use -
-                if (isConsilium && item.includes('//')) {
-                    [title, link] = item.split(' // ').map(part => part.trim()); // Consilium uses //
+                // If Consilium, use //// as separator. Otherwise, use -
+                if (isConsilium && item.includes('////')) {
+                    [title, link] = item.split(' //// ').map(part => part.trim()); // Consilium uses ////
                 } else {
                     [title, link] = item.split(' - ').map(part => part.trim()); // Default to -
                 }
@@ -56,6 +56,7 @@ function fetchNews(filePath, newsListId, isConsilium = false) { // Added isConsi
         })
         .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
 }
+
 
     // Function to fetch the last updated date from last_updated.txt
     function updateLastUpdatedDate() {
