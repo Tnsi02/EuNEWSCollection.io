@@ -139,8 +139,8 @@ article a:hover {
 
 /* Styles for the new "important" checkbox with red background */
 .important-check {
-    width: 20px;
-    height: 20px;
+    width: 6px;
+    height: 6px;
     appearance: none;
     border: 2px solid red;
     cursor: pointer;
