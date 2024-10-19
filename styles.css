@@ -31,6 +31,7 @@ h1 {
     display: flex; /* Use flexbox to arrange items */
     flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
     justify-content: space-between; /* Space between news and Disqus */
+    gap: 20px; /* Add gap between the columns */
 }
 
 .news-container {
@@ -92,12 +93,14 @@ article a:hover {
 }
 
 .disqus-container {
-    flex: 1;
+    flex: 1; /* Allow Disqus container to take available space */
     padding: 20px;
-    border-left: 1px solid #ccc;
-    margin-top: 20px;
-    max-width: 900px;
-    height: auto;
+    border-left: 1px solid #ccc; /* Keep border left for distinction */
+    margin-top: 20px; /* Space between news and Disqus */
+    max-width: 900px; /* Limit max width to avoid stretching */
+    height: auto; /* Allow flexible height */
+    flex-shrink: 0; /* Prevent shrinking */
+    box-sizing: border-box; /* Include padding in width calculations */
 }
 
 /* Style for summarize button */
