@@ -31,14 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const article = document.createElement('article');
                     article.innerHTML = `
                         <label>
-                            <input type="checkbox" class"news-important-checkbox" />
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
                         </label>
                     `;
 
-                    const checkbox = article.querySelector('.news-important-checkbox');
                     const checkbox = article.querySelector('.news-read-checkbox');
 
                     // Check localStorage for the read state
