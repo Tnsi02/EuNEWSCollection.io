@@ -21,61 +21,71 @@ document.addEventListener('DOMContentLoaded', () => {
                     const link = item.slice(httpsIndex).trim(); // Extract the link part
 
                     // Properly format the title with colored keywords (optional)
-                    const formattedTitle = title.replace(/(EU Parliament|Commission|Council|Action)/gi, '<span style="color: blue;">$1</span>');
+                    const coloredTitle = title
+                        .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
+                        .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
-                    // Create an article element and append to the list
+                    // Construct the summarize link (optional)
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+
                     const article = document.createElement('article');
-                    article.innerHTML = `<a href="${link}" target="_blank">${formattedTitle}</a>`;
+                    article.innerHTML = `
+                        <label>
+                            <input type="checkbox" class="news-read-checkbox" />
+                            <a href="${link}" target="_blank">${coloredTitle}</a>
+                            <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
+                        </label>
+                    `;
+
+                    const checkbox = article.querySelector('.news-read-checkbox');
+
+                    // Check localStorage for the read state
+                    const isRead = JSON.parse(localStorage.getItem(link));
+                    if (isRead) {
+                        checkbox.checked = true; // Mark checkbox if read
+                    }
+
+                    // Save checkbox state to localStorage when toggled
+                    checkbox.addEventListener('change', () => {
+                        localStorage.setItem(link, JSON.stringify(checkbox.checked));
+                    });
+
                     newsList.appendChild(article);
                 });
 
-                // Make the news list visible
-                newsList.style.display = 'block';
+                // Update the last updated date
+                updateLastUpdatedDate(); 
             })
-            .catch(error => {
-                console.error(`Failed to fetch news from ${filePath}:`, error);
-            });
+            .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Function to toggle visibility of news sections
-    function toggleNewsSection(event) {
-        const section = event.target.closest('.news-section');
-        const toggleSign = section.querySelector('.toggle-sign');
-        const newsList = section.querySelector('.news-list');
-        const isVisible = newsList.style.display === 'block';
-
-        newsList.style.display = isVisible ? 'none' : 'block';
-        toggleSign.textContent = isVisible ? '+' : '−';
+    // Function to fetch the last updated date from last_updated.txt
+    function updateLastUpdatedDate() {
+        fetch('last_updated.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
+            })
+            .catch(error => console.error('Error fetching last updated date:', error));
     }
 
-    // Attach event listeners to each news section to toggle visibility
-    const newsSections = document.querySelectorAll('.news-section h2');
-    newsSections.forEach(section => {
-        section.addEventListener('click', toggleNewsSection);
+    // Fetch news from the respective files
+    fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
+    fetchNews('EPnews.txt', 'ep-news-list'); // EP News
+    fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
+    fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
+    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
+    fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
+    fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
+
+    // Add click event listeners for toggling visibility
+    document.querySelectorAll('.toggle-sign').forEach(sign => {
+        sign.addEventListener('click', function() {
+            const newsList = this.closest('.news-section').querySelector('.news-list');
+            const isVisible = this.getAttribute('data-visible') === 'true';
+            newsList.style.display = isVisible ? 'none' : 'block'; 
+            this.textContent = isVisible ? '+' : '-'; 
+            this.setAttribute('data-visible', !isVisible); 
+        });
     });
-
-    // Fetch news from respective files
-    fetchNews('ECnews.txt', 'featured-news-list');
-    fetchNews('EPnews.txt', 'ep-news-list');
-    fetchNews('Commissionnews.txt', 'commission-news-list');
-    fetchNews('EEASnews.txt', 'external-action-news-list');
-    fetchNews('consilium.txt', 'consilium-news-list');
-    fetchNews('eurobarometer.txt', 'eurobarometer-news-list');
-    fetchNews('eesc.txt', 'eesc-news-list');
 });
-
-// Function to save the note and show the status
-function saveNote() {
-    const noteBox = document.getElementById('note-box');
-    const noteStatus = document.getElementById('note-status');
-    const noteContent = noteBox.value.trim();
-
-    if (noteContent) {
-        localStorage.setItem('userNote', noteContent); // Save note to localStorage
-        noteStatus.textContent = 'Note saved!';
-        noteStatus.style.display = 'block';
-    } else {
-        noteStatus.textContent = 'Please enter some text before saving.';
-        noteStatus.style.display = 'block';
-    }
-}
