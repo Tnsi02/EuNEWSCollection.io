@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -54,35 +54,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate();
+                updateLastUpdatedDate(); 
             })
-            .catch(error => console.error('Error fetching news:', error));
+            .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Fetch news from different files
-    fetchNews('ECnews.txt', 'featured-news-list');
-    fetchNews('EPnews.txt', 'ep-news-list');
-    fetchNews('Commission_Scrape.py', 'commission-news-list');
-    fetchNews('EEASnews.txt', 'external-action-news-list');
-    fetchNews('Consiliumnews.txt', 'consilium-news-list');
-    fetchNews('Eurobarometer.txt', 'eurobarometer-news-list');
-    fetchNews('eesc.txt', 'eesc-news-list');
-    
-    // Function to update the last updated date
+    // Function to fetch the last updated date from last_updated.txt
     function updateLastUpdatedDate() {
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        document.getElementById('last-updated-date').textContent = `Last updated: ${formattedDate}`;
+        fetch('last_updated.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
+            })
+            .catch(error => console.error('Error fetching last updated date:', error));
     }
-    
-    // Toggle button for the notes section
-    const toggleNotesButton = document.getElementById('toggle-notes');
-    const noteContainer = document.querySelector('.note-container');
 
-    toggleNotesButton.addEventListener('click', () => {
-        const isExpanded = noteContainer.classList.contains('expanded');
-        noteContainer.classList.toggle('expanded', !isExpanded);
-        noteContainer.classList.toggle('collapsed', isExpanded);
-        toggleNotesButton.textContent = isExpanded ? '+' : '-';
+    // Fetch news from the respective files
+    fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
+    fetchNews('EPnews.txt', 'ep-news-list'); // EP News
+    fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
+    fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
+    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
+    fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
+    fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
+
+    // Add click event listeners for toggling visibility
+    document.querySelectorAll('.toggle-sign').forEach(sign => {
+        sign.addEventListener('click', function() {
+            const newsList = this.closest('.news-section').querySelector('.news-list');
+            const isVisible = this.getAttribute('data-visible') === 'true';
+            newsList.style.display = isVisible ? 'none' : 'block'; 
+            this.textContent = isVisible ? '+' : '-'; 
+            this.setAttribute('data-visible', !isVisible); 
+        });
     });
 });

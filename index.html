@@ -3,77 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU News</title>
+    <title>EU NEWS Collection</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>EU News</h1>
-            <div id="last-updated-date"></div>
-        </div>
-    </header>
 
-    <div class="main-content">
-        <!-- News Container -->
-        <div class="news-container">
-            <!-- News Sections -->
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">Featured News</h2>
-                <div class="news-list" id="featured-news-list"></div>
-            </div>
+<header>
+    <div class="header-content">
+        <h1>EU NEWS Collection</h1> 
+        <span id="last-updated-date"></span> <!-- Last Updated -->
+    </div>
+</header>
 
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">EP News</h2>
-                <div class="news-list" id="ep-news-list"></div>
-            </div>
-
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">Commission News</h2>
-                <div class="news-list" id="commission-news-list"></div>
-            </div>
-
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">External Action News</h2>
-                <div class="news-list" id="external-action-news-list"></div>
-            </div>
-
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">Consilium News</h2>
-                <div class="news-list" id="consilium-news-list"></div>
-            </div>
-
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">Eurobarometer News</h2>
-                <div class="news-list" id="eurobarometer-news-list"></div>
-            </div>
-
-            <div class="news-section">
-                <h2 class="toggle-sign" data-visible="false">EESC News</h2>
-                <div class="news-list" id="eesc-news-list"></div>
+<div class="main-content">
+    <div class="news-container">
+        <div class="news-section">
+            <h2>
+                Featured News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="featured-news-list" class="news-list" style="display: none;">
+                <!-- Featured News items will be inserted here -->
             </div>
         </div>
 
-        <!-- Note Container (for saving notes) -->
-        <div class="note-container">
-            <h3>My Notes <span id="toggle-notes" class="toggle-sign">+</span></h3>
-            <textarea id="notes-area" placeholder="Write your notes here..."></textarea>
+        <div class="news-section">
+            <h2>
+                EP NEWS 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="ep-news-list" class="news-list" style="display: none;">
+                <!-- EP News items will be inserted here -->
+            </div>
         </div>
 
-        <!-- Disqus -->
-        <div class="disqus-container">
-            <div id="disqus_thread"></div>
-            <script>
-                (function() {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://your-disqus-shortname.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
+        <div class="news-section">
+            <h2>
+                Commission News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="commission-news-list" class="news-list" style="display: none;">
+                <!-- Commission News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>
+                External Action News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="external-action-news-list" class="news-list" style="display: none;">
+                <!-- External Action News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>
+                Consilium 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="consilium-news-list" class="news-list" style="display: none;">
+                <!-- Consilium News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section"> <!-- Fixed typo: added quote here -->
+            <h2>
+                Eurobarometer
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="eurobarometer-news-list" class="news-list" style="display: none;">
+                <!-- Eurobarometer News items will be inserted here -->
+            </div>
+        </div>
+        
+        <div class="news-section">
+            <h2>
+                EESC
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="eesc-news-list" class="news-list" style="display: none;">
+                <!-- EESC News items will be inserted here -->
         </div>
     </div>
+ </div>
 
-    <script src="script.js"></script>
+    <div class="disqus-container">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
+                this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
