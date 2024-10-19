@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate(); 
+                updateLastUpdatedDate();
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEventListener('click', function() {
+        sign.addEventListener('click', function () {
             const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block'; 
-            this.textContent = isVisible ? '+' : '-'; 
-            this.setAttribute('data-visible', !isVisible); 
+            newsList.style.display = isVisible ? 'none' : 'block';
+            this.textContent = isVisible ? '+' : '-';
+            this.setAttribute('data-visible', !isVisible);
         });
     });
 });
