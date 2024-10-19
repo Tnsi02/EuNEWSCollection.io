@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Toggle the visibility state
             this.setAttribute('data-visible', !isVisible);
+            this.setAttribute('aria-expanded', !isVisible); // For accessibility
         });
     });
 });
