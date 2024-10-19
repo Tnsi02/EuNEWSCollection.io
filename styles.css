@@ -102,7 +102,7 @@ article a:hover {
 
 /* Style for summarize button */
 .summarize-button {
-    margin-left: 10px; /* Space between link and summarize button */
+    margin-left: 30px; /* Space between link and summarize button */
     padding: 5px 10px; /* Padding for the button */
     background-color: #4183c4; /* Button background color */
     color: white; /* Button text color */
