@@ -92,15 +92,14 @@ article a:hover {
 }
 
 .disqus-container {
-    flex: 1; /* Make Disqus container take less space */
+    flex: 1;
     padding: 20px;
-    border-left: 1px solid #ccc; /* Optional: border for separation */
-    height: auto; /* Adjust height for content */
-    margin-top: 20px; /* Add space above */
-    flex-shrink: 0; /* Prevent shrinking */
-    max-width: 400px; /* Limit width if needed */
-    width: 100%; /* Full width on smaller screens */
+    border-left: 1px solid #ccc;
+    margin-top: 20px;
+    max-width: 400px;
+    height: auto;
 }
+
 
 /* Style for summarize button */
 .summarize-button {
@@ -119,24 +118,27 @@ article a:hover {
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
+   .main-content {
+    display: flex; /* Ensure it stays a flex container */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between; /* Space between news and Disqus */
+}
+
+.news-container {
+    flex: 3; /* Give it more space than the Disqus section */
+    margin-right: 20px; /* Space between the news section and Disqus */
+}
+
+.disqus-container {
+    flex: 1; /* Disqus section takes less space */
+    padding: 20px;
+    border-left: 1px solid #ccc; /* Optional: border for separation */
+    height: auto; /* Adjust height to fit content */
+    margin-top: 20px; /* Space between news and Disqus */
+    flex-shrink: 0; /* Prevent shrinking */
+    max-width: 400px; /* Limit width if needed */
     }
 
-    .disqus-container {
-        width: 100%; /* Make Disqus section full width on small screens */
-        margin-top: 30px; /* Add spacing at the top */
-    }
-
-    header {
-        text-align: center; /* Center the header on small screens */
-    }
-
-    #last-updated-date {
-        margin-left: 0; /* Remove left margin for small screens */
-        text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
-    }
 }
 
 #last-updated-date {
