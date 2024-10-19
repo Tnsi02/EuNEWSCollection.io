@@ -61,13 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Toggle "important" state on click
                     importantToggle.addEventListener('click', () => {
-                        const isCurrentlyImportant = importantToggle.getAttribute('data-important') === 'true';
-                        importantToggle.style.color = isCurrentlyImportant ? '' : 'red';
-                        importantToggle.textContent = isCurrentlyImportant ? '' : '!';
-                        importantToggle.setAttribute('data-important', !isCurrentlyImportant);
+                        const currentState = importantToggle.getAttribute('data-important'); 
+                        if (currentState === 'false') {
+                            importantToggle.style.color = 'red';
+                            importantToggle.textContent = '!';
+                            importantToggle.setAttribute('data-important', 'true'); // Set to true
+                        } else if (currentState === 'true') {
+                            // If red (with "!")
+                            importantToggle.style.color = 'black';
+                            importantToggle.textContent = ''; // Remove "!"
+                            importantToggle.setAttribute('data-important', 'black'); // Set to black
+                        } else if (currentState === 'black') {
+                            // If black (without "!")
+                            importantToggle.style.color = 'red';
+                            importantToggle.textContent = '!'; // Add "!"
+                            importantToggle.setAttribute('data-important', 'true'); // Set to red
+                        }
 
                         // Save "important" state to localStorage
-                        localStorage.setItem(link + '_important', JSON.stringify(!isCurrentlyImportant));
+                        localStorage.setItem(link + '_important', importantToggle.getAttribute('data-important'));
                     });
 
                     newsList.appendChild(article);
