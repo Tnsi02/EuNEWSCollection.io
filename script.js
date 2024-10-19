@@ -31,21 +31,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     const article = document.createElement('article');
                     article.innerHTML = `
                         <label>
+                            <input type="checkbox" class="important-check" />
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
                         </label>
                     `;
 
-                    const checkbox = article.querySelector('.news-read-checkbox');
+                    // Handle "important" checkbox state
+                    const importantCheckbox = article.querySelector('.important-check');
+                    const importantKey = `${link}-important`; // Use a unique key for localStorage
+                    const isImportant = JSON.parse(localStorage.getItem(importantKey));
+                    if (isImportant) {
+                        importantCheckbox.checked = true;
+                    }
 
-                    // Check localStorage for the read state
+                    // Save "important" checkbox state to localStorage when toggled
+                    importantCheckbox.addEventListener('change', () => {
+                        localStorage.setItem(importantKey, JSON.stringify(importantCheckbox.checked));
+                    });
+
+                    // Handle "read" checkbox state
+                    const checkbox = article.querySelector('.news-read-checkbox');
                     const isRead = JSON.parse(localStorage.getItem(link));
                     if (isRead) {
                         checkbox.checked = true; // Mark checkbox if read
                     }
 
-                    // Save checkbox state to localStorage when toggled
+                    // Save "read" checkbox state to localStorage when toggled
                     checkbox.addEventListener('change', () => {
                         localStorage.setItem(link, JSON.stringify(checkbox.checked));
                     });
