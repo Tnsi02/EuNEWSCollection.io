@@ -96,7 +96,7 @@ article a:hover {
     padding: 20px;
     border-left: 1px solid #ccc;
     margin-top: 20px;
-    max-width: 400px;
+    max-width: 900px;
     height: auto;
 }
 
@@ -136,7 +136,7 @@ article a:hover {
     height: auto; /* Adjust height to fit content */
     margin-top: 20px; /* Space between news and Disqus */
     flex-shrink: 0; /* Prevent shrinking */
-    max-width: 400px; /* Limit width if needed */
+    max-width: 900px; /* Limit width if needed */
     }
 
 }
