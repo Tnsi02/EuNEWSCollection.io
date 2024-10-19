@@ -96,7 +96,7 @@ h1 {
     font-size: 16px;
     margin: 0;
     padding-bottom: 5px; /* Reduced padding to save space */
-    width: 25%; /* Ensure it takes full width of container */
+    width: 10%; /* Ensure it takes full width of container */
     text-align: center; /* Center align the title text */
 }
 
