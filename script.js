@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
-                    // Construct the summarize link with encoded URL
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
+                    // Construct the summarize link (optional)
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -64,13 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('last_updated.txt')
             .then(response => response.text())
             .then(data => {
-                const lastUpdatedDate = data.trim();
-                if (lastUpdatedDate) {
-                    document.getElementById('last-updated-date').textContent = `Last Updated: ${lastUpdatedDate}`;
-                } else {
-                    document.getElementById('last-updated-date').textContent = `Last Updated: Unknown`;
-                    console.error('The "last_updated.txt" file is empty or malformed.');
-                }
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
             })
             .catch(error => console.error('Error fetching last updated date:', error));
     }
@@ -84,24 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
 
-    // Add click event listeners for toggling visibility and the note area
+    // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEventListener('click', function () {
-            const newsSection = this.closest('.news-section');
-            const newsList = newsSection.querySelector('.news-list');
-            const noteArea = newsSection.querySelector('.note-area');
+        sign.addEventListener('click', function() {
+            const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-
-            // Toggle news list visibility
             newsList.style.display = isVisible ? 'none' : 'block'; 
-            // Toggle note area visibility
-            if (isVisible) {
-                noteArea.classList.remove('open');
-            } else {
-                noteArea.classList.add('open');
-            }
-
-            // Change the toggle sign and update visibility status
             this.textContent = isVisible ? '+' : '-'; 
             this.setAttribute('data-visible', !isVisible); 
         });
