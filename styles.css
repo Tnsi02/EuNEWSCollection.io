@@ -89,3 +89,46 @@ h1 {
 .disqus-container {
     margin-top: 20px;
 }
+
+/* Floating note box */
+.floating-note {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.floating-note textarea {
+    width: 300px;
+    height: 150px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.floating-note button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ecc71;
+    color: white;
+    cursor: pointer;
+}
+
+.floating-note button:hover {
+    background-color: #27ae60;
+}
+
+.floating-note #note-status {
+    display: none;
+    color: green;
+    margin-top: 5px;
+}
