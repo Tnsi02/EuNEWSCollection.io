@@ -6,133 +6,86 @@ body {
 }
 
 header {
-    text-align: left; /* Align title to the left */
-    margin-bottom: 20px; /* Reduce margin for better positioning */
-    position: relative; /* Set position to relative for children */
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .header-content {
-    display: flex; /* Use flexbox to align items horizontally */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center items vertically */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 h1 {
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 #last-updated-date {
-    margin-left: 20px; /* Space between title and last updated text */
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Change color for distinction */
-}
-
-.main-content {
-    display: flex; /* Use flexbox to arrange items */
-    flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
+    margin-left: 20px;
+    font-size: 14px;
+    color: gray;
 }
 
 .news-container {
-    flex: 1; /* Allow this section to grow */
-    margin-right: 20px; /* Space between news sections and Disqus */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .news-section {
-    margin-bottom: 20px; /* Add spacing between sections */
+    margin-bottom: 20px;
 }
 
 .news-section h2 {
-    margin-top: 0; /* Remove margin at the top for the section headers */
-    cursor: pointer; /* Indicate that the header is clickable */
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.news-section h2:hover {
-    color: #4183c4; /* Change color on hover */
-}
-
-.news-list {
-    display: none; /* Initially hide the news list */
-    margin-top: 10px; /* Space between the section header and news list */
-    padding: 10px; /* Padding for the news list */
-    border-radius: 5px; /* Rounded corners */
-}
-
-/* Style for each article */
-article {
-    margin-bottom: 15px; /* Space between articles */
-    padding: 10px; /* Inner padding for each article */
-    background-color: #fff; /* White background for articles */
-    border: 1px solid #ddd; /* Light border around articles */
-    border-radius: 4px; /* Rounded corners for articles */
-    transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-/* Change link color and remove underline */
-article a {
-    color: #333; /* Dark gray color for text */
-    text-decoration: none; /* Remove underline */
-}
-
-/* Hover effect for articles */
-article:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .toggle-sign {
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-    margin-left: 10px; /* Space between the header and the sign */
-    font-weight: bold; /* Make the sign stand out */
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
 }
 
-article a:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #4183c4; /* Change color on link hover */
+.news-list {
+    padding: 10px 0;
+    list-style-type: none;
+    display: none;
 }
 
-.disqus-container {
-    width: 100%; /* Use full width on mobile */
-    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
-    padding: 20px; /* Add padding */
-    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    height: auto; /* Adjust height for content */
-    margin-top: 20px; /* Add space above */
-    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
+.news-list article {
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for summarize button */
+.news-list article a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.news-list article a:hover {
+    color: #1e2e3a;
+}
+
 .summarize-button {
-    margin-left: 10px; /* Space between link and summarize button */
-    padding: 5px 10px; /* Padding for the button */
-    background-color: #4183c4; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 3px; /* Rounded corners */
-    cursor: pointer; /* Change cursor to pointer */
+    margin-left: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .summarize-button:hover {
-    background-color: #357abd; /* Darker shade on hover */
+    background-color: #2980b9;
 }
 
-/* Media query for responsiveness */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
-    }
-
-    .disqus-container {
-        width: 100%; /* Make Disqus section full width on small screens */
-        margin-top: 30px; /* Add spacing at the top */
-    }
-
-    header {
-        text-align: center; /* Center the header on small screens */
-    }
-
-    #last-updated-date {
-        margin-left: 0; /* Remove left margin for small screens */
-        text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
-    }
+.disqus-container {
+    margin-top: 20px;
 }
