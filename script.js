@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
-                    // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    // Construct the summarize link with encoded URL
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -64,7 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('last_updated.txt')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
+                const lastUpdatedDate = data.trim();
+                if (lastUpdatedDate) {
+                    document.getElementById('last-updated-date').textContent = `Last Updated: ${lastUpdatedDate}`;
+                } else {
+                    document.getElementById('last-updated-date').textContent = `Last Updated: Unknown`;
+                    console.error('The "last_updated.txt" file is empty or malformed.');
+                }
             })
             .catch(error => console.error('Error fetching last updated date:', error));
     }
