@@ -136,3 +136,31 @@ article a:hover {
         top: 0; /* Reset top position */
     }
 }
+
+
+.note-container {
+    flex: 1; /* Allow this section to grow */
+    margin-right: 20px; /* Space between news sections and Disqus */
+}
+
+.Notes {
+    margin-bottom: 20px; /* Add spacing between sections */
+}
+
+.Notes h2 {
+    margin-top: 0; /* Remove margin at the top for the section headers */
+    cursor: pointer; /* Indicate that the header is clickable */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.Notes h2:hover {
+    color: #4183c4; /* Change color on hover */
+}
+
+.notes-section {
+    display: none; /* Initially hide the news list */
+    margin-top: 10px; /* Space between the section header and news list */
+    padding: 10px; /* Padding for the news list */
+    border-radius: 5px; /* Rounded corners */
+}
+
