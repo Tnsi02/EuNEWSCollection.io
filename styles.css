@@ -166,7 +166,7 @@ article a:hover {
     font-weight: bold;
     font-size: 11px; /* Adjust the font size to fit */
     position: absolute;
-    top: 0px; /* Adjust for perfect alignment */
+    top: -3px; /* Adjust for perfect alignment */
     left: 4px; /* Adjust for centering */
 }
 
