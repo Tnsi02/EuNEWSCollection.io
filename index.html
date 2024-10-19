@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU NEWS Collection</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Your custom styles */
+        .news-container {
+            margin-left: 20px; /* Move the news-container left */
+            padding-right: 20px; /* Optional: add padding on the right */
+        }
+    </style>
 </head>
 <body>
 
@@ -67,7 +74,7 @@
             </div>
         </div>
 
-        <div class="news-section"> <!-- Fixed typo: added quote here -->
+        <div class="news-section">
             <h2>
                 Eurobarometer
                 <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
@@ -76,7 +83,7 @@
                 <!-- Eurobarometer News items will be inserted here -->
             </div>
         </div>
-        
+
         <div class="news-section">
             <h2>
                 EESC
@@ -84,9 +91,9 @@
             </h2>
             <div id="eesc-news-list" class="news-list" style="display: none;">
                 <!-- EESC News items will be inserted here -->
+            </div>
         </div>
-    </div>
- </div>
+    </div> <!-- End of news-container -->
 
     <div class="disqus-container">
         <div id="disqus_thread"></div>
