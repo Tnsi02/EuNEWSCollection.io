@@ -145,8 +145,8 @@ article a:hover {
 
 /* Styles for the new "important" checkbox with red background */
 .important-check {
-    width: 14px; /* Adjust to match regular checkbox size */
-    height: 14px; /* Adjust to match regular checkbox size */
+    width: 12px; /* Adjust to match regular checkbox size */
+    height: 12px; /* Adjust to match regular checkbox size */
     appearance: none;
     border: 2px solid red; /* Red border when unchecked */
     background-color: transparent; /* Transparent background when unchecked */
