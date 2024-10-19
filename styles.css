@@ -119,7 +119,7 @@ article a:hover {
 }
 
 /* Media query for responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     .main-content {
         flex-direction: column; /* Stack news and Disqus vertically on smaller screens */
         justify-content: center; /* Center the content */
