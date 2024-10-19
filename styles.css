@@ -136,3 +136,30 @@ article a:hover {
         top: 0; /* Reset top position */
     }
 }
+
+/* Styles for the new "important" checkbox with red background */
+.important-check {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 2px solid red;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.important-check:checked {
+    background-color: red;
+    color: white;
+}
+
+.important-check:checked::after {
+    content: '!';
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+
