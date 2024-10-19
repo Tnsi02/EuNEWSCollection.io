@@ -39,6 +39,7 @@ h1 {
 
 .news-section {
     margin-bottom: 20px; /* Add spacing between sections */
+    transition: all 0.3s ease; /* Smooth transition for expanding/collapsing sections */
 }
 
 .news-section h2 {
@@ -56,6 +57,8 @@ h1 {
     margin-top: 10px; /* Space between the section header and news list */
     padding: 10px; /* Padding for the news list */
     border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
 }
 
 /* Style for each article */
@@ -135,12 +138,17 @@ article a:hover {
         text-align: center; /* Center the last updated text */
         top: 0; /* Reset top position */
     }
+
+    .news-section h2 {
+        text-align: center; /* Center the section headers on small screens */
+    }
 }
 
+/* New category and checkbox styles */
 #last-updated-date {
-    margin-left: 0; /* Remove left margin for small screens */
-    text-align: center; /* Center the last updated text */
-    top: 0; /* Reset top position */
+    margin-left: 0;
+    text-align: center;
+    top: 0;
 }
 
 /* Styles for the new "important" checkbox with red background */
@@ -157,14 +165,20 @@ article a:hover {
     margin-top: 1px; /* Adjust position to move it slightly down */
 }
 
-/* When the checkbox is checked, change the background color */
 .important-check:checked {
     background-color: red; /* Red background when checked */
 }
 
-/* Regular checkbox styles for the existing checkbox */
 .news-read-checkbox {
-    margin-left: 5px; /* Adjust space between checkboxes */
+    margin-left: 5px;
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
 
+/* Hover for collapsing sections */
+.news-section .toggle-sign:hover {
+    color: #357abd;
+}
+
+.news-section.active .toggle-sign {
+    transform: rotate(45deg);
+}
