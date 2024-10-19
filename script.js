@@ -11,13 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 newsList.innerHTML = '';
 
                 newsItems.forEach(item => {
-                    const [title, link] = item.split(' - '); // Split the title and link
+                    const httpsIndex = item.indexOf('https'); // Find the start of the link
+                    if (httpsIndex === -1) {
+                        console.error(`No URL found in the news item: ${item}`);
+                        return;
+                    }
+
+                    const title = item.slice(0, httpsIndex).trim(); // Extract the title part
+                    const link = item.slice(httpsIndex).trim(); // Extract the link part
+
+                    // Properly format the title with colored keywords (optional)
                     const coloredTitle = title
                         .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
-                    const encodeLink = encodeURIComponent(link); // Encode the link
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeLink}`; // Create summarize URL
+                    // Construct the summarize link (optional)
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+
                     const article = document.createElement('article');
                     article.innerHTML = `
                         <label>
@@ -44,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate(); // Call to update last updated date
+                updateLastUpdatedDate(); 
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
@@ -54,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('last_updated.txt')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`; // Display fetched date
+                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
             })
             .catch(error => console.error('Error fetching last updated date:', error));
     }
@@ -71,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
         sign.addEventListener('click', function() {
-            const newsList = this.closest('.news-section').querySelector('.news-list'); // Get the news list in the same section
+            const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block'; // Toggle display
-            this.textContent = isVisible ? '+' : '-'; // Change sign
-            this.setAttribute('data-visible', !isVisible); // Update visibility state
+            newsList.style.display = isVisible ? 'none' : 'block'; 
+            this.textContent = isVisible ? '+' : '-'; 
+            this.setAttribute('data-visible', !isVisible); 
         });
     });
 });
