@@ -78,12 +78,24 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
 
-    // Add click event listeners for toggling visibility
+    // Add click event listeners for toggling visibility and the note area
     document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEventListener('click', function() {
-            const newsList = this.closest('.news-section').querySelector('.news-list');
+        sign.addEventListener('click', function () {
+            const newsSection = this.closest('.news-section');
+            const newsList = newsSection.querySelector('.news-list');
+            const noteArea = newsSection.querySelector('.note-area');
             const isVisible = this.getAttribute('data-visible') === 'true';
+
+            // Toggle news list visibility
             newsList.style.display = isVisible ? 'none' : 'block'; 
+            // Toggle note area visibility
+            if (isVisible) {
+                noteArea.classList.remove('open');
+            } else {
+                noteArea.classList.add('open');
+            }
+
+            // Change the toggle sign and update visibility status
             this.textContent = isVisible ? '+' : '-'; 
             this.setAttribute('data-visible', !isVisible); 
         });
