@@ -30,17 +30,19 @@ h1 {
 .main-content {
     display: flex; /* Use flexbox to arrange items */
     flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
-    justify-content: space-between; /* Space between news and Disqus */
-    gap: 20px; /* Add gap between the columns */
+}
+
+.news-container {
+    flex: 1; /* Allow this section to grow */
+    margin-right: 20px; /* Space between news sections and Disqus */
 }
 
 .news-section {
     margin-bottom: 20px; /* Add spacing between sections */
-    flex: 1; /* Make each section take up equal space */
 }
 
 .news-section h2 {
-    margin-top: 0; /* Remove margin at the top for section headers */
+    margin-top: 0; /* Remove margin at the top for the section headers */
     cursor: pointer; /* Indicate that the header is clickable */
     transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
@@ -89,13 +91,13 @@ article a:hover {
 }
 
 .disqus-container {
-    flex: 1;
-    padding: 20px;
-    border-left: 1px solid #ccc;
-    margin-top: 20px;
-    min-width: 300px; /* Set a minimum width for the Disqus panel */
-    max-width: 400px; /* Optionally, limit the width to 400px */
-    height: auto;
+    width: 100%; /* Use full width on mobile */
+    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
+    padding: 20px; /* Add padding */
+    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
+    height: auto; /* Adjust height for content */
+    margin-top: 20px; /* Add space above */
+    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
 }
 
 /* Style for summarize button */
@@ -114,27 +116,31 @@ article a:hover {
 }
 
 /* Media query for responsiveness */
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .main-content {
-        flex-direction: column; /* Stack news and Disqus vertically on smaller screens */
-        justify-content: center; /* Center the content */
-    }
-
-    .news-section {
-        flex: 1; /* News section takes full width */
+        flex-direction: column; /* Stack elements vertically on smaller screens */
     }
 
     .disqus-container {
-        flex: 1; /* Disqus section takes full width */
-        padding: 20px;
-        border-left: none; /* Remove left border */
-        margin-top: 20px; /* Space between news and Disqus */
+        width: 100%; /* Make Disqus section full width on small screens */
+        margin-top: 30px; /* Add spacing at the top */
+    }
+
+    header {
+        text-align: center; /* Center the header on small screens */
     }
 
     #last-updated-date {
         margin-left: 0; /* Remove left margin for small screens */
         text-align: center; /* Center the last updated text */
+        top: 0; /* Reset top position */
     }
+}
+
+#last-updated-date {
+    margin-left: 0; /* Remove left margin for small screens */
+    text-align: center; /* Center the last updated text */
+    top: 0; /* Reset top position */
 }
 
 /* Styles for the new "important" checkbox with red background */
@@ -161,3 +167,4 @@ article a:hover {
     margin-left: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
+
