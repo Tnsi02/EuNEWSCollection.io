@@ -35,7 +35,7 @@ h1 {
 
 .news-container {
     flex: 3; /* Allow this section to grow more */
-    margin-right: 20px; /* Space between news sections and Disqus */
+    margin-right: 90px; /* Space between news sections and Disqus */
 }
 
 .news-section {
