@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -34,10 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
+                            <span class="important-toggle" data-important="false">!</span>
                         </label>
                     `;
 
                     const checkbox = article.querySelector('.news-read-checkbox');
+                    const importantToggle = article.querySelector('.important-toggle');
 
                     // Check localStorage for the read state
                     const isRead = JSON.parse(localStorage.getItem(link));
@@ -45,16 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         checkbox.checked = true; // Mark checkbox if read
                     }
 
+                    // Check localStorage for the important state
+                    const isImportant = JSON.parse(localStorage.getItem(link + '_important'));
+                    if (isImportant) {
+                        importantToggle.style.color = 'red';
+                        importantToggle.textContent = '!';
+                    }
+
                     // Save checkbox state to localStorage when toggled
                     checkbox.addEventListener('change', () => {
                         localStorage.setItem(link, JSON.stringify(checkbox.checked));
+                    });
+
+                    // Toggle "important" state on click
+                    importantToggle.addEventListener('click', () => {
+                        const isCurrentlyImportant = importantToggle.getAttribute('data-important') === 'true';
+                        importantToggle.style.color = isCurrentlyImportant ? '' : 'red';
+                        importantToggle.textContent = isCurrentlyImportant ? '' : '!';
+                        importantToggle.setAttribute('data-important', !isCurrentlyImportant);
+
+                        // Save "important" state to localStorage
+                        localStorage.setItem(link + '_important', JSON.stringify(!isCurrentlyImportant));
                     });
 
                     newsList.appendChild(article);
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate(); 
+                updateLastUpdatedDate();
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
@@ -83,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sign.addEventListener('click', function() {
             const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block'; 
-            this.textContent = isVisible ? '+' : '-'; 
-            this.setAttribute('data-visible', !isVisible); 
+            newsList.style.display = isVisible ? 'none' : 'block';
+            this.textContent = isVisible ? '+' : '-';
+            this.setAttribute('data-visible', !isVisible);
         });
     });
 });
