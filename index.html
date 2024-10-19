@@ -3,125 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Links Feature</title>
-    <style>
-        /* Style for Save button */
-        .save-button {
-            margin-left: 10px; /* Space between buttons */
-            padding: 5px 10px; /* Button padding */
-            background-color: #28a745; /* Green button */
-            color: white; /* Button text color */
-            border: none; /* No border */
-            border-radius: 3px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor */
-        }
-
-        .save-button:hover {
-            background-color: #218838; /* Darker green on hover */
-        }
-
-        /* Style for saved links */
-        .saved-link {
-            margin-bottom: 10px; /* Space between saved links */
-            padding: 5px; /* Padding around each saved link */
-            background-color: #f9f9f9; /* Light background */
-            border: 1px solid #ddd; /* Border around saved links */
-            border-radius: 3px; /* Rounded corners */
-        }
-
-        .saved-link a {
-            color: #007bff; /* Blue link color */
-            text-decoration: none; /* Remove underline */
-        }
-
-        .saved-link a:hover {
-            text-decoration: underline; /* Underline on hover */
-        }
-
-        /* Additional styling */
-        .news-section {
-            margin: 20px 0;
-        }
-    </style>
+    <title>EU NEWS Collection</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- News Section Example -->
-<div class="news-section">
-    <h2>EESC News</h2>
-    <article>
-        <h3>News Headline 1</h3>
-        <a href="https://example.com/news1">Read more</a>
-        <button class="summarize-button">Summarize</button>
-        <button class="save-button">Save</button>
-    </article>
+<header>
+    <div class="header-content">
+        <h1>EU NEWS Collection</h1> 
+        <span id="last-updated-date"></span> <!-- Last Updated -->
+    </div>
+</header>
 
-    <article>
-        <h3>News Headline 2</h3>
-        <a href="https://example.com/news2">Read more</a>
-        <button class="summarize-button">Summarize</button>
-        <button class="save-button">Save</button>
-    </article>
-</div>
+<div class="main-content">
+    <div class="news-container">
+        <div class="news-section">
+            <h2>
+                Featured News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="featured-news-list" class="news-list" style="display: none;">
+                <!-- Featured News items will be inserted here -->
+            </div>
+        </div>
 
-<!-- Saved Links Section -->
-<div class="news-section saved-links-section">
-    <h2>Saved Links</h2>
-    <div id="saved-links-list">
-        <p id="no-saved-links" style="display: none;">No saved links yet.</p>
+        <div class="news-section">
+            <h2>
+                EP NEWS 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="ep-news-list" class="news-list" style="display: none;">
+                <!-- EP News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>
+                Commission News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="commission-news-list" class="news-list" style="display: none;">
+                <!-- Commission News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>
+                External Action News 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="external-action-news-list" class="news-list" style="display: none;">
+                <!-- External Action News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>
+                Consilium 
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="consilium-news-list" class="news-list" style="display: none;">
+                <!-- Consilium News items will be inserted here -->
+            </div>
+        </div>
+
+        <div class="news-section"> <!-- Fixed typo: added quote here -->
+            <h2>
+                Eurobarometer
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="eurobarometer-news-list" class="news-list" style="display: none;">
+                <!-- Eurobarometer News items will be inserted here -->
+            </div>
+        </div>
+        
+        <div class="news-section">
+            <h2>
+                EESC
+                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
+            </h2>
+            <div id="eesc-news-list" class="news-list" style="display: none;">
+                <!-- EESC News items will be inserted here -->
+        </div>
+    </div>
+ </div>
+
+    <div class="disqus-container">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
+                this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
     </div>
 </div>
 
-<script>
-    // Function to save the article to localStorage
-    function saveLink(headline, link) {
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-        
-        // Check if this link is already saved
-        if (!savedLinks.some(item => item.link === link)) {
-            savedLinks.push({ headline: headline, link: link });
-            localStorage.setItem('savedLinks', JSON.stringify(savedLinks));
-            updateSavedLinks();
-        }
-    }
-
-    // Function to update the saved links display
-    function updateSavedLinks() {
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-        const savedLinksList = document.getElementById('saved-links-list');
-        const noSavedLinks = document.getElementById('no-saved-links');
-        
-        savedLinksList.innerHTML = ''; // Clear the list first
-
-        if (savedLinks.length === 0) {
-            noSavedLinks.style.display = 'block';
-        } else {
-            noSavedLinks.style.display = 'none';
-            savedLinks.forEach(item => {
-                const savedLinkElement = document.createElement('div');
-                savedLinkElement.classList.add('saved-link');
-                savedLinkElement.innerHTML = `<a href="${item.link}" target="_blank">${item.headline}</a>`;
-                savedLinksList.appendChild(savedLinkElement);
-            });
-        }
-    }
-
-    // Event listener to save links when the "Save" button is clicked
-    document.addEventListener('DOMContentLoaded', () => {
-        const saveButtons = document.querySelectorAll('.save-button');
-        
-        saveButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const article = event.target.closest('article');
-                const headline = article.querySelector('h3').textContent;
-                const link = article.querySelector('a').getAttribute('href');
-                saveLink(headline, link);
-            });
-        });
-        
-        updateSavedLinks(); // Update the saved links list on page load
-    });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

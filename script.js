@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
-                            <button class="save-button" onclick="saveLink('${title}', '${link}')">Save</button>
                         </label>
                     `;
 
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate();
+                updateLastUpdatedDate(); 
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
@@ -83,49 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching last updated date:', error));
     }
 
-    // Function to save a link to the local "Saved Links" section
-    function saveLink(headline, link) {
-        // Retrieve saved links from localStorage (or initialize empty array if none exist)
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-        
-        // Check if this link is already saved
-        if (!savedLinks.some(item => item.link === link)) {
-            // Add the new link and headline to the saved links array
-            savedLinks.push({ headline: headline, link: link });
-            
-            // Store the updated saved links array in localStorage
-            localStorage.setItem('savedLinks', JSON.stringify(savedLinks));
-            
-            // Update the displayed list of saved links
-            updateSavedLinks();
-        } else {
-            alert('This link is already saved.');
-        }
-    }
-
-    // Function to update the saved links display
-    function updateSavedLinks() {
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-        const savedLinksList = document.getElementById('saved-links-list');
-        const noSavedLinks = document.getElementById('no-saved-links');
-        
-        // Clear the existing list of saved links
-        savedLinksList.innerHTML = '';
-
-        if (savedLinks.length === 0) {
-            noSavedLinks.style.display = 'block'; // Show "No saved links" message
-        } else {
-            noSavedLinks.style.display = 'none'; // Hide if links are available
-
-            savedLinks.forEach(item => {
-                const savedLinkElement = document.createElement('div');
-                savedLinkElement.classList.add('saved-link');
-                savedLinkElement.innerHTML = `<a href="${item.link}" target="_blank">${item.headline}</a>`;
-                savedLinksList.appendChild(savedLinkElement);
-            });
-        }
-    }
-
     // Fetch news from the respective files
     fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
     fetchNews('EPnews.txt', 'ep-news-list'); // EP News
@@ -134,9 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
-
-    // Update the saved links list when the page is loaded
-    updateSavedLinks();
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
