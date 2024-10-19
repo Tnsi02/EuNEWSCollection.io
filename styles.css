@@ -93,15 +93,15 @@ article a:hover {
 }
 
 .disqus-container {
-    flex: 1; /* Allow Disqus container to take available space */
+    flex: 1;
     padding: 20px;
-    border-left: 1px solid #ccc; /* Keep border left for distinction */
-    margin-top: 20px; /* Space between news and Disqus */
-    max-width: 900px; /* Limit max width to avoid stretching */
-    height: auto; /* Allow flexible height */
-    flex-shrink: 0; /* Prevent shrinking */
-    box-sizing: border-box; /* Include padding in width calculations */
+    border-left: 1px solid #ccc;
+    margin-top: 20px;
+    min-width: 300px; /* Set a minimum width for the Disqus panel */
+    max-width: 400px; /* Optionally, limit the width to 400px */
+    height: auto;
 }
+
 
 /* Style for summarize button */
 .summarize-button {
