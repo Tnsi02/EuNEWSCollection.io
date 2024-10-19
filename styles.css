@@ -132,7 +132,6 @@ article a:hover {
 
     #last-updated-date {
         margin-left: 0; /* Remove left margin for small screens */
-        text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
+        text-align: center; /* Align text in the center */
     }
 }
