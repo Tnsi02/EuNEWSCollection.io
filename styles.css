@@ -168,3 +168,35 @@ article a:hover {
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
 
+/* Style for Save button */
+.save-button {
+    margin-left: 10px; /* Space between buttons */
+    padding: 5px 10px; /* Button padding */
+    background-color: #28a745; /* Green button */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.save-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Style for saved links */
+.saved-link {
+    margin-bottom: 10px; /* Space between saved links */
+    padding: 5px; /* Padding around each saved link */
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #ddd; /* Border around saved links */
+    border-radius: 3px; /* Rounded corners */
+}
+
+.saved-link a {
+    color: #007bff; /* Blue link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.saved-link a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
