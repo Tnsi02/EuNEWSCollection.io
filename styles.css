@@ -95,7 +95,9 @@ h1 {
 .note-container h3 {
     font-size: 16px;
     margin: 0;
-    padding-bottom: 10px; /* Reduced padding below the title */
+    padding-bottom: 5px; /* Reduced padding to save space */
+    width: 25%; /* Ensure it takes full width of container */
+    text-align: center; /* Center align the title text */
 }
 
 #notes-area {
