@@ -34,13 +34,9 @@ h1 {
     gap: 20px; /* Add gap between the columns */
 }
 
-.news-container {
-    flex: 3; /* Allow this section to grow more */
-    margin-right: 90px; /* Space between news sections and Disqus */
-}
-
 .news-section {
     margin-bottom: 20px; /* Add spacing between sections */
+    flex: 1; /* Make each section take up equal space */
 }
 
 .news-section h2 {
@@ -102,7 +98,6 @@ article a:hover {
     height: auto;
 }
 
-
 /* Style for summarize button */
 .summarize-button {
     margin-left: 10px; /* Space between link and summarize button */
@@ -125,9 +120,8 @@ article a:hover {
         justify-content: center; /* Center the content */
     }
 
-    .news-container {
-        flex: 1; /* News container takes full width */
-        margin-right: 0; /* Remove margin */
+    .news-section {
+        flex: 1; /* News section takes full width */
     }
 
     .disqus-container {
@@ -140,7 +134,6 @@ article a:hover {
     #last-updated-date {
         margin-left: 0; /* Remove left margin for small screens */
         text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
     }
 }
 
