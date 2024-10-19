@@ -35,6 +35,7 @@ h1 {
 .news-container {
     flex: 1; /* Allow this section to grow */
     margin-right: 20px; /* Space between news sections and Disqus */
+    max-width: 800px; /* Limit the width to prevent stretching */
 }
 
 .news-section {
@@ -167,4 +168,3 @@ article a:hover {
     margin-left: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
-
