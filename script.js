@@ -26,28 +26,42 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
-                        <label>
+                        <label class="news-label">
+                            <input type="checkbox" class="important-check" />
+                            <span class="important-symbol">!</span> <!-- Red exclamation symbol -->
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
                         </label>
                     `;
 
-                    const checkbox = article.querySelector('.news-read-checkbox');
+                    const importantCheckbox = article.querySelector('.important-check');
+                    const readCheckbox = article.querySelector('.news-read-checkbox');
+
+                    // Check localStorage for the important checkbox state
+                    const isImportant = JSON.parse(localStorage.getItem(`important-${link}`));
+                    if (isImportant) {
+                        importantCheckbox.checked = true; // Mark important checkbox if set
+                    }
 
                     // Check localStorage for the read state
                     const isRead = JSON.parse(localStorage.getItem(link));
                     if (isRead) {
-                        checkbox.checked = true; // Mark checkbox if read
+                        readCheckbox.checked = true; // Mark read checkbox if set
                     }
 
-                    // Save checkbox state to localStorage when toggled
-                    checkbox.addEventListener('change', () => {
-                        localStorage.setItem(link, JSON.stringify(checkbox.checked));
+                    // Save important checkbox state to localStorage when toggled
+                    importantCheckbox.addEventListener('change', () => {
+                        localStorage.setItem(`important-${link}`, JSON.stringify(importantCheckbox.checked));
+                    });
+
+                    // Save read checkbox state to localStorage when toggled
+                    readCheckbox.addEventListener('change', () => {
+                        localStorage.setItem(link, JSON.stringify(readCheckbox.checked));
                     });
 
                     newsList.appendChild(article);
