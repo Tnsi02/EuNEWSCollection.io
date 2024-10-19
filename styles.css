@@ -145,14 +145,15 @@ article a:hover {
 
 /* Styles for the new "important" checkbox with red background */
 .important-check {
-    width: 15px; /* Match the size of the regular checkbox */
-    height: 15px; /* Match the size of the regular checkbox */
+    width: 16px; /* Match the size of the regular checkbox */
+    height: 16px; /* Match the size of the regular checkbox */
     appearance: none;
-    border: 1px solid red;
+    border: 2px solid red;
     cursor: pointer;
-    border-radius: 2px;
-    margin-right: 5px;
+    border-radius: 3px;
+    margin-right: 5px; /* Adjust space between checkboxes */
     position: relative;
+    top: 1px; /* Move the checkbox 1px down */
 }
 
 .important-check:checked {
@@ -164,9 +165,8 @@ article a:hover {
     content: '!';
     color: white;
     font-weight: bold;
-    font-size: 11px; /* Adjust the font size to fit */
+    font-size: 12px; /* Adjust the font size */
     position: absolute;
-    top: 0px; /* Adjust for perfect alignment */
+    top: 2px; /* Move the "!" down to match the checkbox's position */
     left: 4px; /* Adjust for centering */
 }
-
