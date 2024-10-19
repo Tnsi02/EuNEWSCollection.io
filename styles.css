@@ -39,6 +39,7 @@ h1 {
 
 .news-section {
     margin-bottom: 20px; /* Add spacing between sections */
+    position: relative; /* Ensure note area appears relative to section */
 }
 
 .news-section h2 {
@@ -109,10 +110,15 @@ article a:hover {
     border: none; /* No border */
     border-radius: 3px; /* Rounded corners */
     cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease;
 }
 
 .summarize-button:hover {
     background-color: #357abd; /* Darker shade on hover */
+}
+
+.summarize-button:active {
+    transform: scale(0.98); /* Slight shrink effect on click */
 }
 
 /* Media query for responsiveness */
@@ -152,8 +158,9 @@ article a:hover {
     height: 100%; /* Take full height of the section */
     background-color: #f9f9f9; /* Light background for the note */
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for note */
-    transition: right 0.5s ease-in-out; /* Smooth transition for opening effect */
+    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for opening effect */
     z-index: 10; /* Ensure it's above other content */
+    opacity: 0; /* Initially hidden */
 }
 
 /* Additional styling for the note area content */
@@ -166,5 +173,5 @@ article a:hover {
 /* Adjust when the note area is visible */
 .note-area.open {
     right: 0; /* Move the note area into view */
+    opacity: 1; /* Make the note area visible */
 }
-
