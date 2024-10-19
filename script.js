@@ -7,7 +7,7 @@ body {
 
 header {
     text-align: left;
-    margin-bottom: 30px; /* Increased space between headline and elements below */
+    margin-bottom: 30px; /* Increased spacing here */
     position: relative;
 }
 
@@ -15,7 +15,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 20px; /* Space between the header and summarize button */
+    margin-bottom: 20px; /* Added spacing here for more space below the title */
 }
 
 h1 {
@@ -82,16 +82,16 @@ article:hover {
     margin-left: 10px;
     font-weight: bold;
     padding: 5px 10px;
-    border: 2px solid black; /* Default border */
+    border: 2px solid #333;
     border-radius: 50%;
     background-color: transparent;
-    color: black; /* Default color */
-    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    color: black;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .toggle-sign.toggled {
-    color: red; /* Red when toggled */
-    border-color: red; /* Red border when toggled */
+    color: red;
+    border-color: red;
 }
 
 .toggle-sign:hover {
