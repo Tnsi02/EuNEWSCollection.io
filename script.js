@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const title = item.slice(0, httpsIndex).trim(); // Extract the title part
                     const link = item.slice(httpsIndex).trim(); // Extract the link part
 
-                    // Properly format the title with colored keywords
+                    // Properly format the title with colored keywords (optional)
                     const coloredTitle = title
                         .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
-                    // Construct the summarize link
+                    // Construct the summarize link (optional)
                     const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
 
                     const article = document.createElement('article');
