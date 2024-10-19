@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label>
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
+                            <span class="important-toggle" data-important="false">!</span> <!-- Moved here before "Summarize" -->
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
-                            <span class="important-toggle" data-important="false">!</span>
                         </label>
                     `;
 
