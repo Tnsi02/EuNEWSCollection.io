@@ -6,172 +6,167 @@ body {
 }
 
 header {
-    text-align: left; /* Align title to the left */
-    margin-bottom: 20px; /* Reduce margin for better positioning */
-    position: relative; /* Set position to relative for children */
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .header-content {
-    display: flex; /* Use flexbox to align items horizontally */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center items vertically */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 h1 {
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 #last-updated-date {
-    margin-left: 20px; /* Space between title and last updated text */
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Change color for distinction */
+    margin-left: 20px;
+    font-size: 14px;
+    color: #555;
 }
 
 .main-content {
-    display: flex; /* Use flexbox to arrange items */
-    flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
+    display: flex;
+    justify-content: space-between; /* Use space-between for proper alignment */
+    flex-wrap: wrap;
 }
 
 .news-container {
-    flex: 1; /* Allow this section to grow */
-    margin-right: 20px; /* Space between news sections and Disqus */
-}
-
-.news-section {
-    margin-bottom: 20px; /* Add spacing between sections */
-    position: relative; /* Ensure note area appears relative to section */
-}
-
-.news-section h2 {
-    margin-top: 0; /* Remove margin at the top for the section headers */
-    cursor: pointer; /* Indicate that the header is clickable */
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.news-section h2:hover {
-    color: #4183c4; /* Change color on hover */
-}
-
-.news-list {
-    display: none; /* Initially hide the news list */
-    margin-top: 10px; /* Space between the section header and news list */
-    padding: 10px; /* Padding for the news list */
-    border-radius: 5px; /* Rounded corners */
-}
-
-/* Style for each article */
-article {
-    margin-bottom: 15px; /* Space between articles */
-    padding: 10px; /* Inner padding for each article */
-    background-color: #fff; /* White background for articles */
-    border: 1px solid #ddd; /* Light border around articles */
-    border-radius: 4px; /* Rounded corners for articles */
-    transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-/* Change link color and remove underline */
-article a {
-    color: #333; /* Dark gray color for text */
-    text-decoration: none; /* Remove underline */
-}
-
-/* Hover effect for articles */
-article:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-}
-
-.toggle-sign {
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-    margin-left: 10px; /* Space between the header and the sign */
-    font-weight: bold; /* Make the sign stand out */
-}
-
-article a:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #4183c4; /* Change color on link hover */
+    flex: 2; /* Make the news container grow larger */
+    margin-right: 20px; /* Space between news and Disqus */
+    order: 1; /* Ensure news comes first */
 }
 
 .disqus-container {
-    width: 100%; /* Use full width on mobile */
-    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
-    padding: 20px; /* Add padding */
-    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    height: auto; /* Adjust height for content */
-    margin-top: 20px; /* Add space above */
-    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
+    flex: 1; /* Disqus takes less space */
+    max-width: 400px;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    height: auto;
+    margin-top: 20px;
+    position: relative; /* To make sure it's positioned well */
+    order: 2; /* Make sure Disqus comes second */
 }
 
-/* Style for summarize button */
-.summarize-button {
-    margin-left: 10px; /* Space between link and summarize button */
-    padding: 5px 10px; /* Padding for the button */
-    background-color: #4183c4; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 3px; /* Rounded corners */
-    cursor: pointer; /* Change cursor to pointer */
+.news-section {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.news-section h2 {
+    margin-top: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.news-section h2:hover {
+    color: #4183c4;
+}
+
+.news-list {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.article {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-.summarize-button:hover {
-    background-color: #357abd; /* Darker shade on hover */
+article a {
+    color: #333;
+    text-decoration: none;
 }
 
-.summarize-button:active {
-    transform: scale(0.98); /* Slight shrink effect on click */
+article:hover {
+    background-color: #f0f0f0;
 }
 
-/* Media query for responsiveness */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
-    }
-
-    .disqus-container {
-        width: 100%; /* Make Disqus section full width on small screens */
-        margin-top: 30px; /* Add spacing at the top */
-    }
-
-    header {
-        text-align: center; /* Center the header on small screens */
-    }
-
-    #last-updated-date {
-        margin-left: 0; /* Remove left margin for small screens */
-        text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
-    }
+article a:hover {
+    text-decoration: underline;
+    color: #4183c4;
 }
 
-/* Existing CSS... */
-
-.news-section {
-    margin-bottom: 20px; /* Add spacing between sections */
-    position: relative; /* Ensure note area appears relative to section */
+.toggle-sign {
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 16px; /* Make the sign larger for visibility */
 }
 
 .note-area {
     position: absolute;
     top: 0;
-    right: -300px; /* Initially hide it outside the section to the right */
-    width: 300px; /* Width of the note area */
-    height: 100%; /* Take full height of the section */
-    background-color: #f9f9f9; /* Light background for the note */
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for note */
-    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for opening effect */
-    z-index: 10; /* Ensure it's above other content */
-    opacity: 0; /* Initially hidden */
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #f9f9f9;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 10;
+    opacity: 0;
 }
 
-/* Additional styling for the note area content */
 .note-area p {
     padding: 15px;
     color: #555;
     font-size: 14px;
 }
 
-/* Adjust when the note area is visible */
 .note-area.open {
-    right: 0; /* Move the note area into view */
-    opacity: 1; /* Make the note area visible */
+    right: 0;
+    opacity: 1;
 }
+
+.summarize-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #4183c4;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.summarize-button:hover {
+    background-color: #357abd;
+}
+
+.summarize-button:active {
+    transform: scale(0.98);
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .disqus-container {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    #last-updated-date {
+        margin-left: 0;
+        text-align: center;
+        top: 0;
+    }
+}
+
