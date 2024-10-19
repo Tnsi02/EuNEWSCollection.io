@@ -141,6 +141,7 @@ article a:hover {
 .note-container {
     flex: 1; /* Allow this section to grow */
     margin-right: 20px; /* Space between news sections and Disqus */
+    margin-left: 10px; /* */
 }
 
 .Notes {
