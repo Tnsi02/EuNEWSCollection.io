@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate();
+                updateLastUpdatedDate(); 
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
@@ -83,19 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sign.addEventListener('click', function() {
             const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-
-            // Toggle the display style to show/hide news list
-            if (isVisible) {
-                newsList.style.display = 'none';
-                this.textContent = '+'; // Change sign to "+"
-            } else {
-                newsList.style.display = 'block';
-                this.textContent = '-'; // Change sign to "-"
-            }
-
-            // Toggle the visibility state
-            this.setAttribute('data-visible', !isVisible);
-            this.setAttribute('aria-expanded', !isVisible); // For accessibility
+            newsList.style.display = isVisible ? 'none' : 'block'; 
+            this.textContent = isVisible ? '+' : '-'; 
+            this.setAttribute('data-visible', !isVisible); 
         });
     });
 });
