@@ -3,117 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU NEWS Collection</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>News & Notes</title>
+    <style>
+        /* Basic Styling for Floating Note Box */
+        #note-box {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        #note-status {
+            margin-top: 10px;
+            font-size: 12px;
+            color: green;
+        }
+        #save-note-btn {
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+        /* Styling for News Sections */
+        .news-section {
+            margin-bottom: 20px;
+        }
+        .news-list {
+            display: none;
+            margin-top: 10px;
+        }
+        .toggle-sign {
+            cursor: pointer;
+            font-size: 20px;
+            color: blue;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <h1>EU NEWS Collection</h1>
-        <span id="last-updated-date"></span> <!-- Last Updated -->
-    </div>
-</header>
-
-<div class="main-content">
-    <div class="news-container">
-        <div class="news-section">
-            <h2>
-                Featured News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="featured-news-list" class="news-list" style="display: none;">
-                <!-- Featured News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                EP NEWS 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="ep-news-list" class="news-list" style="display: none;">
-                <!-- EP News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Commission News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="commission-news-list" class="news-list" style="display: none;">
-                <!-- Commission News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                External Action News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="external-action-news-list" class="news-list" style="display: none;">
-                <!-- External Action News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Consilium 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="consilium-news-list" class="news-list" style="display: none;">
-                <!-- Consilium News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Eurobarometer
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="eurobarometer-news-list" class="news-list" style="display: none;">
-                <!-- Eurobarometer News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                EESC
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="eesc-news-list" class="news-list" style="display: none;">
-                <!-- EESC News items will be inserted here -->
-            </div>
-        </div>
+    <!-- Floating Note Box -->
+    <div id="note-box">
+        <textarea id="note-content" rows="5" style="width: 100%"></textarea>
+        <button id="save-note-btn">Save Note</button>
+        <div id="note-status" style="display: none;"></div>
     </div>
 
-    <div class="disqus-container">
-        <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-                this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
-                this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
-            };
-            (function () { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
+    <!-- News Sections -->
+    <div class="news-section">
+        <h2>EC News <span class="toggle-sign">+</span></h2>
+        <ul class="news-list" id="featured-news-list"></ul>
     </div>
-</div>
 
-<!-- Floating Note Box -->
-<div class="floating-note">
-    <textarea id="note-box" placeholder="Take your notes here..."></textarea>
-    <button id="save-note" onclick="saveNote()">Save</button>
-    <p id="note-status">Note saved!</p>
-</div>
+    <div class="news-section">
+        <h2>EP News <span class="toggle-sign">+</span></h2>
+        <ul class="news-list" id="ep-news-list"></ul>
+    </div>
 
-<script src="script.js"></script>
+    <div class="news-section">
+        <h2>Commission News <span class="toggle-sign">+</span></h2>
+        <ul class="news-list" id="commission-news-list"></ul>
+    </div>
+
+    <!-- JavaScript for News Toggle and Notes -->
+    <script>
+        // Ensure the text in the note box persists
+        document.addEventListener('DOMContentLoaded', () => {
+            const noteBox = document.getElementById('note-content');
+            const savedNote = localStorage.getItem('userNote');
+            if (savedNote) {
+                noteBox.value = savedNote;
+            }
+        });
+
+        // Function to save the note and update status
+        function saveNote() {
+            const noteBox = document.getElementById('note-content');
+            const noteStatus = document.getElementById('note-status');
+            const noteContent = noteBox.value.trim();
+
+            if (noteContent) {
+                localStorage.setItem('userNote', noteContent); // Save note to localStorage
+                noteStatus.textContent = 'Note saved!';
+                noteStatus.style.display = 'block';
+            } else {
+                noteStatus.textContent = 'Please enter some text before saving.';
+                noteStatus.style.display = 'block';
+            }
+        }
+
+        // Attach event listener to the Save button
+        const saveNoteBtn = document.getElementById('save-note-btn');
+        saveNoteBtn.addEventListener('click', saveNote);
+
+        // Function to toggle visibility of news sections
+        function toggleNewsSection(event) {
+            const section = event.target.closest('.news-section');
+            const toggleSign = section.querySelector('.toggle-sign');
+            const newsList = section.querySelector('.news-list');
+            const isVisible = newsList.style.display === 'block';
+
+            newsList.style.display = isVisible ? 'none' : 'block';
+            toggleSign.textContent = isVisible ? '+' : '−';
+        }
+
+        // Attach event listeners to each news section to toggle visibility
+        const newsSections = document.querySelectorAll('.news-section h2');
+        newsSections.forEach(section => {
+            section.addEventListener('click', toggleNewsSection);
+        });
+
+        // Function to fetch news from text files and display it
+        function fetchNews(filePath, listId) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    const newsList = document.getElementById(listId);
+                    const headlines = data.split('\n').filter(line => line.trim() !== '');
+
+                    headlines.forEach(line => {
+                        const [title, link] = line.split(';'); // Assuming each line is "title;link"
+                        const formattedTitle = title.replace(/(EU Parliament|Commission|Council|Action)/gi, '<span style="color: blue;">$1</span>');
+
+                        const article = document.createElement('article');
+                        article.innerHTML = `<a href="${link}" target="_blank">${formattedTitle}</a>`;
+                        newsList.appendChild(article);
+                    });
+
+                    // Make the news list visible
+                    newsList.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error(`Failed to fetch news from ${filePath}:`, error);
+                });
+        }
+
+        // Fetch news from respective files
+        fetchNews('ECnews.txt', 'featured-news-list');
+        fetchNews('EPnews.txt', 'ep-news-list');
+        fetchNews('Commissionnews.txt', 'commission-news-list');
+        fetchNews('EEASnews.txt', 'external-action-news-list');
+        fetchNews('consilium.txt', 'consilium-news-list');
+        fetchNews('eurobarometer.txt', 'eurobarometer-news-list');
+        fetchNews('eesc.txt', 'eesc-news-list');
+    </script>
+
 </body>
 </html>
