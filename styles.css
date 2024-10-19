@@ -136,3 +136,35 @@ article a:hover {
         top: 0; /* Reset top position */
     }
 }
+
+/* Existing CSS... */
+
+.news-section {
+    margin-bottom: 20px; /* Add spacing between sections */
+    position: relative; /* Ensure note area appears relative to section */
+}
+
+.note-area {
+    position: absolute;
+    top: 0;
+    right: -300px; /* Initially hide it outside the section to the right */
+    width: 300px; /* Width of the note area */
+    height: 100%; /* Take full height of the section */
+    background-color: #f9f9f9; /* Light background for the note */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for note */
+    transition: right 0.5s ease-in-out; /* Smooth transition for opening effect */
+    z-index: 10; /* Ensure it's above other content */
+}
+
+/* Additional styling for the note area content */
+.note-area p {
+    padding: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Adjust when the note area is visible */
+.note-area.open {
+    right: 0; /* Move the note area into view */
+}
+
