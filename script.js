@@ -56,12 +56,25 @@
         .news-item a:hover {
             text-decoration: underline;
         }
+
+        /* Toggle button styles for the + and - signs */
+        .toggle-sign {
+            cursor: pointer;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .news-list {
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
 
 <div class="news-section">
-    <h2>Featured News</h2>
+    <h2>
+        <span class="toggle-sign" data-visible="false">+</span> Featured News
+    </h2>
     <div class="news-list" id="news-list"></div>
 </div>
 
@@ -82,7 +95,7 @@
             }
         ];
 
-        // Function to fetch and render news items
+        // Function to render the news items
         function renderNews() {
             const newsList = document.getElementById('news-list');
             newsList.innerHTML = ''; // Clear the news list
@@ -101,7 +114,7 @@
                 const importantToggle = newsItem.querySelector('.important-toggle');
                 const likeCheckbox = newsItem.querySelector('.like-checkbox');
 
-                // Clicking the important button toggles the state (Black/Red)
+                // Important button toggle between black and red
                 importantToggle.addEventListener('click', () => {
                     const isActive = importantToggle.getAttribute('data-important') === 'true';
 
@@ -116,7 +129,7 @@
                     }
                 });
 
-                // Like checkbox remains independent (it doesn't toggle with important button)
+                // Like checkbox is independent of the important button
                 likeCheckbox.addEventListener('change', () => {
                     if (likeCheckbox.checked) {
                         console.log(`Liked: ${news.title}`);
@@ -130,6 +143,22 @@
         }
 
         renderNews(); // Initial render of news
+
+        // Add click event listener to toggle the visibility of the news list
+        const toggleSign = document.querySelector('.toggle-sign');
+        toggleSign.addEventListener('click', () => {
+            const isVisible = toggleSign.getAttribute('data-visible') === 'true';
+            const newsList = document.querySelector('.news-list');
+            if (isVisible) {
+                newsList.style.display = 'none';
+                toggleSign.textContent = '+';
+                toggleSign.setAttribute('data-visible', 'false');
+            } else {
+                newsList.style.display = 'block';
+                toggleSign.textContent = '-';
+                toggleSign.setAttribute('data-visible', 'true');
+            }
+        });
     });
 </script>
 
