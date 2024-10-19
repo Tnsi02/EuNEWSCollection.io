@@ -164,7 +164,7 @@ article a:hover {
     content: '!';
     color: white;
     font-weight: bold;
-    font-size: 12px; /* Adjust the font size to fit */
+    font-size: 9px; /* Adjust the font size to fit */
     position: absolute;
     top: -1px; /* Adjust for perfect alignment */
     left: 4px; /* Adjust for centering */
