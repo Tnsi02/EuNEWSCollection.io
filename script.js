@@ -1,123 +1,137 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Function to fetch news from a specified file and update the respective news list
-    function fetchNews(filePath, newsListId) {
-        fetch(filePath)
-            .then(response => response.text())
-            .then(data => {
-                const newsItems = data.split('\n').map(line => line.trim()).filter(line => line);
-                const newsList = document.getElementById(newsListId);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News List with Toggle and Summarize</title>
+    <style>
+        .important-toggle {
+            cursor: pointer;
+            font-size: 20px;
+            color: black; /* Default color */
+            background-color: black; /* Default background */
+            border: 2px solid black; /* Default border */
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: 10px;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
 
-                // Clear existing news items before appending new ones
-                newsList.innerHTML = '';
+        .important-toggle:hover {
+            border-color: red;
+            color: red;
+        }
 
-                newsItems.forEach(item => {
-                    const httpsIndex = item.indexOf('https'); // Find the start of the link
-                    if (httpsIndex === -1) {
-                        console.error(`No URL found in the news item: ${item}`);
-                        return;
+        .important-toggle.active {
+            color: red;
+            background-color: red;
+            border-color: red;
+        }
+
+        .important-toggle.inactive {
+            color: black;
+            background-color: black;
+            border-color: black;
+        }
+
+        .news-list {
+            margin-top: 20px;
+        }
+
+        .news-item {
+            margin-bottom: 15px;
+        }
+
+        .news-item label {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-item a {
+            margin-left: 10px;
+            color: #1bd9f7;
+            text-decoration: none;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="news-section">
+    <h2>Featured News</h2>
+    <div class="news-list" id="news-list"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const newsData = [
+            {
+                title: "European Council discusses climate policy",
+                link: "https://example.com/climate-policy"
+            },
+            {
+                title: "New budget for EU recovery plan announced",
+                link: "https://example.com/recovery-plan"
+            },
+            {
+                title: "EU Parliament votes on new trade agreements",
+                link: "https://example.com/trade-agreements"
+            }
+        ];
+
+        // Function to fetch and render news items
+        function renderNews() {
+            const newsList = document.getElementById('news-list');
+            newsList.innerHTML = ''; // Clear the news list
+
+            newsData.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <label>
+                        <span class="important-toggle inactive" data-important="false">!</span> <!-- Black initially -->
+                        <input type="checkbox" class="like-checkbox" /> <!-- Like checkbox -->
+                        <a href="${news.link}" target="_blank">${news.title}</a>
+                    </label>
+                `;
+
+                const importantToggle = newsItem.querySelector('.important-toggle');
+                const likeCheckbox = newsItem.querySelector('.like-checkbox');
+
+                // Clicking the important button toggles the state (Black/Red)
+                importantToggle.addEventListener('click', () => {
+                    const isActive = importantToggle.getAttribute('data-important') === 'true';
+
+                    if (isActive) {
+                        importantToggle.classList.remove('active');
+                        importantToggle.classList.add('inactive');
+                        importantToggle.setAttribute('data-important', 'false');
+                    } else {
+                        importantToggle.classList.remove('inactive');
+                        importantToggle.classList.add('active');
+                        importantToggle.setAttribute('data-important', 'true');
                     }
-
-                    const title = item.slice(0, httpsIndex).trim(); // Extract the title part
-                    const link = item.slice(httpsIndex).trim(); // Extract the link part
-
-                    // Properly format the title with colored keywords (optional)
-                    const coloredTitle = title
-                        .replace(/\[(Council of the EU)\]/g, '<span style="color: #1bd9f7;">[$1]</span>')
-                        .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
-
-                    // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
-
-                    const article = document.createElement('article');
-                    article.innerHTML = `
-                        <label>
-                            <span class="important-toggle" data-important="false">!</span> <!-- Moved to the front, before the checkbox -->
-                            <input type="checkbox" class="news-read-checkbox" />
-                            <a href="${link}" target="_blank">${coloredTitle}</a>
-                            <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
-                        </label>
-                    `;
-
-                    const checkbox = article.querySelector('.news-read-checkbox');
-                    const importantToggle = article.querySelector('.important-toggle');
-
-                    // Check localStorage for the read state
-                    const isRead = JSON.parse(localStorage.getItem(link));
-                    if (isRead) {
-                        checkbox.checked = true; // Mark checkbox if read
-                    }
-
-                    // Check localStorage for the important state
-                    const isImportant = JSON.parse(localStorage.getItem(link + '_important'));
-                    if (isImportant) {
-                        importantToggle.style.color = 'red';
-                        importantToggle.textContent = '!';
-                    }
-
-                    // Save checkbox state to localStorage when toggled
-                    checkbox.addEventListener('change', () => {
-                        localStorage.setItem(link, JSON.stringify(checkbox.checked));
-                    });
-
-                    // Toggle "important" state on click
-                    importantToggle.addEventListener('click', () => {
-                        const currentState = importantToggle.getAttribute('data-important'); 
-                        if (currentState === 'false') {
-                            importantToggle.style.color = 'red';
-                            importantToggle.textContent = '!';
-                            importantToggle.setAttribute('data-important', 'true'); // Set to true
-                        } else if (currentState === 'true') {
-                            // If red (with "!")
-                            importantToggle.style.color = 'black';
-                            importantToggle.textContent = ''; // Remove "!"
-                            importantToggle.setAttribute('data-important', 'black'); // Set to black
-                        } else if (currentState === 'black') {
-                            // If black (without "!")
-                            importantToggle.style.color = 'red';
-                            importantToggle.textContent = '!'; // Add "!"
-                            importantToggle.setAttribute('data-important', 'true'); // Set to red
-                        }
-
-                        // Save "important" state to localStorage
-                        localStorage.setItem(link + '_important', importantToggle.getAttribute('data-important'));
-                    });
-
-                    newsList.appendChild(article);
                 });
 
-                // Update the last updated date
-                updateLastUpdatedDate();
-            })
-            .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
-    }
+                // Like checkbox remains independent (it doesn't toggle with important button)
+                likeCheckbox.addEventListener('change', () => {
+                    if (likeCheckbox.checked) {
+                        console.log(`Liked: ${news.title}`);
+                    } else {
+                        console.log(`Unliked: ${news.title}`);
+                    }
+                });
 
-    // Function to fetch the last updated date from last_updated.txt
-    function updateLastUpdatedDate() {
-        fetch('last_updated.txt')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
-            })
-            .catch(error => console.error('Error fetching last updated date:', error));
-    }
+                newsList.appendChild(newsItem);
+            });
+        }
 
-    // Fetch news from the respective files
-    fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
-    fetchNews('EPnews.txt', 'ep-news-list'); // EP News
-    fetchNews('ECnews.txt', 'commission-news-list'); // Commission News
-    fetchNews('EEASnews.txt', 'external-action-news-list'); // External Action News
-    fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
-    fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
-    fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
-
-    // Add click event listeners for toggling visibility
-    document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEventListener('click', function() {
-            const newsList = this.closest('.news-section').querySelector('.news-list');
-            const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block';
-            this.textContent = isVisible ? '+' : '-';
-            this.setAttribute('data-visible', !isVisible);
-        });
+        renderNews(); // Initial render of news
     });
-});
+</script>
+
+</body>
+</html>
