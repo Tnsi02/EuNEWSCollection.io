@@ -88,4 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); 
         });
     });
+
+    // Note functionality
+    const notesArea = document.getElementById('notes-area');
+
+    // Load saved notes from localStorage
+    const savedNotes = localStorage.getItem('myNotes');
+    if (savedNotes) {
+        notesArea.value = savedNotes;
+    }
+
+    // Save notes to localStorage when the user types in the notes area
+    notesArea.addEventListener('input', () => {
+        localStorage.setItem('myNotes', notesArea.value);
+    });
 });
