@@ -6,51 +6,51 @@ body {
 }
 
 header {
-    text-align: left; /* Align title to the left */
-    margin-bottom: 20px; /* Reduce margin for better positioning */
-    position: relative; /* Set position to relative for children */
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .header-content {
-    display: flex; /* Use flexbox to align items horizontally */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center items vertically */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 h1 {
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 #last-updated-date {
-    margin-left: 20px; /* Space between title and last updated text */
-    font-size: 14px; /* Adjust font size */
-    color: #555; /* Change color for distinction */
+    margin-left: 20px;
+    font-size: 14px;
+    color: #555;
 }
 
 .main-content {
-    display: flex; /* Use flexbox to arrange items */
-    flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .news-container {
-    flex: 1; /* Allow this section to grow */
-    margin-right: 20px; /* Space between news sections and Disqus */
+    flex: 1;
+    margin-right: 20px;
 }
 
 .news-section {
-    margin-bottom: 20px; /* Add spacing between sections */
+    margin-bottom: 20px;
 }
 
 .news-section h2 {
-    margin-top: 0; /* Remove margin at the top for the section headers */
-    cursor: pointer; /* Make the section headers clickable */
-    color: #1A73E8; /* Update header color for better contrast */
+    margin-top: 0;
+    cursor: pointer;
+    color: #1A73E8;
     padding: 10px 0;
 }
 
 .news-section .news-list {
-    display: none; /* Initially hide the news list */
-    padding-left: 20px; /* Indent the list items */
+    display: none;
+    padding-left: 20px;
 }
 
 .news-section article {
@@ -58,8 +58,8 @@ h1 {
 }
 
 .news-section article a {
-    color: #007bff; /* Link color */
-    text-decoration: none; /* Remove underlines */
+    color: #007bff;
+    text-decoration: none;
 }
 
 .news-section article a:hover {
@@ -85,24 +85,33 @@ h1 {
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px; /* Set to the desired width */
-    height: 180px; /* Reduced height of the entire container */
+    width: 250px;
+    height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribute space between elements */
+    justify-content: space-between;
+    transition: all 0.3s ease; /* Smooth transition for expanding */
 }
 
 .note-container h3 {
     font-size: 16px;
     margin: 0;
-    padding-bottom: 5px; /* Reduced padding to save space */
-    width: 10%; /* Ensure it takes full width of container */
-    text-align: center; /* Center align the title text */
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-container h3 span {
+    cursor: pointer;
+    font-size: 20px;
 }
 
 #notes-area {
     width: 100%;
-    height: 100px; /* Set a fixed height for the textarea */
+    height: 100px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -111,23 +120,26 @@ h1 {
     resize: none;
 }
 
-.save-note-button {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #4183c4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px; /* Added margin between textarea and button */
-}
-
-.save-note-button:hover {
-    background-color: #357abd;
-}
-
-
 .disqus-container {
     flex: 1;
     margin-top: 20px;
+}
+
+/* Style to expand note-container */
+.note-container.expanded {
+    width: 400px; /* Increased width when expanded */
+    height: 400px; /* Increased height when expanded */
+}
+
+.note-container.expanded h3 span {
+    content: "-";
+}
+
+.note-container.collapsed {
+    width: 250px; /* Original width */
+    height: 180px; /* Original height */
+}
+
+.note-container.collapsed h3 span {
+    content: "+";
 }
