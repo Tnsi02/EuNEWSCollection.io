@@ -155,23 +155,11 @@ article a:hover {
     margin-right: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the text */
     margin-top: 1px; /* Adjust position to move it slightly down */
-    position: relative; /* Set position relative to use ::before */
-}
-
-/* Add the "!" sign inside the checkbox */
-.important-check::before {
-    content: "!"; /* Insert "!" inside the checkbox */
-    color: red; /* Set the color of the "!" to red */
-    font-size: 10px; /* Set the size of the "!" */
-    position: absolute; /* Position it absolutely inside the checkbox */
-    top: -2px; /* Adjust position to bring it slightly down */
-    left: 2px; /* Adjust position to center it horizontally */
 }
 
 /* When the checkbox is checked, change the background color */
 .important-check:checked {
     background-color: red; /* Red background when checked */
-    border-color: red; /* Ensure the border turns red when checked */
 }
 
 /* Regular checkbox styles for the existing checkbox */
@@ -179,3 +167,4 @@ article a:hover {
     margin-left: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
+
