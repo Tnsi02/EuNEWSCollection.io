@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     new docx.TextRun({
                         text: item.title,
                         bold: true,
-                        color: "1f497d", // Optional: set text color
                         hyperlink: item.link // This creates a hyperlink
                     }),
                     new docx.TextRun({
@@ -165,12 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
             savedLinksList.appendChild(savedArticle);
         });
 
-        // Add the SAVE DOCX button at the bottom of saved links
-        const saveDocxButton = document.createElement('button');
-        saveDocxButton.textContent = 'SAVE DOCX';
-        saveDocxButton.className = 'save-docx-button'; // Add a class for styling if needed
-        saveDocxButton.addEventListener('click', saveLinksAsDocx);
-        savedLinksList.appendChild(saveDocxButton);
+        // Show the SAVE DOCX button if there are saved links
+        const saveDocxButton = document.getElementById('save-docx-button');
+        saveDocxButton.style.display = savedLinks.length > 0 ? 'block' : 'none';
     }
 
     // Function to fetch the last updated date from last_updated.txt
