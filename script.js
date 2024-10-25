@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
                             <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
+                            <button class="save-button">SAVE</button> <!-- New SAVE button -->
                         </label>
                     `;
 
@@ -63,6 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.setItem(link, JSON.stringify(checkbox.checked));
                     });
 
+                    // Add SAVE button functionality
+                    const saveButton = article.querySelector('.save-button');
+                    saveButton.addEventListener('click', () => {
+                        saveLink(title, link); // Call saveLink function
+                    });
+
                     newsList.appendChild(article);
                 });
 
@@ -70,6 +77,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateLastUpdatedDate(); 
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
+    }
+
+    // Function to save the link to Saved Links section
+    function saveLink(title, link) {
+        const savedLinksList = document.getElementById('saved-links-list');
+        const savedArticle = document.createElement('article');
+        savedArticle.innerHTML = `
+            <label>
+                <a href="${link}" target="_blank">${title}</a>
+                <button class="remove-button">Remove</button> <!-- Button to remove saved link -->
+            </label>
+        `;
+
+        // Add functionality to remove the saved link
+        const removeButton = savedArticle.querySelector('.remove-button');
+        removeButton.addEventListener('click', () => {
+            savedLinksList.removeChild(savedArticle);
+        });
+
+        savedLinksList.appendChild(savedArticle);
     }
 
     // Function to fetch the last updated date from last_updated.txt
@@ -80,26 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('last-updated-date').textContent = `Last Updated: ${data.trim()}`;
             })
             .catch(error => console.error('Error fetching last updated date:', error));
-    }
-
-    // Function to display saved links
-    function displaySavedLinks() {
-        const savedLinksList = document.getElementById('saved-links-list');
-        savedLinksList.innerHTML = ''; // Clear existing links
-
-        // Retrieve saved links from localStorage
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-
-        savedLinks.forEach(link => {
-            const article = document.createElement('article');
-            article.innerHTML = `
-                <label>
-                    <a href="${link.url}" target="_blank">${link.title}</a>
-                    <button class="summarize-button" onclick="window.open('https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link.url)}', '_blank')">Summarize</button>
-                </label>
-            `;
-            savedLinksList.appendChild(article);
-        });
     }
 
     // Fetch news from the respective files
@@ -121,7 +128,4 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); 
         });
     });
-
-    // Call the display function for saved links
-    displaySavedLinks();
 });
