@@ -91,13 +91,15 @@ article:hover {
 }
 
 .disqus-container {
-    width: 100%; /* Use full width on mobile */
-    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
+    position: fixed; /* Fix position relative to the viewport */
+    top: 20px; /* Adjust the distance from the top of the page */
+    right: 20px; /* Adjust the distance from the right of the page */
+    width: 400px; /* Set a fixed width */
+    height: auto; /* Adjust height for content */
     padding: 20px; /* Add padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    height: auto; /* Adjust height for content */
-    margin-top: 20px; /* Add space above */
-    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
+    background-color: white; /* Optional: Give it a background color */
+    z-index: 1000; /* Optional: Bring it to the front of other content */
 }
 
 /* Style for summarize button */
