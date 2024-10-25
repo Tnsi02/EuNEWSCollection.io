@@ -74,6 +74,11 @@ article a {
     text-decoration: none; /* Remove underline */
 }
 
+article a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #4183c4; /* Change color on link hover */
+}
+
 /* Hover effect for articles */
 article:hover {
     background-color: #f0f0f0; /* Light gray background on hover */
@@ -83,11 +88,6 @@ article:hover {
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
     margin-left: 10px; /* Space between the header and the sign */
     font-weight: bold; /* Make the sign stand out */
-}
-
-article a:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #4183c4; /* Change color on link hover */
 }
 
 .disqus-container {
@@ -133,14 +133,7 @@ article a:hover {
     #last-updated-date {
         margin-left: 0; /* Remove left margin for small screens */
         text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
     }
-}
-
-#last-updated-date {
-    margin-left: 0; /* Remove left margin for small screens */
-    text-align: center; /* Center the last updated text */
-    top: 0; /* Reset top position */
 }
 
 /* Styles for the new "important" checkbox with red background */
@@ -167,4 +160,3 @@ article a:hover {
     margin-left: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
-
