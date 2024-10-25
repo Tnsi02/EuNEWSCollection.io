@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate(); 
+                updateLastUpdatedDate();
                 displaySavedLinks(); // Load saved links after fetching news
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
@@ -115,6 +115,29 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url); // Release the object URL
     }
 
+    // Function to save all saved links as a Markdown file
+    function saveLinksAsMarkdown() {
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+        if (savedLinks.length === 0) {
+            alert("No links to save.");
+            return;
+        }
+
+        // Create a string for the markdown file
+        const markdownContent = savedLinks.map(item => `[${item.title}](${item.link})`).join('\n');
+
+        // Create a Blob and an anchor element to download the file
+        const blob = new Blob([markdownContent], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'saved_links.md'; // Filename for download
+        document.body.appendChild(a); // Append anchor to body
+        a.click(); // Programmatically click the anchor to trigger download
+        document.body.removeChild(a); // Remove the anchor from the document
+        URL.revokeObjectURL(url); // Release the object URL
+    }
+
     // Function to display saved links from localStorage
     function displaySavedLinks() {
         const savedLinksList = document.getElementById('saved-links-list');
@@ -148,6 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
         saveTxtButton.className = 'save-txt-button'; // Add a class for styling if needed
         saveTxtButton.addEventListener('click', saveLinksAsTxt);
         savedLinksList.appendChild(saveTxtButton);
+
+        // Add the SAVE MD button at the bottom of saved links
+        const saveMdButton = document.createElement('button');
+        saveMdButton.textContent = 'SAVE MD';
+        saveMdButton.className = 'save-md-button'; // Add a class for styling if needed
+        saveMdButton.addEventListener('click', saveLinksAsMarkdown);
+        savedLinksList.appendChild(saveMdButton);
     }
 
     // Function to fetch the last updated date from last_updated.txt
@@ -171,15 +201,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEventListener('click', function() {
-            const newsList = this.closest('.news-section').querySelector('.news-list');
-            const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block'; 
-            this.textContent = isVisible ? '+' : '-'; 
-            this.setAttribute('data-visible', !isVisible); 
-        });
-    });
-
-    // Load saved links on page load
-    displaySavedLinks();
-});
+        sign.addEvent
