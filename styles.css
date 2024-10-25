@@ -164,3 +164,7 @@ article:hover {
 }
 
 
+.separator {
+    border: 2px solid #000; /* Change the number to adjust thickness; color can also be changed */
+    margin: 20px 0; /* Optional: Adds space above and below the line */
+}
