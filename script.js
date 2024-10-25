@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`;
 
                     const article = document.createElement('article');
                     article.innerHTML = `
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Update the last updated date
-                updateLastUpdatedDate(); 
+                updateLastUpdatedDate();
                 displaySavedLinks(); // Load saved links after fetching news
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
@@ -92,27 +92,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to save all current links to a .txt file
-    function saveLinksAsTxt() {
+    // Function to save all current links to a .docx file
+    function saveLinksAsDocx() {
         const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
         if (savedLinks.length === 0) {
             alert("No links to save.");
             return;
         }
 
-        // Create a string for the text file
-        let txtContent = savedLinks.map(item => `${item.title}: ${item.link}`).join('\n');
+        // Create a new Document
+        const doc = new docx.Document();
 
-        // Create a Blob and an anchor element to download the file
-        const blob = new Blob([txtContent], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'saved_links.txt'; // Filename for download
-        document.body.appendChild(a); // Append anchor to body
-        a.click(); // Programmatically click the anchor to trigger download
-        document.body.removeChild(a); // Remove the anchor from the document
-        URL.revokeObjectURL(url); // Release the object URL
+        savedLinks.forEach(item => {
+            // Create a hyperlink for each saved link
+            const paragraph = new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: item.title,
+                        bold: true,
+                        color: "1f497d", // Optional: set text color
+                        hyperlink: item.link // This creates a hyperlink
+                    }),
+                    new docx.TextRun({
+                        text: ` - ${item.link}`,
+                        break: 1,
+                    }),
+                ]
+            });
+            doc.addParagraph(paragraph);
+        });
+
+        // Create a Packer to convert the Document to .docx
+        docx.Packer.toBlob(doc).then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'saved_links.docx'; // Filename for download
+            document.body.appendChild(a); // Append anchor to body
+            a.click(); // Programmatically click the anchor to trigger download
+            document.body.removeChild(a); // Remove the anchor from the document
+            URL.revokeObjectURL(url); // Release the object URL
+        });
     }
 
     // Function to display saved links from localStorage
@@ -142,12 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
             savedLinksList.appendChild(savedArticle);
         });
 
-        // Add the SAVE TXT button at the bottom of saved links
-        const saveTxtButton = document.createElement('button');
-        saveTxtButton.textContent = 'SAVE TXT';
-        saveTxtButton.className = 'save-txt-button'; // Add a class for styling if needed
-        saveTxtButton.addEventListener('click', saveLinksAsTxt);
-        savedLinksList.appendChild(saveTxtButton);
+        // Add the SAVE DOCX button at the bottom of saved links
+        const saveDocxButton = document.createElement('button');
+        saveDocxButton.textContent = 'SAVE DOCX';
+        saveDocxButton.className = 'save-docx-button'; // Add a class for styling if needed
+        saveDocxButton.addEventListener('click', saveLinksAsDocx);
+        savedLinksList.appendChild(saveDocxButton);
     }
 
     // Function to fetch the last updated date from last_updated.txt
@@ -174,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sign.addEventListener('click', function() {
             const newsList = this.closest('.news-section').querySelector('.news-list');
             const isVisible = this.getAttribute('data-visible') === 'true';
-            newsList.style.display = isVisible ? 'none' : 'block'; 
-            this.textContent = isVisible ? '+' : '-'; 
-            this.setAttribute('data-visible', !isVisible); 
+            newsList.style.display = isVisible ? 'none' : 'block';
+            this.textContent = isVisible ? '+' : '-';
+            this.setAttribute('data-visible', !isVisible);
         });
     });
 
