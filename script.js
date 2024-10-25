@@ -92,6 +92,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to save all current links to a .txt file
+    function saveLinksAsTxt() {
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+        if (savedLinks.length === 0) {
+            alert("No links to save.");
+            return;
+        }
+
+        // Create a string for the text file
+        let txtContent = savedLinks.map(item => `${item.title}: ${item.link}`).join('\n');
+
+        // Create a Blob and an anchor element to download the file
+        const blob = new Blob([txtContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'saved_links.txt'; // Filename for download
+        document.body.appendChild(a); // Append anchor to body
+        a.click(); // Programmatically click the anchor to trigger download
+        document.body.removeChild(a); // Remove the anchor from the document
+        URL.revokeObjectURL(url); // Release the object URL
+    }
+
     // Function to display saved links from localStorage
     function displaySavedLinks() {
         const savedLinksList = document.getElementById('saved-links-list');
@@ -111,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add functionality to remove the saved link
             const removeButton = savedArticle.querySelector('.remove-button');
             removeButton.addEventListener('click', () => {
-                // Remove link from localStorage
                 const updatedLinks = savedLinks.filter(saved => saved.link !== item.link);
                 localStorage.setItem('savedLinks', JSON.stringify(updatedLinks));
                 displaySavedLinks(); // Update display after removal
@@ -119,6 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             savedLinksList.appendChild(savedArticle);
         });
+
+        // Add the SAVE TXT button at the bottom of saved links
+        const saveTxtButton = document.createElement('button');
+        saveTxtButton.textContent = 'SAVE TXT';
+        saveTxtButton.className = 'save-txt-button'; // Add a class for styling if needed
+        saveTxtButton.addEventListener('click', saveLinksAsTxt);
+        savedLinksList.appendChild(saveTxtButton);
     }
 
     // Function to fetch the last updated date from last_updated.txt
