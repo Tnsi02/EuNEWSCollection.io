@@ -132,6 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
             a.click(); // Programmatically click the anchor to trigger download
             document.body.removeChild(a); // Remove the anchor from the document
             URL.revokeObjectURL(url); // Release the object URL
+        }).catch(error => {
+            console.error("Error generating DOCX file:", error);
+            alert("There was an error saving the document. Please try again.");
         });
     }
 
