@@ -3,191 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU NEWS Collection</title>
+    <title>EU News</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.3.0/docx.min.js"></script> <!-- Include the docx library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.0/docx.min.js"></script>
 </head>
 <body>
+    <header>
+        <h1>EU News Portal</h1>
+    </header>
 
-<header>
-    <div class="header-content">
-        <h1>EU NEWS Collection</h1> 
-        <span id="last-updated-date"></span> <!-- Last Updated -->
-    </div>
-</header>
-
-<div class="main-content">
-    <div class="news-container">
-        <div class="news-section">
-            <h2>
-                Featured News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="featured-news-list" class="news-list" style="display: none;">
-                <!-- Featured News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                EP NEWS 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="ep-news-list" class="news-list" style="display: none;">
-                <!-- EP News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Commission News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="commission-news-list" class="news-list" style="display: none;">
-                <!-- Commission News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                External Action News 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="external-action-news-list" class="news-list" style="display: none;">
-                <!-- External Action News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Consilium 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="consilium-news-list" class="news-list" style="display: none;">
-                <!-- Consilium News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                Eurobarometer
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="eurobarometer-news-list" class="news-list" style="display: none;">
-                <!-- Eurobarometer News items will be inserted here -->
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>
-                EESC
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="eesc-news-list" class="news-list" style="display: none;">
-                <!-- EESC News items will be inserted here -->
-            </div>
-        </div>
-
-        <hr class="separator"> <!-- Add the separator here -->
-
-        <!-- New Saved Links section -->
-        <div class="news-section">
-            <h2>
-                Saved Links 
-                <span class="toggle-sign" role="button" aria-expanded="false" data-visible="false">+</span>
-            </h2>
-            <div id="saved-links-list" class="news-list" style="display: none;">
-                <!-- Saved Links items will be inserted here -->
-            </div>
-            <button id="save-docx-button" class="save-docx-button" style="display: none;">SAVE DOCX</button> <!-- Initially hidden button for saving DOCX -->
-        </div>
-    </div>
-</div>
-
-<div class="disqus-container">
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function () {
-            this.page.url = 'https://tnsi02.github.io/EuNEWSCollection.io/'; // Your page's canonical URL
-            this.page.identifier = 'eu-news-collection'; // Unique identifier for the page
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://https-tnsi02-github-io-eunewscollection-io.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <script id="dsq-count-scr" src="https://https-tnsi02-github-io-eunewscollection-io.disqus.com/count.js" async></script>
-</div>
-
-<script src="script.js"></script>
-<script>
-    // Function to save all current links to a .docx file
-    function saveLinksAsDocx() {
-        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
-        if (savedLinks.length === 0) {
-            alert("No links to save.");
-            return;
-        }
-
-        // Create a new Document
-        const doc = new docx.Document();
-
-        savedLinks.forEach(item => {
-            // Create a hyperlink for each saved link
-            const paragraph = new docx.Paragraph({
-                children: [
-                    new docx.TextRun({
-                        text: item.title,
-                        bold: true,
-                        hyperlink: item.link // This creates a hyperlink
-                    }),
-                    new docx.TextRun({
-                        text: ` - ${item.link}`,
-                        break: 1,
-                    }),
-                ]
-            });
-            doc.addParagraph(paragraph);
-        });
-
-        // Create a Packer to convert the Document to .docx
-        docx.Packer.toBlob(doc).then(blob => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'saved_links.docx'; // Filename for download
-            document.body.appendChild(a); // Append anchor to body
-            a.click(); // Programmatically click the anchor to trigger download
-            document.body.removeChild(a); // Remove the anchor from the document
-            URL.revokeObjectURL(url); // Release the object URL
-        }).catch(error => {
-            console.error("Error generating DOCX file:", error);
-        });
-    }
-
-    // Add event listener for the SAVE DOCX button
-    document.getElementById('save-docx-button').addEventListener('click', saveLinksAsDocx);
-
-    // Function to toggle the display of saved links and the button
-    function toggleSavedLinks() {
-        const savedLinksList = document.getElementById('saved-links-list');
-        const saveButton = document.getElementById('save-docx-button');
+    <main>
+        <section id="featured-news">
+            <h2>Featured News</h2>
+            <div class="news-list" id="featured-news-list"></div>
+        </section>
+        <section id="ep-news">
+            <h2>EP News</h2>
+            <div class="news-list" id="ep-news-list"></div>
+        </section>
+        <section id="commission-news">
+            <h2>Commission News</h2>
+            <div class="news-list" id="commission-news-list"></div>
+        </section>
+        <section id="external-action-news">
+            <h2>External Action News</h2>
+            <div class="news-list" id="external-action-news-list"></div>
+        </section>
+        <section id="consilium-news">
+            <h2>Consilium News</h2>
+            <div class="news-list" id="consilium-news-list"></div>
+        </section>
+        <section id="eurobarometer-news">
+            <h2>Eurobarometer News</h2>
+            <div class="news-list" id="eurobarometer-news-list"></div>
+        </section>
+        <section id="eesc-news">
+            <h2>EESC News</h2>
+            <div class="news-list" id="eesc-news-list"></div>
+        </section>
         
-        if (savedLinksList.style.display === "none") {
-            savedLinksList.style.display = "block";
-            saveButton.style.display = "block"; // Show the button when the links are visible
-        } else {
-            savedLinksList.style.display = "none";
-            saveButton.style.display = "none"; // Hide the button when the links are hidden
-        }
-    }
+        <section id="saved-links">
+            <h2>Saved Links</h2>
+            <div class="saved-links-list" id="saved-links-list"></div>
+            <button id="save-docx-button" style="display: none;" onclick="saveLinksAsDocx()">SAVE DOCX</button>
+        </section>
 
-    // Add event listener for toggling saved links
-    const savedLinksHeader = document.querySelector('.news-section h2:contains("Saved Links")');
-    savedLinksHeader.addEventListener('click', toggleSavedLinks);
-</script>
+        <div id="last-updated-date"></div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
