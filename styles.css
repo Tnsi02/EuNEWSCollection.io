@@ -163,12 +163,4 @@ article:hover {
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
 
-.news-section {
-    margin-bottom: 20px; /* Ensure some space below each news section */
-}
-
-#eesc-news-list {
-    border-bottom: 2px solid #333; /* Change color and thickness as needed */
-    padding-bottom: 20px; /* Add space below the content */
-}
 
