@@ -201,4 +201,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
-        sign.addEvent
+        sign.addEventListener('click', function() {
+            const newsList = this.closest('.news-section').querySelector('.news-list');
+            const isVisible = this.getAttribute('data-visible') === 'true';
+            newsList.style.display = isVisible ? 'none' : 'block';
+            this.textContent = isVisible ? '+' : '-';
+            this.setAttribute('data-visible', !isVisible);
+        });
+    });
+
+    // Load saved links on page load
+    displaySavedLinks();
+});
