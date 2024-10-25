@@ -75,28 +75,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update the last updated date
                 updateLastUpdatedDate(); 
+                displaySavedLinks(); // Load saved links after fetching news
             })
             .catch(error => console.error(`Error fetching news from ${filePath}:`, error));
     }
 
-    // Function to save the link to Saved Links section
+    // Function to save the link to Saved Links section and localStorage
     function saveLink(title, link) {
+        // Retrieve existing saved links from localStorage
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+        // Check if the link is already saved
+        if (!savedLinks.find(saved => saved.link === link)) {
+            savedLinks.push({ title, link }); // Add new saved link
+            localStorage.setItem('savedLinks', JSON.stringify(savedLinks)); // Save to localStorage
+            displaySavedLinks(); // Update display
+        }
+    }
+
+    // Function to display saved links from localStorage
+    function displaySavedLinks() {
         const savedLinksList = document.getElementById('saved-links-list');
-        const savedArticle = document.createElement('article');
-        savedArticle.innerHTML = `
-            <label>
-                <a href="${link}" target="_blank">${title}</a>
-                <button class="remove-button">Remove</button> <!-- Button to remove saved link -->
-            </label>
-        `;
+        savedLinksList.innerHTML = ''; // Clear existing items
 
-        // Add functionality to remove the saved link
-        const removeButton = savedArticle.querySelector('.remove-button');
-        removeButton.addEventListener('click', () => {
-            savedLinksList.removeChild(savedArticle);
+        // Retrieve saved links from localStorage
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+        savedLinks.forEach(item => {
+            const savedArticle = document.createElement('article');
+            savedArticle.innerHTML = `
+                <label>
+                    <a href="${item.link}" target="_blank">${item.title}</a>
+                    <button class="remove-button">Remove</button> <!-- Button to remove saved link -->
+                </label>
+            `;
+
+            // Add functionality to remove the saved link
+            const removeButton = savedArticle.querySelector('.remove-button');
+            removeButton.addEventListener('click', () => {
+                // Remove link from localStorage
+                const updatedLinks = savedLinks.filter(saved => saved.link !== item.link);
+                localStorage.setItem('savedLinks', JSON.stringify(updatedLinks));
+                displaySavedLinks(); // Update display after removal
+            });
+
+            savedLinksList.appendChild(savedArticle);
         });
-
-        savedLinksList.appendChild(savedArticle);
     }
 
     // Function to fetch the last updated date from last_updated.txt
@@ -128,4 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); 
         });
     });
+
+    // Load saved links on page load
+    displaySavedLinks();
 });
