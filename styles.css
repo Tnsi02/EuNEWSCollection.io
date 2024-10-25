@@ -66,7 +66,7 @@ article {
     border: 1px solid #ddd; /* Light border around articles */
     border-radius: 4px; /* Rounded corners for articles */
     transition: background-color 0.3s; /* Smooth background color transition */
-    max-width: calc(100% - 20px); /* Set a max width for articles */
+    max-width: calc(85% - 20px); /* Set a max width for articles to break text sooner */
     overflow-wrap: break-word; /* Ensure long words break */
     box-sizing: border-box; /* Include padding and border in width calculation */
     display: flex; /* Use flexbox to control the layout */
