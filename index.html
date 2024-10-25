@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU NEWS Collection</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.3.0/docx.min.js"></script> <!-- Include the docx library -->
 </head>
 <body>
 
@@ -98,6 +99,7 @@
             <div id="saved-links-list" class="news-list" style="display: none;">
                 <!-- Saved Links items will be inserted here -->
             </div>
+            <button id="save-docx-button" class="save-docx-button">SAVE DOCX</button> <!-- Add button for saving DOCX -->
         </div>
     </div>
 </div>
@@ -121,5 +123,53 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+    // Function to save all current links to a .docx file
+    function saveLinksAsDocx() {
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+        if (savedLinks.length === 0) {
+            alert("No links to save.");
+            return;
+        }
+
+        // Create a new Document
+        const doc = new docx.Document();
+
+        savedLinks.forEach(item => {
+            // Create a hyperlink for each saved link
+            const paragraph = new docx.Paragraph({
+                children: [
+                    new docx.TextRun({
+                        text: item.title,
+                        bold: true,
+                        hyperlink: item.link // This creates a hyperlink
+                    }),
+                    new docx.TextRun({
+                        text: ` - ${item.link}`,
+                        break: 1,
+                    }),
+                ]
+            });
+            doc.addParagraph(paragraph);
+        });
+
+        // Create a Packer to convert the Document to .docx
+        docx.Packer.toBlob(doc).then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'saved_links.docx'; // Filename for download
+            document.body.appendChild(a); // Append anchor to body
+            a.click(); // Programmatically click the anchor to trigger download
+            document.body.removeChild(a); // Remove the anchor from the document
+            URL.revokeObjectURL(url); // Release the object URL
+        }).catch(error => {
+            console.error("Error generating DOCX file:", error);
+        });
+    }
+
+    // Add event listener for the SAVE DOCX button
+    document.getElementById('save-docx-button').addEventListener('click', saveLinksAsDocx);
+</script>
 </body>
 </html>
