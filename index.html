@@ -99,7 +99,7 @@
             <div id="saved-links-list" class="news-list" style="display: none;">
                 <!-- Saved Links items will be inserted here -->
             </div>
-            <button id="save-docx-button" class="save-docx-button">SAVE DOCX</button> <!-- Add button for saving DOCX -->
+            <button id="save-docx-button" class="save-docx-button" style="display: none;">SAVE DOCX</button> <!-- Initially hidden button for saving DOCX -->
         </div>
     </div>
 </div>
@@ -170,6 +170,24 @@
 
     // Add event listener for the SAVE DOCX button
     document.getElementById('save-docx-button').addEventListener('click', saveLinksAsDocx);
+
+    // Function to toggle the display of saved links and the button
+    function toggleSavedLinks() {
+        const savedLinksList = document.getElementById('saved-links-list');
+        const saveButton = document.getElementById('save-docx-button');
+        
+        if (savedLinksList.style.display === "none") {
+            savedLinksList.style.display = "block";
+            saveButton.style.display = "block"; // Show the button when the links are visible
+        } else {
+            savedLinksList.style.display = "none";
+            saveButton.style.display = "none"; // Hide the button when the links are hidden
+        }
+    }
+
+    // Add event listener for toggling saved links
+    const savedLinksHeader = document.querySelector('.news-section h2:contains("Saved Links")');
+    savedLinksHeader.addEventListener('click', toggleSavedLinks);
 </script>
 </body>
 </html>
