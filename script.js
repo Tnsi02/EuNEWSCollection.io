@@ -82,6 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching last updated date:', error));
     }
 
+    // Function to display saved links
+    function displaySavedLinks() {
+        const savedLinksList = document.getElementById('saved-links-list');
+        savedLinksList.innerHTML = ''; // Clear existing links
+
+        // Retrieve saved links from localStorage
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+
+        savedLinks.forEach(link => {
+            const article = document.createElement('article');
+            article.innerHTML = `
+                <label>
+                    <a href="${link.url}" target="_blank">${link.title}</a>
+                    <button class="summarize-button" onclick="window.open('https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link.url)}', '_blank')">Summarize</button>
+                </label>
+            `;
+            savedLinksList.appendChild(article);
+        });
+    }
+
     // Fetch news from the respective files
     fetchNews('EUFnews.txt', 'featured-news-list'); // Featured News
     fetchNews('EPnews.txt', 'ep-news-list'); // EP News
@@ -101,4 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setAttribute('data-visible', !isVisible); 
         });
     });
+
+    // Call the display function for saved links
+    displaySavedLinks();
 });
