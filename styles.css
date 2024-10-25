@@ -147,7 +147,7 @@ article:hover {
     border-radius: 3px; /* Slightly rounded corners */
     margin-right: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the text */
-    margin-top: 6px; /* Adjust position to move it slightly down */
+    margin-top: 2px; /* Adjust position to move it slightly down */
 }
 
 /* When the checkbox is checked, change the background color */
