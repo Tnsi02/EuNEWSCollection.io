@@ -66,12 +66,39 @@ article {
     border: 1px solid #ddd; /* Light border around articles */
     border-radius: 4px; /* Rounded corners for articles */
     transition: background-color 0.3s; /* Smooth background color transition */
+    max-width: calc(75% - 20px); /* Set a max width for articles to break text sooner */
+    overflow-wrap: break-word; /* Ensure long words break */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    display: flex; /* Use flexbox to control the layout */
+    justify-content: space-between; /* Space out title and buttons */
 }
 
-/* Change link color and remove underline */
+/* Ensure the title has a flex-grow to fill space */
 article a {
     color: #333; /* Dark gray color for text */
     text-decoration: none; /* Remove underline */
+    flex-grow: 1; /* Allow title to take available space */
+    margin-right: 10px; /* Add margin between title and buttons */
+}
+
+article a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #4183c4; /* Change color on link hover */
+}
+
+/* Style for buttons */
+.summarize-button, .save-button {
+    margin-left: 5px; /* Space between buttons */
+    padding: 5px 10px; /* Padding for buttons */
+    background-color: #4183c4; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.summarize-button:hover, .save-button:hover {
+    background-color: #357abd; /* Darker shade on hover */
 }
 
 /* Hover effect for articles */
@@ -85,34 +112,16 @@ article:hover {
     font-weight: bold; /* Make the sign stand out */
 }
 
-article a:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #4183c4; /* Change color on link hover */
-}
-
 .disqus-container {
-    width: 100%; /* Use full width on mobile */
-    max-width: 400px; /* Ensure it doesn't stretch too wide on larger screens */
+    position: fixed; /* Fix position relative to the viewport */
+    top: 20px; /* Adjust the distance from the top of the page */
+    right: 20px; /* Adjust the distance from the right of the page */
+    width: 400px; /* Set a fixed width */
+    height: auto; /* Adjust height for content */
     padding: 20px; /* Add padding */
     border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    height: auto; /* Adjust height for content */
-    margin-top: 20px; /* Add space above */
-    flex-shrink: 0; /* Prevent it from shrinking in smaller screens */
-}
-
-/* Style for summarize button */
-.summarize-button {
-    margin-left: 10px; /* Space between link and summarize button */
-    padding: 5px 10px; /* Padding for the button */
-    background-color: #4183c4; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 3px; /* Rounded corners */
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-.summarize-button:hover {
-    background-color: #357abd; /* Darker shade on hover */
+    background-color: white; /* Optional: Give it a background color */
+    z-index: 1000; /* Optional: Bring it to the front of other content */
 }
 
 /* Media query for responsiveness */
@@ -133,14 +142,7 @@ article a:hover {
     #last-updated-date {
         margin-left: 0; /* Remove left margin for small screens */
         text-align: center; /* Center the last updated text */
-        top: 0; /* Reset top position */
     }
-}
-
-#last-updated-date {
-    margin-left: 0; /* Remove left margin for small screens */
-    text-align: center; /* Center the last updated text */
-    top: 0; /* Reset top position */
 }
 
 /* Styles for the new "important" checkbox with red background */
@@ -154,7 +156,7 @@ article a:hover {
     border-radius: 3px; /* Slightly rounded corners */
     margin-right: 5px; /* Adjust space between checkboxes */
     vertical-align: middle; /* Align it properly with the text */
-    margin-top: 1px; /* Adjust position to move it slightly down */
+    margin-top: 2px; /* Adjust position to move it slightly down */
 }
 
 /* When the checkbox is checked, change the background color */
@@ -168,3 +170,7 @@ article a:hover {
     vertical-align: middle; /* Align it properly with the "important" checkbox */
 }
 
+.separator {
+    border: 2px solid #000; /* Change the number to adjust thickness; color can also be changed */
+    margin: 20px 0; /* Optional: Adds space above and below the line */
+}
