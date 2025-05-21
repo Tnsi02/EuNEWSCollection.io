@@ -131,12 +131,6 @@ article:hover {
         flex-direction: column; /* Stack elements vertically on smaller screens */
     }
 
-    /* Remove the Disqus container responsive styles */
-    /* .disqus-container {
-        width: 100%;
-        margin-top: 30px;
-    } */
-
     header {
         text-align: center; /* Center the header on small screens */
     }
