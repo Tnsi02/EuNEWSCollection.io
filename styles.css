@@ -41,6 +41,15 @@ h1 {
     margin-bottom: 20px; /* Add spacing between sections */
 }
 
+/* .news-section h2 {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+} */
+
 .news-section h2 {
     margin-top: 0; /* Remove margin at the top for the section headers */
     cursor: pointer; /* Indicate that the header is clickable */

@@ -198,4 +198,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load saved links on page load
     displaySavedLinks();
+
+    function updateFixedHeader() {
+        // Remove the class from all headers
+        document.querySelectorAll('.news-section h2').forEach(h2 => {
+            h2.classList.remove('fixed-category-header');
+        });
+        // Find the open section and add the class to its header
+        document.querySelectorAll('.news-section').forEach(section => {
+            const newsList = section.querySelector('.news-list');
+            if (newsList && newsList.style.display !== 'none') {
+                const header = section.querySelector('h2');
+                if (header) header.classList.add('fixed-category-header');
+            }
+        });
+    }
+
+    // Attach click listeners to all headers
+    document.querySelectorAll('.news-section h2').forEach(h2 => {
+        h2.addEventListener('click', () => {
+            setTimeout(updateFixedHeader, 10); // Slight delay to allow toggle
+        });
+    });
+
+    // Initial call in case a section is open by default
+    updateFixedHeader();
 });
