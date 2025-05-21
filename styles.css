@@ -127,6 +127,9 @@ article:hover {
 } */
 
 @media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
     .main-content {
         flex-direction: column; /* Stack elements vertically on smaller screens */
     }
