@@ -112,28 +112,30 @@ article:hover {
     font-weight: bold; /* Make the sign stand out */
 }
 
-.disqus-container {
-    position: fixed; /* Fix position relative to the viewport */
-    top: 20px; /* Adjust the distance from the top of the page */
-    right: 20px; /* Adjust the distance from the right of the page */
-    width: 400px; /* Set a fixed width */
-    height: auto; /* Adjust height for content */
-    padding: 20px; /* Add padding */
-    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
-    background-color: white; /* Optional: Give it a background color */
-    z-index: 1000; /* Optional: Bring it to the front of other content */
-}
+/* Remove the Disqus container styles */
+ 
+/* .disqus-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    z-index: 1000;
+} */
 
-/* Media query for responsiveness */
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column; /* Stack elements vertically on smaller screens */
     }
 
-    .disqus-container {
-        width: 100%; /* Make Disqus section full width on small screens */
-        margin-top: 30px; /* Add spacing at the top */
-    }
+    /* Remove the Disqus container responsive styles */
+    /* .disqus-container {
+        width: 100%;
+        margin-top: 30px;
+    } */
 
     header {
         text-align: center; /* Center the header on small screens */
