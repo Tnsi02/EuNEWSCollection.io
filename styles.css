@@ -158,6 +158,13 @@ article:hover {
         padding: 0;
         box-sizing: border-box;
     }
+    article {
+        max-width: 100%;
+        width: 100%;
+        margin: 10px auto; /* Center the box and add vertical spacing */
+        box-sizing: border-box;
+        display: block;
+    }
 }
 
 /* Styles for the new "important" checkbox with red background */
