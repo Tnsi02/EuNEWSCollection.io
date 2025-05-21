@@ -165,6 +165,15 @@ article:hover {
         box-sizing: border-box;
         display: block;
     }
+
+    .news-section h2 {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+    }
 }
 
 /* Styles for the new "important" checkbox with red background */
