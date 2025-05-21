@@ -180,6 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Only run this on mobile
+    if (window.innerWidth <= 768) {
+        const headers = document.querySelectorAll('.news-section h2');
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                // Remove fixed class from all headers
+                headers.forEach(h => h.classList.remove('fixed-category-header'));
+                // Add to the clicked one if its section is open
+                const newsList = header.nextElementSibling;
+                if (newsList && newsList.style.display !== 'none') {
+                    header.classList.add('fixed-category-header');
+                }
+            });
+        });
+    }
+
     // Load saved links on page load
     displaySavedLinks();
 });
