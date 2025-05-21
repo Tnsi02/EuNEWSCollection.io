@@ -45,6 +45,12 @@ h1 {
     margin-top: 0; /* Remove margin at the top for the section headers */
     cursor: pointer; /* Indicate that the header is clickable */
     transition: color 0.3s ease; /* Smooth transition for hover effect */
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
 }
 
 .news-section h2:hover {
