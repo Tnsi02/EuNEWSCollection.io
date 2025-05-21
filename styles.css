@@ -170,7 +170,7 @@ article:hover {
         position: sticky;
         top: 0;
         background: #fff;
-        z-index: 10;
+        z-index: 100;
         border-bottom: 1px solid #eee;
         padding: 10px 0;
     }
