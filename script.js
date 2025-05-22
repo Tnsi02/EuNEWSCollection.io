@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    updateLastUpdatedDate(); // <-- Add this at the top
+
     // Function to fetch news from a specified file and update the respective news list
     function fetchNews(filePath, newsListId) {
         fetch(filePath)
