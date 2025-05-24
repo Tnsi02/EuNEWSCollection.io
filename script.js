@@ -225,4 +225,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial call in case a section is open by default
     updateFixedHeader();
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        } else {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+    }
 });
