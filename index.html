@@ -103,5 +103,19 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+
+    const article = document.createElement('article');
+    article.innerHTML = `
+        <label>
+            <input type="checkbox" class="important-check" />
+            <input type="checkbox" class="news-read-checkbox" />
+            <a href="${link}" target="_blank">${coloredTitle}</a>
+            <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Summarize</button>
+            <button class="save-button">SAVE</button>
+        </label>
+    `;
+</script>
 </body>
 </html>
