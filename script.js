@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .replace(/\[(European Council)\]/g, '<span style="color: #1470f4;">[$1]</span>');
 
                     // Construct the summarize link (optional)
-                    const summarizeUrl = `https://www.phind.com/search?q=summarise+this%3A+${encodeURIComponent(link)}`; 
+                    const summarizeUrl = `https://gemini.google.com/app?hl=en&q=summarize%20${encodeURIComponent(link)}`; 
 
                     const article = document.createElement('article');
                     article.innerHTML = `
