@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" class="important-check" />
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
-                            <button class="summarize-button" onclick="window.open('${summarizeUrl}', '_blank')">Gemini</button>
+                            <button class="summarize-button" onclick="copyToClipboard('summarise ${link}'); window.open('${summarizeUrl}', '_blank')">Gemini</button>
                             <button class="save-button">SAVE</button>
                         </label>
                     `;
