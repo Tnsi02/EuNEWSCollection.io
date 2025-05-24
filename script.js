@@ -36,10 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" class="important-check" />
                             <input type="checkbox" class="news-read-checkbox" />
                             <a href="${link}" target="_blank">${coloredTitle}</a>
-                            <button class="summarize-button" onclick="copyToClipboard('summarise ${link}'); window.open('${summarizeUrl}', '_blank')">Gemini</button>
+                            <button class="summarize-button">Gemini</button>
                             <button class="save-button">SAVE</button>
                         </label>
                     `;
+
+                    // Attach the event listener to the Gemini button
+                    const geminiBtn = article.querySelector('.summarize-button');
+                    geminiBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        copyToClipboard('summarise ' + link);
+                        window.open(summarizeUrl, '_blank');
+                    });
 
                     // Handle "important" checkbox state
                     const importantCheckbox = article.querySelector('.important-check');
