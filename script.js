@@ -179,6 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
     fetchNews('ForeignRelations.txt', 'foreign-relations-news-list'); // Foreign Relations News
+    fetchNews('Specials.txt', 'specials-news-list');
+    fetchNews('Publications.txt', 'publications-news-list');
+    fetchNews('PolicyAlert.txt', 'policy-alert-news-list');
+    fetchNews('Commentary.txt', 'commentary-news-list');
 
     // Add click event listeners for toggling visibility
     document.querySelectorAll('.toggle-sign').forEach(sign => {
