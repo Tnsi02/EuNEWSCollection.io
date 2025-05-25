@@ -132,19 +132,23 @@ article:hover {
 }
 
 .header-btn {
-    flex: 0 0 auto;           /* Prevent the button from stretching */
+    flex: 0 0 auto;
     position: static;
     text-align: right;
     margin-left: auto;
     padding: 8px 18px;
-    background: #1470f4;
+    background: #005ea5; /* EU blue */
     color: #fff;
     border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
     z-index: 100;
-    white-space: nowrap;      /* Prevents the text from wrapping */
+    white-space: nowrap;
+}
+
+.header-btn:hover {
+    background: #003d70; /* Darker EU blue on hover */
 }
 
 #swipe-overlay {
