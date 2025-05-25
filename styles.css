@@ -231,3 +231,18 @@ article:hover {
     border: 2px solid #000; /* Change the number to adjust thickness; color can also be changed */
     margin: 20px 0; /* Optional: Adds space above and below the line */
 }
+
+#foreign-relations-news-list {
+    margin-top: -8px !important;   /* Pull subcategories closer up */
+    padding-top: 0 !important;
+}
+
+#foreign-relations-news-list > .news-section {
+    margin-left: 50px;   /* Slightly more indent for clarity */
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#foreign-relations-news-list h3 {
+    font-size: 1.4em; /* Increase as desired, e.g., 1.2em for even bigger */
+}
