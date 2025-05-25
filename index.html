@@ -10,8 +10,9 @@
 
 <header>
     <div class="header-content">
-        <h1>EU NEWS Collection</h1> 
-        <span id="last-updated-date"></span> <!-- Last Updated -->
+        <h1>EU NEWS Collection</h1>
+        <span id="last-updated-date"></span>
+        <button id="initiative-tracker-btn" class="header-btn">Citizens' Initiative Tracker</button>
     </div>
 </header>
 
@@ -151,8 +152,18 @@
     </div>
 </div>
 
+<script>
+document.getElementById('initiative-tracker-btn').onclick = function() {
+    const overlay = document.getElementById('swipe-overlay');
+    overlay.classList.remove('swipe-active-rtl');  // Remove the RTL class if present
+    overlay.classList.add('swipe-active');         // Add the LTR class
+    setTimeout(() => {
+        window.location.href = 'InitiativeTracker.html';
+    }, 600);
+};
+</script>
 <script src="script.js"></script>
 
-
+<div id="swipe-overlay"></div>
 </body>
 </html>

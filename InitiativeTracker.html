@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizens' Initiative Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1></h1>
+            <span id="last-updated-date"></span>
+            <button id="news-btn" class="header-btn">News</button>
+        </div>
+    </header>
+    <div id="swipe-overlay"></div>
+    <script>
+document.getElementById('news-btn').onclick = function() {
+    const overlay = document.getElementById('swipe-overlay');
+    overlay.classList.remove('swipe-active');      // Remove the LTR class if present
+    overlay.classList.add('swipe-active-rtl');     // Add the RTL class
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 600);
+};
+</script>
+</body>
+</html>

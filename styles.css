@@ -13,8 +13,10 @@ header {
 
 .header-content {
     display: flex; /* Use flexbox to align items horizontally */
-    justify-content: flex-start; /* Align items to the left */
     align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    position: relative; /* Set position to relative for children */
+    gap: 20px;
 }
 
 h1 {
@@ -22,7 +24,9 @@ h1 {
 }
 
 #last-updated-date {
-    margin-left: 20px; /* Space between title and last updated text */
+    flex: 1;
+    text-align: center;
+    margin: 0;
     font-size: 14px; /* Adjust font size */
     color: #555; /* Change color for distinction */
 }
@@ -125,6 +129,42 @@ article:hover {
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
     margin-left: 10px; /* Space between the header and the sign */
     font-weight: bold; /* Make the sign stand out */
+}
+
+.header-btn {
+    flex: 0 0 auto;           /* Prevent the button from stretching */
+    position: static;
+    text-align: right;
+    margin-left: auto;
+    padding: 8px 18px;
+    background: #1470f4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100;
+    white-space: nowrap;      /* Prevents the text from wrapping */
+}
+
+#swipe-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #1470f4;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+    transform: translateX(-100%);
+}
+
+/* Left to right swipe (index.html -> InitiativeTracker.html) */
+#swipe-overlay.swipe-active {
+    transform: translateX(0);
+}
+
+/* Right to left swipe (InitiativeTracker.html -> index.html) */
+#swipe-overlay.swipe-active-rtl {
+    transform: translateX(0);
 }
 
 /* Remove the Disqus container styles */
@@ -253,3 +293,15 @@ article:hover {
     padding: 8px 0;
     border-bottom: 1px solid #eee;
 }
+
+document.getElementById('news-btn').onclick = function() {
+    const overlay = document.getElementById('swipe-overlay');
+    overlay.style.transform = 'translateX(100%)'; // Start off-screen right
+    // Force reflow to apply the style before adding the class
+    void overlay.offsetWidth;
+    overlay.classList.remove('swipe-active');
+    overlay.classList.add('swipe-active-rtl');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 600);
+};
