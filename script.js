@@ -178,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNews('ConsiliumNews.txt', 'consilium-news-list'); // Consilium News
     fetchNews('EBnews.txt', 'eurobarometer-news-list'); // Eurobarometer News
     fetchNews('EESCnews.txt', 'eesc-news-list'); // EESC News
-    fetchNews('ForeignRelations.txt', 'foreign-relations-news-list'); // Foreign Relations News
     fetchNews('Specials.txt', 'specials-news-list');
     fetchNews('Publications.txt', 'publications-news-list');
     fetchNews('PolicyAlert.txt', 'policy-alert-news-list');
