@@ -1,0 +1,88 @@
+.brick-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 40px auto;
+    max-width: 600px;
+}
+.initiative-brick {
+    display: flex;
+    align-items: stretch;
+    background: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0001;
+    overflow: hidden;
+    min-height: 80px;
+}
+.initiative-img-border {
+    width: 60px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 4px solid #ddd;
+}
+.initiative-img-border img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+.initiative-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px 12px 32px;
+    background: #fff;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.header-content h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-btn {
+    padding: 8px 20px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+    background: #005ea5;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.header-btn:hover {
+    background: #003d70;
+}
+
+#swipe-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #FFD600; /* European yellow */
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+}
+
+#swipe-overlay:not(.swipe-active-rtl) {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: none;
+}
+
+.swipe-active-rtl {
+    opacity: 1;
+    transform: translateX(0);
+}

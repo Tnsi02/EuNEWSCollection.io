@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Citizens' Initiative Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="InitiativeTracker.css">
 </head>
 <body>
     <header>
@@ -17,8 +17,8 @@
     <script>
 document.getElementById('news-btn').onclick = function() {
     const overlay = document.getElementById('swipe-overlay');
-    overlay.classList.remove('swipe-active');      // Remove the LTR class if present
-    overlay.classList.add('swipe-active-rtl');     // Add the RTL class
+    overlay.classList.remove('swipe-active');
+    overlay.classList.add('swipe-active-rtl');
     setTimeout(() => {
         window.location.href = 'index.html';
     }, 600);
