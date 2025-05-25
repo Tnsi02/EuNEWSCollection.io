@@ -58,13 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const number = numbers[key] || "";
                 const link = links[key] || "#";
                 return `
-                    <div class="initiative-brick">
+                    <div class="initiative-brick" data-key="${key}">
                         <div class="initiative-img-border">
                             <img src="${imgPath}" alt="${name}">
                         </div>
                         <div class="initiative-info">
                             <a href="${link}" target="_blank">${name}</a>
-                            <span style="margin-left:16px;color:#666;font-size:0.95em;">${number}</span>
+                            <span class="initiative-supporters" style="color:#666;font-size:0.95em;">${number}</span>
+                            <label class="voted-checkbox-label">
+                                <input type="checkbox" class="voted-checkbox" data-key="${key}">
+                                <span class="custom-checkbox"></span>
+                                <span style="margin-left:6px;font-size:0.95em;">Voted for it</span>
+                            </label>
                         </div>
                     </div>
                 `;
@@ -72,6 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
         )).then(bricks => {
             brickList.innerHTML = bricks.join('\n');
             document.body.insertBefore(brickList, document.getElementById('swipe-overlay'));
+
+            // Persist and restore checkbox state
+            document.querySelectorAll('.voted-checkbox').forEach(cb => {
+                const key = cb.getAttribute('data-key');
+                // Restore state
+                cb.checked = localStorage.getItem('initiative-voted-' + key) === 'true';
+                // Save state on change
+                cb.addEventListener('change', () => {
+                    localStorage.setItem('initiative-voted-' + key, cb.checked);
+                });
+            });
         });
     });
 });

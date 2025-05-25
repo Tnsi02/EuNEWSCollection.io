@@ -3,7 +3,9 @@
     flex-direction: column;
     gap: 24px;
     margin: 40px auto;
-    max-width: 600px;
+    /* max-width: 600px; */ /* Remove or increase this */
+    width: 100%;            /* Add this for full width */
+    max-width: 1000px;      /* Or set a larger max-width if you want a limit */
 }
 .initiative-brick {
     display: flex;
@@ -13,37 +15,55 @@
     box-shadow: 0 2px 8px #0001;
     overflow: hidden;
     min-height: 80px;
+    width: 100%;            /* Ensure each brick stretches */
+    min-width: 0;           /* Prevent overflow issues */
 }
 .initiative-brick:nth-child(odd) {
-    background: #ededed; /* Slightly darker grey */
+    background: #ededed; /* Stays the same */
 }
 
 .initiative-brick:nth-child(even) {
-    background: #e3e3e3; /* Keep as is, or adjust as you like */
+    background: #d3d3d3; /* Stronger/darker grey */
 }
 .initiative-img-border {
-    width: 120px; /* Increased from 60px */
-    min-height: 120px; /* Optional: ensures a taller image area */
-    background: #eee;
+    width: 160px;        /* Make the image area wider */
+    min-height: 160px;   /* Make the image area taller */
+    background: transparent; /* Now fully transparent */
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 4px solid #ddd;
+    /* Remove border-right here, we'll set it per-brick below */
+}
+
+/* Odd bricks: EU blue border */
+.initiative-brick:nth-child(odd) .initiative-img-border {
+    border-right: 4px solid #005ea5; /* EU blue */
+}
+
+/* Even bricks: EU yellow border */
+.initiative-brick:nth-child(even) .initiative-img-border {
+    border-right: 4px solid #FFD600; /* EU yellow */
 }
 .initiative-img-border img {
-    max-height: 90px; /* Increased from 100% to a fixed larger value */
-    max-width: 90px;  /* Increased from 100% to a fixed larger value */
-    object-fit: contain;
+    width: 100%;         /* Fill the container horizontally */
+    height: 100%;        /* Fill the container vertically */
+    max-width: 100%;     /* Prevent overflow */
+    max-height: 100%;    /* Prevent overflow */
+    object-fit: contain; /* Or use 'cover' for cropping effect */
 }
 .initiative-info {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr auto; /* Name takes all space, supporters stays right */
+    grid-template-columns: 1fr auto auto; /* Name | Supporters | Checkbox */
     align-items: center;
     padding: 0 24px;
     font-size: 1.2em;
     font-weight: 500;
     gap: 24px; /* Space between name and supporters */
+    min-width: 0;           /* Allow grid columns to shrink */
+    width: 100%;
+    padding: 0 32px;        /* Optional: increase horizontal padding */
+    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
 }
 .initiative-supporters {
     color: #005ea5;
@@ -102,4 +122,44 @@
 .swipe-active-rtl {
     opacity: 1;
     transform: translateX(0);
+}
+.voted-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1em;
+}
+
+.voted-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #bbb;
+    border-radius: 5px;
+    margin-right: 4px;
+    background: #fff;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block;
+    position: relative;
+}
+
+.voted-checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+    background: #4caf50;
+    border-color: #388e3c;
+}
+
+.voted-checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
