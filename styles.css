@@ -244,5 +244,12 @@ article:hover {
 }
 
 #foreign-relations-news-list h3 {
-    font-size: 1.4em; /* Increase as desired, e.g., 1.2em for even bigger */
+    position: sticky;
+    top: 48px; /* Adjust this value if your main header is taller/shorter */
+    background: #f9f9f9;
+    z-index: 90;
+    font-size: 1.4em;
+    margin-bottom: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
 }
