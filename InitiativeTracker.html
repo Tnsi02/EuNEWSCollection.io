@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <title>Citizens' Initiative Tracker</title>
     <link rel="stylesheet" href="InitiativeTracker.css">
+    <script src="initiative-tracker.js" defer></script>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1></h1>
+            <h1>Citizens' Initiative Tracker</h1>
             <span id="last-updated-date"></span>
             <button id="news-btn" class="header-btn">News</button>
         </div>
     </header>
     <div id="swipe-overlay"></div>
+    <!-- The brick list will be injected here by initiative-tracker.js -->
     <script>
-document.getElementById('news-btn').onclick = function() {
-    const overlay = document.getElementById('swipe-overlay');
-    overlay.classList.remove('swipe-active');
-    overlay.classList.add('swipe-active-rtl');
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 600);
-};
-</script>
+    document.getElementById('news-btn').onclick = function() {
+        const overlay = document.getElementById('swipe-overlay');
+        overlay.classList.remove('swipe-active');
+        overlay.classList.add('swipe-active-rtl');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 600);
+    };
+    </script>
 </body>
 </html>
