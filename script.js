@@ -353,6 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update count display
         document.getElementById('news-search-count').textContent = `${currentSearchIndex + 1} of ${searchResults.length} found`;
+            
+        // Open all parent news lists of the headline
+        let parent = a.closest('.news-list');
+        while (parent) {
+            parent.style.display = 'block'; // Ensure the parent is visible
+            const toggle = parent.parentElement.querySelector('.toggle-sign');
+            if (toggle) {
+                toggle.textContent = '-'; // Update toggle sign to indicate open
+                toggle.setAttribute('data-visible', 'true');
+            }
+            parent = parent.parentElement.closest('.news-list'); // Move up to the next parent
+        }
+
+
+        
     }
 
     // Event listeners
