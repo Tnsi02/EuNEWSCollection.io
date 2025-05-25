@@ -18,11 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     Promise.all([
         fetch(basePath + "names.txt").then(r => r.text()),
         fetch(basePath + "numbers.txt").then(r => r.text()),
-        fetch(basePath + "links.txt").then(r => r.text())
-    ]).then(([namesTxt, numbersTxt, linksTxt]) => {
+        fetch(basePath + "links.txt").then(r => r.text()),
+        fetch(basePath + "summarisation.txt").then(r => r.text()).catch(() => "")
+    ]).then(([namesTxt, numbersTxt, linksTxt, summariesTxt]) => {
         const names = parseKeyValue(namesTxt);
         const numbers = parseKeyValue(numbersTxt);
         const links = parseKeyValue(linksTxt);
+        const summaries = parseKeyValue(summariesTxt);
 
         const brickList = document.createElement("div");
         brickList.className = "brick-list";
@@ -57,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const name = names[key];
                 const number = numbers[key] || "";
                 const link = links[key] || "#";
+                const summary = summaries[key] || ""; // Get summary
                 return `
                     <div class="initiative-brick" data-key="${key}">
                         <div class="initiative-img-border">
@@ -70,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="custom-checkbox"></span>
                                 <span style="margin-left:6px;font-size:0.95em;">Voted for it</span>
                             </label>
+                            <button class="summary-toggle" data-key="${key}">Quick Summary ▼</button>
+                            <div class="initiative-summary" id="summary-${key}" style="display:none; grid-column: 1 / -1;">
+                                ${summaries[key] ? summaries[key] : "<em>No summary available.</em>"}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -86,6 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Save state on change
                 cb.addEventListener('change', () => {
                     localStorage.setItem('initiative-voted-' + key, cb.checked);
+                });
+            });
+
+            // Toggle summary visibility
+            document.querySelectorAll('.summary-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.getAttribute('data-key');
+                    const summaryDiv = document.getElementById('summary-' + key);
+                    if (summaryDiv.style.display === 'none') {
+                        summaryDiv.style.display = 'block';
+                        btn.textContent = 'Quick Summary ▲';
+                    } else {
+                        summaryDiv.style.display = 'none';
+                        btn.textContent = 'Quick Summary ▼';
+                    }
                 });
             });
         });

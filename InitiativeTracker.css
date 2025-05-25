@@ -178,3 +178,18 @@
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
+.initiative-summary {
+    background: #f9f9f9;
+    color: #333;
+    padding: 24px 36px;      /* More vertical (24px) and horizontal (36px) padding */
+    border-radius: 0 0 10px 10px;
+    font-size: 1.08em;       /* Slightly larger text */
+    margin-top: 12px;        /* More space above */
+    box-shadow: 0 2px 8px #0001;
+    line-height: 1.2;        /* More vertical spacing between lines */
+    letter-spacing: 0.03em;  /* More horizontal spacing between letters */
+    word-spacing: 0.1em;    /* More horizontal spacing between words */
+    transition: all 0.2s;
+
+
+    
