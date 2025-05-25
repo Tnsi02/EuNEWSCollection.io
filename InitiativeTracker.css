@@ -65,6 +65,21 @@
     padding: 0 32px;        /* Optional: increase horizontal padding */
     box-sizing: border-box; /* Ensure padding doesn't cause overflow */
 }
+.initiative-info a {
+    font-family: 'Inter', 'Roboto', 'Segoe UI', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.18em;
+    color: #222;
+    text-decoration: none;
+    transition: color 0.18s, transform 0.18s;
+}
+
+.initiative-info a:hover {
+    color: #005ea5;           /* EU blue */
+    transform: scale(1.05);   /* Grows 5% */
+    text-decoration: none;
+    z-index: 1;
+}
 .initiative-supporters {
     color: #005ea5;
     font-size: 1em;
