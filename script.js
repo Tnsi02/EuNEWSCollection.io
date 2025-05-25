@@ -253,4 +253,109 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.removeChild(textarea);
         }
     }
+
+    let searchResults = [];
+    let currentSearchIndex = 0;
+    let lastOpenedNewsList = null;
+
+    function clearSearchHighlights() {
+        document.querySelectorAll('.news-search-highlight').forEach(el => {
+            el.classList.remove('news-search-highlight');
+        });
+    }
+
+    function performNewsSearch(query) {
+        clearSearchHighlights();
+        searchResults = [];
+        currentSearchIndex = 0;
+        if (!query) {
+            document.getElementById('news-search-count').textContent = '';
+            document.getElementById('news-search-prev').disabled = true;
+            document.getElementById('news-search-next').disabled = true;
+            return;
+        }
+        // Find all news headlines (links inside articles)
+        const allHeadlines = Array.from(document.querySelectorAll('.news-list article a'));
+        allHeadlines.forEach(a => {
+            if (a.textContent.toLowerCase().includes(query.toLowerCase())) {
+                searchResults.push(a);
+            }
+        });
+        document.getElementById('news-search-count').textContent = `${searchResults.length} found`;
+        document.getElementById('news-search-prev').disabled = searchResults.length === 0;
+        document.getElementById('news-search-next').disabled = searchResults.length === 0;
+        if (searchResults.length > 0) {
+            goToSearchResult(0);
+        }
+    }
+
+    function goToSearchResult(idx) {
+        if (searchResults.length === 0) return;
+        clearSearchHighlights();
+        currentSearchIndex = ((idx % searchResults.length) + searchResults.length) % searchResults.length; // wrap around
+        const a = searchResults[currentSearchIndex];
+        a.classList.add('news-search-highlight');
+
+        // Find the news list (category) containing this result
+        let newsList = a.closest('.news-list');
+
+        // Close the previously opened news list if it's different
+        if (lastOpenedNewsList && lastOpenedNewsList !== newsList) {
+            lastOpenedNewsList.style.display = 'none';
+            // Also update the toggle sign for the closed section
+            const prevToggle = lastOpenedNewsList.parentElement.querySelector('.toggle-sign');
+            if (prevToggle) {
+                prevToggle.textContent = '+';
+                prevToggle.setAttribute('data-visible', 'false');
+            }
+        }
+
+        // Open the current news list if it's collapsed
+        if (newsList && newsList.style.display === 'none') {
+            newsList.style.display = 'block';
+            // Also update the toggle sign for the opened section
+            const toggle = newsList.parentElement.querySelector('.toggle-sign');
+            if (toggle) {
+                toggle.textContent = '-';
+                toggle.setAttribute('data-visible', 'true');
+            }
+        }
+
+        // Remember the currently opened news list
+        lastOpenedNewsList = newsList;
+
+        // Scroll to the headline and center it
+        setTimeout(() => {
+            a.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+
+        // Update count display
+        document.getElementById('news-search-count').textContent = `${currentSearchIndex + 1} of ${searchResults.length} found`;
+    }
+
+    // Event listeners
+    document.getElementById('news-search-prev').addEventListener('click', function() {
+        goToSearchResult(currentSearchIndex - 1);
+    });
+    document.getElementById('news-search-next').addEventListener('click', function() {
+        goToSearchResult(currentSearchIndex + 1);
+    });
+    document.getElementById('news-collapse-all').addEventListener('click', function() {
+        document.querySelectorAll('.news-list').forEach(list => {
+            list.style.display = 'none';
+        });
+        document.querySelectorAll('.toggle-sign').forEach(sign => {
+            sign.textContent = '+';
+            sign.setAttribute('data-visible', 'false');
+        });
+    });
+    document.getElementById('news-search-btn').addEventListener('click', function() {
+        const query = document.getElementById('news-search-input').value.trim();
+        performNewsSearch(query);
+    });
+    document.getElementById('news-search-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('news-search-btn').click();
+        }
+    });
 });
