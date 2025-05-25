@@ -274,13 +274,35 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('news-search-next').disabled = true;
             return;
         }
+
+        // Split query by separators: : , ; - \ /
+        const separators = /[,:;\-\\/]+/;
+        const terms = query.split(separators).map(t => t.trim()).filter(Boolean);
+
         // Find all news headlines (links inside articles)
         const allHeadlines = Array.from(document.querySelectorAll('.news-list article a'));
         allHeadlines.forEach(a => {
-            if (a.textContent.toLowerCase().includes(query.toLowerCase())) {
+            let matched = false;
+            let html = a.textContent;
+
+            // For each term, highlight only if present
+            terms.forEach((term, i) => {
+                if (!term) return;
+                const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`\\b${safeTerm}\\b`, 'gi');
+                if (regex.test(html)) matched = true;
+                // Only replace if the term is present
+                html = html.replace(regex, `<span class="multi-highlight multi-highlight-${i}">$&</span>`);
+            });
+
+            if (matched) {
+                a.innerHTML = html;
                 searchResults.push(a);
+            } else {
+                a.innerHTML = a.textContent; // Remove any old highlights if not matched
             }
         });
+
         document.getElementById('news-search-count').textContent = `${searchResults.length} found`;
         document.getElementById('news-search-prev').disabled = searchResults.length === 0;
         document.getElementById('news-search-next').disabled = searchResults.length === 0;
