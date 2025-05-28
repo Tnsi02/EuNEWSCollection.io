@@ -1,3 +1,4 @@
+Standard Eurobarometer 103 - Spring 2025  https://europa.eu/eurobarometer/surveys/detail/3372
 Europeans’ attitudes towards culture  https://europa.eu/eurobarometer/surveys/detail/3364
 Multimodal Digital Mobility Service  https://europa.eu/eurobarometer/surveys/detail/3178
 Fairness, Inequality and Inter-Generational Mobility  https://europa.eu/eurobarometer/surveys/detail/2652
@@ -7,4 +8,3 @@ EU Consumer habits regarding fishery and aquaculture products  https://europa.eu
 Youth survey 2024  https://europa.eu/eurobarometer/surveys/detail/3392
 Standard Eurobarometer 102 - Autumn 2024  https://europa.eu/eurobarometer/surveys/detail/3215
 Artificial Intelligence and the future of work  https://europa.eu/eurobarometer/surveys/detail/3222
-European citizens’ knowledge and attitudes towards science and technology  https://europa.eu/eurobarometer/surveys/detail/3227
