@@ -1,8 +1,9 @@
-01=https://citizens-initiative.europa.eu/initiatives/details/2024/000006_en
-02=https://citizens-initiative.europa.eu/initiatives/details/2024/000010_en
-03=https://citizens-initiative.europa.eu/initiatives/details/2024/000002_en
-04=https://citizens-initiative.europa.eu/initiatives/details/2025/000001_en
-05=https://citizens-initiative.europa.eu/initiatives/details/2024/000011_en
-06=https://citizens-initiative.europa.eu/initiatives/details/2024/000009_en
-07=https://citizens-initiative.europa.eu/initiatives/details/2024/000008_en
-08=https://citizens-initiative.europa.eu/initiatives/details/2024/000007_en
+01=https://citizens-initiative.europa.eu/find-initiative_en
+02=https://citizens-initiative.europa.eu/initiatives/details/2024/000006_en
+03=https://citizens-initiative.europa.eu/initiatives/details/2024/000010_en
+04=https://citizens-initiative.europa.eu/initiatives/details/2024/000002_en
+05=https://citizens-initiative.europa.eu/initiatives/details/2025/000001_en
+06=https://citizens-initiative.europa.eu/initiatives/details/2024/000011_en
+07=https://citizens-initiative.europa.eu/initiatives/details/2024/000009_en
+08=https://citizens-initiative.europa.eu/initiatives/details/2024/000008_en
+09=https://citizens-initiative.europa.eu/initiatives/details/2024/000007_en
