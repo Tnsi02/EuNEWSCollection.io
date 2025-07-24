@@ -1,10 +1,8 @@
-01=View all the initiatives that have already been registered by the European Commission.
-Find information about the registration process in our "How it works" page.
-02=5,506 supporters
-03=3,870 supporters
-04=3,575 supporters
-05=32,512 supporters
-06=33,106 supporters
-07=716,350 supporters
-08=1,015,418 supporters
-09=1,422,349 supporters
+01=5,506 supporters
+02=3,870 supporters
+03=3,575 supporters
+04=32,512 supporters
+05=33,106 supporters
+06=716,350 supporters
+07=1,015,418 supporters
+08=1,422,349 supporters
